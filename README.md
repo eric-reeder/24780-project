@@ -16,20 +16,20 @@ double unitStep(double time)
 // Calculates the value of the unit step function as a function of time
 // Inputs: time [s]
 // Outputs: force [N]
-    
+
     double outForce;
-    
+
     if (time > 0)
     {
         outForce = 1.0;
     }
-    
+
     else
     {
         outForce = 0.0;
     }
-    
-    return outForce
+
+    return outForce;
 }
 ```
 
@@ -48,19 +48,19 @@ protected:
     double equiLength; // Length of spring at equilibrium [m]
     double length; // Current length of spring [m]
     double springConst; // Spring constant [N/m]
-    
+
 public:
     Spring();
-    
+
     double getEquiLength(void);
     double getLength(void);
     double getSpringConst(void);
     bool getState(void);
-    
+
     void setLength(double newLength);
     void setSpringConst(double newSpringCosnt);
     void setState(bool newState);
-    
+
     void draw(void);
 };
 ```
