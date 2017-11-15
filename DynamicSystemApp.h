@@ -37,10 +37,12 @@ protected:
     const double MAX_SIM_TIME = 60;
     const int SLEEP_TIME = 20;
 
+    // Protected member functions
+    void initializeSimulationObjects(void);
+    void drawApp(void);
+
 public:
     dynamicSystemApp();
     dynamicSystemApp(int windowWidth, int windowHeight);
-    void initializeSimulationObjects(void);
-    void drawApp(void);
     void run(void);
 };

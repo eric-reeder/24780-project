@@ -37,8 +37,10 @@ void initializeSimulationObjects(void)
 void resetSystem(void)
 {
     elapsedTime = 0.0;
-    mass1.setPos(0.0);
-    mass2.setPos(0.0);
+    mass1.setPosition(0.0);
+    mass1.setVelocity(0.0);
+    mass2.setPosition(0.0);
+    mass2.setVelocity(0.0);
     spring1.setLength(0.0);
     spring2.setLength(0.0);
     spring3.setLength(0.0);
@@ -52,8 +54,8 @@ void resetSystem(void)
 void drawApp(void)
 {
     uiWindow.draw();
-    animationWindow.draw();
-    plotWindow.draw();
+    animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
+    plotWindow.draw(mass1, mass2, elapsedTime);
 }
 
 
@@ -99,6 +101,7 @@ void dynamicSystemApp::run(void)
             resetSystem();
         }
 
+        drawApp();
         FsSwapBuffers();
         FsSleep(SLEEP_TIME);
     }
