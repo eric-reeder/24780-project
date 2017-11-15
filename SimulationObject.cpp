@@ -4,6 +4,7 @@
 SimulationObject::SimulationObject()
 {
     position = 0;
+    state = true;
     redVal = 0;
     blueVal = 0;
     greenVal = 0;
@@ -29,10 +30,12 @@ int getRedVal(void)
     return redVal;
 }
 
+
 void setRedVal(int newRedVal);
 {
     redVal = newRedVal;
 }
+
 
 int getBlueVal(void)
 {

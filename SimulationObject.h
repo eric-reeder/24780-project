@@ -2,6 +2,7 @@ class SimulationObject
 {
 protected:
     double position;
+    bool state; // "true" corresponds to active, "false" to inactive
     int redVal;
     int blueVal;
     int greenVal;
