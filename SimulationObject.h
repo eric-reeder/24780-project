@@ -17,13 +17,11 @@ public:
     void setPosition(const double newPosition);
 
     int getRedVal(void) const;
-    void setRedVal(const int newRedVal);
-
     int getBlueVal(void) const;
-    void setBlueVal(const int newBlueVal);
-    
     int getGreenVal(void) const;
-    void setGreenVal(const int newGreenVal);
+
+    void setColor(const int newRedVal, const int newGreenVal, 
+        const int newBlueVal);
 }
 
 #endif /* SIMULATIONOBJECT_H */

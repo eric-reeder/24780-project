@@ -1,6 +1,7 @@
 #include "fssimplewindow.h"
 #include "GraphicsWindow.h"
 
+
 GraphicsWindow::GraphicsWindow(int appWidth, int appHeight, int inputMargin, 
     double widthFraction, double heightFraction, int inputXPosition, 
     int inputYPosition)
@@ -21,7 +22,15 @@ GraphicsWindow::GraphicsWindow(int appWidth, int appHeight, int inputMargin,
     backgroundBlue = 255;
 }
 
-void draw(void) const
+
+void GraphicsWindow::setPosition(const int newXPosition, const int newYPosition)
+{
+    xPosition = newXPosition;
+    yPosition = newYPosition
+}
+
+
+void GraphicsWindow::draw() const
 {
     // Draw backgound
     glColor3ub(backgroundRed, backgroundGreen, backgroundBlue);

@@ -10,12 +10,28 @@
 #ifndef DYNAMICSYSTEMAPP_H
 #define DYNAMICSYSTEMAPP_H
 
+/*  Highest level class in the app, controls overall functionality  */
 class dynamicSystemApp
 {
 protected:
     // App window
     int width;
     int height;
+
+    double uiWindowWidthFraction; // Fraction of app window width
+    double uiWindowHeightFraction; // Fraction of app window height
+    int uiWindowXPosition; // X coordinate of top left corner
+    int uiWindowYPosition; // Y coordinate of top left corner
+
+    double animationWindowWidthFraction;
+    double animationWindowHeightFraction;
+    int animationWindowXPosition;
+    int animationWindowYPosition;
+
+    double plotWindowWidthFraction;
+    double plotWindowHeightFraction;
+    int plotWindowXPosition;
+    int plotWindowYPosition;
 
     // Dynamic system components
     Mass mass1;
@@ -46,12 +62,12 @@ protected:
     double timeStep;
     double elapsedTime = 0.0;
     const double MILLISEC_TO_SEC = 1 / 1000.0;
-    const double MAX_SIM_TIME = 60;
-    const int SLEEP_TIME = 20;
+    const double maxSimTime = 60;
+    const int sleepTime = 20;
 
     // Protected member functions
-    void initializeSimulationObjects(void);
-    void drawApp(void);
+    void initializeApp(void);
+    void drawApp(void) const;
 
 public:
     dynamicSystemApp();

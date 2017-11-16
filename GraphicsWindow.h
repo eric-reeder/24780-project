@@ -22,6 +22,7 @@ protected:
 public:
     GraphicsWindow(int appWidth, int appHeight, double widthFraction, 
         double heightFraction);
+    void setPosition(const int newXPosition, const int newYPosition);
     void draw(void) const;
 };
 
