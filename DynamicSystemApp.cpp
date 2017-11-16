@@ -2,9 +2,11 @@
 #include "Mass.h"
 #include "Spring.h"
 #include "Damper.h"
+#include "Force.h"
 #include "UIWindow.h"
 #include "AnimationWindow.h"
-#include "PlottingWindow.h"
+#include "PlotWindow.h"
+#include "ODESolver.h"
 #include "fssimplewindow.h"
 #include <chrono>
 
@@ -54,7 +56,8 @@ void resetSystem(void)
 void drawApp(void)
 {
     uiWindow.draw();
-    animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
+    animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, 
+        damper2, damper3);
     plotWindow.draw(mass1, mass2, elapsedTime);
 }
 
@@ -82,15 +85,18 @@ void dynamicSystemApp::run(void)
         last = current;
         current = std::chrono::steady_clock::now();
 
-        // If the animation is running, update positions of masses, or stop animation if max sim time is exceeded
+        // If the animation is running, update positions of masses, or stop 
+        // animation if max sim 
+        // time is exceeded
         if (uiWindow.checkRunning() == true)
         {
             if (elapsedTime <= MAX_SIM_TIME)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
-                // The solve function should use call by reference to modify the parameters of the simulation objects
-                solver.solve(mass1, mass2, spring1, spring2, spring3, damper1,
-                    damper2, damper3, force1, force2, timeStep, elapsedTime);
+                // The solve function should use call by reference to modify the 
+                // parameters of the simulation objects
+                solver.solve(mass1, mass2, spring1, spring2, spring3, damper1, 
+                    damper2, damper3, force1, force2, timeStep);
                 elapsedTime += timeStep;
             }
         }

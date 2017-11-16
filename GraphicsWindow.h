@@ -1,3 +1,6 @@
+#ifndef GRAPHICSWINDOW_H
+#define GRAPHICSWINDOW_H
+
 class GraphicsWindow
 {
 protected:
@@ -17,6 +20,9 @@ protected:
     int backgroundBlue;
 
 public:
-    GraphicsWindow(int appWidth, int appHeight, double widthFraction, double heightFraction);
-    void draw(void);
+    GraphicsWindow(int appWidth, int appHeight, double widthFraction, 
+        double heightFraction);
+    void draw(void) const;
 };
+
+#endif /* GRAPHICSWINDOW_H */

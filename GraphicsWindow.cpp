@@ -1,7 +1,9 @@
 #include "fssimplewindow.h"
 #include "GraphicsWindow.h"
 
-GraphicsWindow::GraphicsWindow(int appWidth, int appHeight, int inputMargin, double widthFraction, double heightFraction, int inputXPosition, int inputYPosition)
+GraphicsWindow::GraphicsWindow(int appWidth, int appHeight, int inputMargin, 
+    double widthFraction, double heightFraction, int inputXPosition, 
+    int inputYPosition)
 {
     margin = inputMargin;
     width = (int)((double)appWidth * widthFraction) - 2 * margin;
@@ -19,7 +21,7 @@ GraphicsWindow::GraphicsWindow(int appWidth, int appHeight, int inputMargin, dou
     backgroundBlue = 255;
 }
 
-void draw(void)
+void draw(void) const
 {
     // Draw backgound
     glColor3ub(backgroundRed, backgroundGreen, backgroundBlue);

@@ -1,3 +1,6 @@
+#ifndef SIMULATIONOBJECT_H
+#define SIMULATIONOBJECT_H
+
 class SimulationObject
 {
 protected:
@@ -10,13 +13,17 @@ protected:
 public:
     SimulationObject();
 
-    double getPosition(void);
-    void setPosition(double newPosition);
+    double getPosition(void) const;
+    void setPosition(const double newPosition);
 
-    int getRedVal(void);
-    int setRedVal(void);
-    int getBlueVal(void);
-    int setBlueVal(void);
-    int getGreenVal(void);
-    int setGreenVal(void);
+    int getRedVal(void) const;
+    void setRedVal(const int newRedVal);
+
+    int getBlueVal(void) const;
+    void setBlueVal(const int newBlueVal);
+    
+    int getGreenVal(void) const;
+    void setGreenVal(const int newGreenVal);
 }
+
+#endif /* SIMULATIONOBJECT_H */

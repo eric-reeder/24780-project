@@ -12,50 +12,50 @@ SimulationObject::SimulationObject()
 
 
 // Returns the position of the object in pixels
-double getPosition(void)
+double getPosition(void) const
 {
     return position;
 }
 
 
 // Sets the position of the object in pixels
-void setPosition(double newPosition)
+void setPosition(const double newPosition)
 {
     position = newPosition;
 }
 
 
-int getRedVal(void)
+int getRedVal(void) const
 {
     return redVal;
 }
 
 
-void setRedVal(int newRedVal);
+void setRedVal(const int newRedVal);
 {
     redVal = newRedVal;
 }
 
 
-int getBlueVal(void)
+int getBlueVal(void) const
 {
     return blueVal;
 }
 
 
-void setBlueVal(int newBlueVal)
+void setBlueVal(const int newBlueVal)
 {
     blueVal = newBlueVal;
 }
 
 
-int getGreenVal(void)
+int getGreenVal(void) const
 {
     return greenVal;
 }
 
 
-void setGreenVal(int newGreenVal)
+void setGreenVal(const int newGreenVal)
 {
     greenVal = newGreenVal;
 }

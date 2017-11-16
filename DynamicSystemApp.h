@@ -1,3 +1,15 @@
+#include "Mass.h"
+#include "Spring.h"
+#include "Damper.h"
+#include "Force.h"
+#include "UIWindow.h"
+#include "AnimationWindow.h"
+#include "PlotWindow.h"
+#include "ODESolver.h"
+
+#ifndef DYNAMICSYSTEMAPP_H
+#define DYNAMICSYSTEMAPP_H
+
 class dynamicSystemApp
 {
 protected:
@@ -46,3 +58,5 @@ public:
     dynamicSystemApp(int windowWidth, int windowHeight);
     void run(void);
 };
+
+#endif /* DYNAMICSYSTEMAPP_H */
