@@ -16,19 +16,19 @@ double unitStep(double time)
 // Calculates the value of the unit step function as a function of time
 // Inputs: time [s]
 // Outputs: force [N]
-
+    
     double outForce;
-
+    
     if (time > 0)
     {
         outForce = 1.0;
     }
-
+    
     else
     {
         outForce = 0.0;
     }
-
+    
     return outForce;
 }
 ```
@@ -48,19 +48,19 @@ protected:
     double equiLength; // Length of spring at equilibrium [m]
     double length; // Current length of spring [m]
     double springConst; // Spring constant [N/m]
-
+    
 public:
     Spring();
-
+    
     double getEquiLength(void);
     double getLength(void);
     double getSpringConst(void);
     bool getState(void);
-
+    
     void setLength(double newLength);
     void setSpringConst(double newSpringCosnt);
     void setState(bool newState);
-
+    
     void draw(void);
 };
 ```
@@ -72,6 +72,77 @@ double dispNext = 1.1; // Displacement of mass at next time step
 ```
 
 In general, when in doubt, comments should be used. If there are more comments than needed, the reader will still understand the code. The same cannot be said if there are not enough comments.
+
+### Class Structure and Headers
+When writing a class, member variables should be either private or protected members. In order to access or change a member variable, there should be corresponding get or set functions. For example:
+
+```C++
+class Box
+{
+protected:
+    int width;
+    int height;
+
+public:
+    int getWidth(void) const;
+    int getHeight(void) const;
+
+    void setWidth(const int newWidth);
+    void setHeight(const int newHeight);
+};
+```
+
+Additionally, each class should be contained within it's own C++ and header file. The .cpp file should be named "ClassName.cpp", and the header should be named "ClassName.h". It is important to remember to use an include guard in each header file to ensure that each class is not accidentally defined twice. The include guard macro should be named "CLASSNAME_H". For example:
+
+```C++
+// Box.cpp
+
+class Box
+{
+protected:
+    int width;
+    int height;
+
+public:
+    int getWidth(void) const;
+    int getHeight(void) const;
+
+    void setWidth(const int newWidth);
+    void setHeight(const int newHeight);
+};
+```
+
+```C++
+// Box.h
+
+#ifndef BOX_H
+#define BOX_H
+
+int Box::getWidth(void) const
+{
+    return width;
+}
+
+
+int Box::getHeight(void) const
+{
+    return height;
+}
+
+
+void setWidth(const int newWidth)
+{
+    width = newWidth;
+}
+
+
+void setHeight(const int newHeight)
+{
+    height = newHeight;
+}
+
+#endif /* BOX_H */
+```
 
 ### Use of Non-Variable Constants (a.k.a Magic Numbers)
 When using constants in your code, you should ALWAYS use a constant variable rather than typing out the numerical value of the constant (with a few exceptions). For example, if you wanted to create an array to store the displacement values at each of the 10 time steps in a simulation, it should be done in the following fashion:
