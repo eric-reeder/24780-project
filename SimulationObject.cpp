@@ -1,6 +1,7 @@
 #include "SimulationObject.h"
 
-// Creates simulation object and sets it's position to zero and color to black
+/*  Creates simulation object and sets it's position to zero, state to active
+    (true), and color to black  */
 SimulationObject::SimulationObject()
 {
     position = 0;
@@ -11,14 +12,18 @@ SimulationObject::SimulationObject()
 }
 
 
-// Returns the position of the object in pixels
 double SimulationObject::getPosition(void) const
 {
     return position;
 }
 
 
-// Sets the position of the object in pixels
+void SimulationObject::setState(const bool newState)
+{
+    state = newState;
+}
+
+
 void SimulationObject::setPosition(const double newPosition)
 {
     position = newPosition;

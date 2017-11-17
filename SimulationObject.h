@@ -13,6 +13,8 @@ protected:
 public:
     SimulationObject();
 
+    void setState(const bool newState);
+
     double getPosition(void) const;
     void setPosition(const double newPosition);
 

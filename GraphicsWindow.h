@@ -6,11 +6,11 @@ class GraphicsWindow
 protected:
     int width;
     int height;
-    int margin;
+    int margin; // Pixels between edges of graphics windows
     int xPosition;
     int yPosition;
 
-    int borderWeight;
+    int borderWeight; // Thickness of border
     int borderRed;
     int borderGreen;
     int borderBlue;
@@ -18,6 +18,9 @@ protected:
     int backgroundRed;
     int backgroundGreen;
     int backgroundBlue;
+
+    void drawBackground(void) const;
+    void drawBorder(void) const;
 
 public:
     GraphicsWindow(int appWidth, int appHeight, double widthFraction, 

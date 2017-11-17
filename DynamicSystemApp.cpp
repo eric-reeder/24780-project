@@ -89,8 +89,6 @@ void DynamicSystemApp::drawApp(void) const
 /*  Runs app until user presses escape key  */
 void DynamicSystemApp::run(void)
 {
-    // Set mass, spring, and damper values based on sliders
-    // Set positions of graphics sub-windows
     initializeApp();
 
     // Start timer (this value is temporary and won't be used after first iteration)
