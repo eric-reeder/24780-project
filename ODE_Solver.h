@@ -25,10 +25,10 @@ protected:
 
 public:
 	ODE_Solver();												// Constructor
-	void mass_init(int,const Mass&,const Mass&);							// Takes Mass objects from the main() and fills mass[]		
-	void spring_init(int,const Spring&,const Spring&,const Spring&);						// Takes Spring objects from the main() and fills springStiffness[]
-	void damper_init(int,const Damper&, const Damper&, const Damper&);						// Takes an Damper objects from the main() and fills dampCoefficient[]
-	void force_init(int, const Force&, const Force&);							// Initializes the forcing functions; Takes Force objects from the main()
+	void mass_init(const Mass&,const Mass&);							// Takes Mass objects from the main() and fills mass[]		
+	void spring_init(const Spring&,const Spring&,const Spring&);						// Takes Spring objects from the main() and fills springStiffness[]
+	void damper_init(const Damper&, const Damper&, const Damper&);						// Takes an Damper objects from the main() and fills dampCoefficient[]
+	void force_init(const Force&, const Force&);							// Initializes the forcing functions; Takes Force objects from the main()
 	double solveDisp(double);									// Solves the ODE system for displacement; Takes timeStep from the main()
 																// It internally takes care of whether it's a 2 mass system or single mass system
 																// User only needs to call this function from the main() and the displacement at corresponding time step will be calculated
