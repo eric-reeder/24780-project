@@ -19,37 +19,61 @@ ODE_Solver::ODE_Solver()
 	damperNo = 0;
 }
 
-// Function to initialize mass[]; Takes number of masses and their values from the main()
-void ODE_Solver::mass_init(int massNo, const double mass[])
+// Function to initialize mass[]; Takes mass objects from the main()
+void ODE_Solver::mass_init(const Mass& m1, const Mass& m2)
 {
 	// Initializing the mass array for the solver
-	this->massNo = massNo;
-	mass = new double[massNo];
-	if(mass != nullptr && mass != this ->mass)
-		for (int i = 0; i < massNo; i++)
-			this -> mass[i] = mass[i];
+	this->massNo = (int)m1.getState() + (int)m2.getState();			// Determining 1 or 2 masses in the system
+	this ->mass = new double[massNo];
+	if(massNo == 2)
+	{
+		this ->mass[0] = m1.getMass();
+		this ->mass[1] = m2.getMass();
+	}
+	else if(massNo = 1)
+		this ->mass[0] = (int)(m1.getState()) * m1.getMass() + (int)(m2.getState()) * m2.getMass();
 }
 
 // Function to initialize springStiffness[]; Takes number of springs and their values from the main()
-void ODE_Solver::spring_init(int springNo, const double spring[])
+void ODE_Solver::spring_init(const Spring& s1, const Spring& s2, const Spring& s3)
 {
 	// Initializing the spring stifness array for the solver
-	this->springNo = springNo;
-	springStiffness = new double[springNo];
-	if (spring != nullptr && spring != springStiffness)
-		for (int i = 0; i < springNo; i++)
-			springStiffness[i] = spring[i];
+	// 3 springs (max) for 2 mass system and 1 spring for single mass system
+	if(massNo == 2)
+	{
+		springNo = 3;
+		this ->springStiffness = new double[springNo];
+		this ->springStiffness[0] = (int)(s1.getState())*s1.getStiffness();
+		this ->springStiffness[1] = (int)(s2.getState())*s2.getStiffness();
+		this ->springStiffness[2] = (int)(s3.getState())*s3.getStiffness();
+	}
+	else if(massNo == 1)
+	{
+		springNo = 1;
+		this ->springStiffness = new double[springNo];
+		this ->springStiffness[0] = (int)(s1.getState()) * s1.getStiffness() + (int)(s3.getState()) * s3.getStiffness();
+	}
 }
 
 // Function to initialize dampCoefficient[]; Takes number of dampers and their values from the main()
-void ODE_Solver::damper_init(int damperNo, const double damper[])
+void ODE_Solver::damper_init(const Damper& d1, const Damper& d2, const Damper& d3)
 {
 	// Initializing the damper array for the solver
-	this->damperNo = damperNo;
-	dampCoefficient = new double[damperNo];
-	if (damper != nullptr && damper != dampCoefficient)
-		for (int i = 0; i < damperNo; i++)
-			dampCoefficient[i] = damper[i];
+	// 3 dampers (max) for 2 mass system and 1 damper for single mass system
+	if(massNo == 2)
+	{
+		damperNo = 3;
+		this ->dampCoefficient = new double[damperNo];
+		this ->dampCoefficient[0] = (int)(d1.getState())*d1.getCoefficient();
+		this ->dampCoefficient[1] = (int)(d2.getState())*d2.getCoefficient();
+		this ->dampCoefficient[2] = (int)(d3.getState())*d3.getCoefficient();
+	}
+	else if(massNo == 1)
+	{
+		damperNo = 1;
+		this ->dampCoefficient = new double[damperNo];
+		this ->dampCoefficient[0] = (int)(d1.getState())*d1.getCoefficient() + (int)(d3.getState())*d3.getCoefficient();
+	}
 }
 
 // Function to solve the ODE for displacement
