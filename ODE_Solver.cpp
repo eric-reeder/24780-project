@@ -76,38 +76,55 @@ void ODE_Solver::damper_init(const Damper& d1, const Damper& d2, const Damper& d
 	}
 }
 
+// Function to initialize the forces
+void force_init(const Force& force1, const Force& force2)
+{
+	this ->force1 = force1;
+	this ->force2 = force2;
+}
+
 // Function to solve the ODE for displacement
-double ODE_Solver::solveDisp(double timeStep)
+void ODE_Solver::solveDisp(double timeStep, Mass& mass1, Mass& mass2)
 {
 	// Solves the ODE by calling the 2 ODE RK solver or the 4 ODE RK solver according to the number of masses
 	if (massNo == 1)
 	{
 		RK = new RungeKutta2ODE;
-		disp = RK->solveDisp(timeStep);
+		disp = RK->solveDisp(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
+		if(mass1.getState())
+			mass1.setPosition(mass1.getPosition() + disp[0]);		// Updating position of mass1
+		else
+			mass2.setPosition(mass2.getPosition() + disp[0]);		// Updating position of mass2
 	}
 	else if (massNo == 2)
 	{
 		RK = new RungeKutta4ODE;
-		disp = RK->solveDisp(timeStep);
+		disp = RK->solveDisp(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
+		mass1.setPosition(mass1.getPosition() + disp[0]);		// Updating position of mass1
+		mass2.setPosition(mass2.getPosition() + disp[1]);		// Updating position of mass2
 	}
-	return disp;
 }
 
 // Function to solve the ODE for velocity
-double ODE_Solver::solveVelocity(double timeStep)
+void ODE_Solver::solveVelocity(double timeStep, Mass& mass1, Mass& mass2)
 {
 	// Solves the ODE by calling the 2 ODE RK solver or the 4 ODE RK solver according to the number of masses
 	if (massNo == 1)
 	{
 		RK = new RungeKutta2ODE;
-		velocity = RK->solveVelocity(timeStep);
+		velocity = RK->solveVelocity(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
+		if(mass1.getState())
+			mass1.setVelocity(velocity[0]);
+		else
+			mass2.setVelocity(velocity[0]);
 	}
 	else if (massNo == 2)
 	{
 		RK = new RungeKutta4ODE;
-		velocity = RK->solveVelocity(timeStep);
+		velocity = RK->solveVelocity(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
+		mass1.setVelocity(velocity[0]);
+		mass1.setVelocity(velocity[1]);
 	}
-	return disp;
 }
 
 void ODE_Solver::CleanUp()
