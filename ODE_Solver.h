@@ -5,6 +5,10 @@
 #define __ODE_SOLVER_IS_INCLUDED__
 
 #include "Runge_Kutta.h"
+#include "Mass.h"
+#include "Spring.h"
+#include "Damper.h"
+#include "Force.h"
 
 class ODE_Solver
 {
@@ -21,10 +25,10 @@ protected:
 
 public:
 	ODE_Solver();												// Constructor
-	void mass_init(int,const double[]);							// Takes an array of n elements from the main and fills mass[]		
-	void spring_init(int,const double[]);						// Takes an array of n elements from the main and fills springStiffness[]
-	void damper_init(int,const double[]);						// Takes an array of n elements from the main and fills dampCoefficient[]
-	void force_init(int, const double[], const double[]);		// Initializes the forcing functions; Takes number of forces, their types and their corresponding values from the main()
+	void mass_init(const Mass&,const Mass&);							// Takes Mass objects from the main() and fills mass[]		
+	void spring_init(const Spring&,const Spring&,const Spring&);						// Takes Spring objects from the main() and fills springStiffness[]
+	void damper_init(const Damper&, const Damper&, const Damper&);						// Takes an Damper objects from the main() and fills dampCoefficient[]
+	void force_init(const Force&, const Force&);							// Initializes the forcing functions; Takes Force objects from the main()
 	double solveDisp(double);									// Solves the ODE system for displacement; Takes timeStep from the main()
 																// It internally takes care of whether it's a 2 mass system or single mass system
 																// User only needs to call this function from the main() and the displacement at corresponding time step will be calculated
