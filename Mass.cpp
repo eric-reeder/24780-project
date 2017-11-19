@@ -2,6 +2,7 @@
 #include "SimulationObject.h"
 #include "fssimplewindow.h"
 
+
 Mass::Mass()
 {
 	position = 0;
@@ -15,6 +16,7 @@ Mass::Mass()
     greenVal = 0;
 }
 
+
 double Mass::getMass(void) const
 {
 	return mass;
@@ -25,15 +27,18 @@ void Mass::setMass(const double newMass)
 	mass = newMass;
 }
 
+
 double Mass::getVelocity(void) const
 {
 	return velocity;
 }
 
+
 void Mass::setVelocity(const double newVelocity)
 {
 	velocity = newVelocity;
 }
+
 
 void Mass::draw(void) const
 {
