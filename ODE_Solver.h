@@ -16,9 +16,7 @@ protected:
 	double *mass, *springStiffness, *dampCoefficient;			// Values of masses, spring stiffness and damping coefficients for solving the ODEs
 																// Zeros will be stored wherever necessary (given from input)
 	int massNo, springNo, damperNo;								// Number of masses, springs and dampers (Input for this will be given from the main())	
-	int forceNo;												// Number of forces (1:1 relation with number of masses)
-	int *forceType;												// Force type (0 for sine, 1 for exponential, 2 for constant)
-	double *forceValue;											// Values of amplitudes, constants etc. in the forcing functions
+	Force force1, force2;									// Force objects containing info about the force types and values		
 	double timeStep;											// Time step to be taken as input from the main()								
 	double disp, velocity;										// Displacement and velocity at a particular time step
 	RungeKutta *RK;												// Object for the Runge-Kutta solver
