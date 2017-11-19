@@ -42,16 +42,16 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
     the sliders contained in the user input window.  */
 void DynamicSystemApp::initializeApp(void)
 {
-    mass1.setMass(uiWindow);
-    mass2.setMass(uiWindow);
-    spring1.setStiffness(uiWindow);
-    spring2.setStiffness(uiWindow);
-    spring3.setStiffness(uiWindow);
-    damper1.setDamping(uiWindow);
-    damper2.setDamping(uiWindow);
-    damper3.setDamping(uiWindow);
-    force1.setForce(uiWindow);
-    force2.setForce(uiWindow);
+    mass1.setMass(uiWindow.getMass1Mass());
+    mass2.setMass(uiWindow.getMass2Mass());
+    spring1.setStiffness(uiWindow.getSpring1Stiffness());
+    spring2.setStiffness(uiWindow.getSpring2Stiffness());
+    spring3.setStiffness(uiWindow.getSpring3Stiffness());
+    damper1.setDamping(uiWindow.getDamper1Damping());
+    damper2.setDamping(uiWindow.getDamper2Damping());
+    damper3.setDamping(uiWindow.getDamper3Damping());
+    force1.setForce(uiWindow.getForce1Data());
+    force2.setForce(uiWindow.getForce2Data());
 
     uiWindow.setPosition(uiWindowXPosition, uiWindowYPosition);
     animationWindow.setPosition(animationWindowXPosition, animationWindowYPosition);
