@@ -2,6 +2,7 @@
 #define DAMPER_H
 
 #include "SimulationObject.h"
+#include "UIWindow.h"
 
 class Damper : public SimulationObject
 {
@@ -13,7 +14,7 @@ public:
 	Damper();
 
 	double getDamping(void) const;
-	void setDamping(const double newDamping);
+	void setDamping(const UIWindow uiWindow);
 
 	double getLength(void) const;
 	void setLength(const double newLength);

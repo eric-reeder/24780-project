@@ -2,6 +2,7 @@
 #define SPRING_H
 
 #include "SimulationObject.h"
+#include "UIWindow.h"
 
 class Spring : public SimulationObject
 {
@@ -13,7 +14,7 @@ public:
 	Spring();
 
 	double getStiffness(void) const;
-	void setStiffness(const double newStiffness);
+	void setStiffness(const UIWindow uiWindow);
 
 	double getLength(void) const;
 	void setLength(const double newLength);

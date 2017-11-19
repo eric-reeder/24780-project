@@ -1,4 +1,5 @@
 #include "Spring.h"
+#include "UIWindow.h"
 #include "fssimplewindow.h"
 
 
@@ -20,9 +21,9 @@ double Spring::getStiffness(void) const
 }
 
 
-void Spring::setStiffness(const double newStiffness)
+void Spring::setStiffness(const UIWindow uiWindow)
 {
-	stiffness = newStiffness;
+	// @Sidharth this is you
 }
 
 

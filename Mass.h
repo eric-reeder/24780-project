@@ -2,6 +2,7 @@
 #define MASS_H
 
 #include "SimulationObject.h"
+#include "UIWindow.h"
 
 class Mass : public SimulationObject
 {
@@ -16,7 +17,7 @@ public:
     Mass();
 
     double getMass(void) const;
-    void setMass(const double newMass);
+    void setMass(const UIWindow uiWindow);
 
     double getVelocity(void) const;
     void setVelocity(const double newVelocity);
