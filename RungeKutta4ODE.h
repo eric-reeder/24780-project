@@ -1,6 +1,10 @@
 // Runge-Kutta solver for 4 ODE system
 
+#ifndef _RK4_IS_INCLUDED_
+#define  _RK4_IS_INCLUDED_
+
 #include "Runge_Kutta.h"
+#include "Force.h"
 
 //The 4 ODE solver inhertits from the base RungeKutta class
 class RungeKutta4ODE :public RungeKutta
@@ -19,7 +23,7 @@ protected:
 	double k1[4], k2[4], k3[4], k4[4];
 
 	//forces on masses
-	double force1, force2;
+	double Force1, Force2;
 
 public:
 	// Constructor
@@ -38,6 +42,7 @@ public:
 	std::vector<double> solveVelocity(void);
 
 	// Destructor
-	~RungeKutta4ODE();													
-
+	~RungeKutta4ODE();	
 };
+
+#endif
