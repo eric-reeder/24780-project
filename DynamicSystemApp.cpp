@@ -18,30 +18,47 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
 {
     width = windowWidth;
     height = windowHeight;
+    margin = 5;
 
+    // Set position and size of UI Window
     uiWindowWidthFraction = 0.3;
     uiWindowHeightFraction = 1.0;
     uiWindowXPosition = 0;
     uiWindowYPosition = 0;
+    uiWindowWidth = (int)((double)windowWidth * uiWindowWidthFraction) - 
+    2 * margin;
+    uiWindowHeight = (int)((double)windowHeight * uiWindowHeightFraction) - 
+    2 * margin;
 
+    // Set position and size of animation window
     animationWindowWidthFraction = 0.7;
     animationWindowHeightFraction = 0.5;
     animationWindowXPosition = (int)((1.0 - animationWindowWidthFraction) 
         * (double)width);
-    animationWindowYPosition = 0;
+    animationWindowWidth = (int)((double)windowWidth * 
+        animationWindowWidthFraction) - 2 * margin;
+    animationWindowHeight = (int)((double)windowHeight * 
+        animationWindowHeightFraction) - * margin;
 
+
+    // Set position and size of plot window
     plotWindowWidthFraction = 0.7;
     plotWindowHeightFraction = 0.5;
     plotWindowXPosition = (int)((1.0 - plotWindowWidthFraction) * 
         (double)width);
     plotWindowYPosition = (int)((1.0 - plotWindowHeightFraction) *
         (double)height);
+    plotWindowWidth = (int)((double)windowWidth * alotWindowWidthFraction) - 
+        2 * margin;
+    plotWindowHeight = (int)((double)windowHeight * alotWindowHeightFraction) - 
+        2 * margin;
 }
 
 /*  Sets initial input values for all simulation objects based on the values of 
     the sliders contained in the user input window.  */
 void DynamicSystemApp::initializeApp(void)
 {
+    // Set simulatino object values
     mass1.setMass(uiWindow.getMass1Mass());
     mass2.setMass(uiWindow.getMass2Mass());
     spring1.setStiffness(uiWindow.getSpring1Stiffness());
@@ -53,9 +70,13 @@ void DynamicSystemApp::initializeApp(void)
     force1.setForce(uiWindow.getForce1Data());
     force2.setForce(uiWindow.getForce2Data());
 
+    // Set position and size of sub-windows
     uiWindow.setPosition(uiWindowXPosition, uiWindowYPosition);
+    uiWindow.setSize(uiWindowWidth, uiWindowHeight);
     animationWindow.setPosition(animationWindowXPosition, animationWindowYPosition);
+    animationWindow.setSize(animationWindowWidth, animationWindowHeight);
     plotWindow.setPosition(plotWindowXPosition, plotWindowYPosition);
+    plotWindow.setSize(plotWindowWidth, plotWindowHeight);
 }
 
 /*  Resets positions and velocities of all simulation objects to zero and clears

@@ -17,21 +17,28 @@ protected:
     // App window
     int width;
     int height;
+    int margin;
 
     double uiWindowWidthFraction; // Fraction of app window width
     double uiWindowHeightFraction; // Fraction of app window height
     int uiWindowXPosition; // X coordinate of top left corner
     int uiWindowYPosition; // Y coordinate of top left corner
+    int uiWindowWidth;
+    int uiWindowHeight;
 
     double animationWindowWidthFraction;
     double animationWindowHeightFraction;
     int animationWindowXPosition;
     int animationWindowYPosition;
+    int animationWindowWidth;
+    int animationWindowHeight;
 
     double plotWindowWidthFraction;
     double plotWindowHeightFraction;
     int plotWindowXPosition;
     int plotWindowYPosition;
+    int plotWindowWidth;
+    int plotWindowHeight;
 
     // Dynamic system components
     Mass mass1;
