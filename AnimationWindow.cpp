@@ -8,6 +8,8 @@
 
 AnimationWindow::AnimationWindow()
 {
+    c=1;
+    
     force1=0;
     force2=0;
     x1=0;// center position of mass 1
