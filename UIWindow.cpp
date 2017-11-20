@@ -1,4 +1,6 @@
 #include "UIWindow.h"
+#include "fssimplewindow.h"
+#include <math.h>
 
 
 void DrawCircle(double cx, double cy, double radius, int fill)
