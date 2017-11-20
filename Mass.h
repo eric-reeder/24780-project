@@ -9,6 +9,7 @@ class Mass : public SimulationObject
 protected:
     double mass;
     double velocity;
+    double maxDisplacement;
 
     int width;
     int heigth;
@@ -22,7 +23,7 @@ public:
     double getVelocity(void) const;
     void setVelocity(const double newVelocity);
 
-    void draw(void) const;
+    void draw(const int xOffset, const int yOffset) const;
 };
 
 #endif /* MASS_H */

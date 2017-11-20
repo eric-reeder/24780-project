@@ -8,6 +8,7 @@ Mass::Mass()
 	position = 0;
 	mass = 0.0;
 	velocity = 0.0;
+	maxDisplacement = 1;
 	width = 50;
 	height = 50;
     state = true;
@@ -21,6 +22,7 @@ double Mass::getMass(void) const
 {
 	return mass;
 }
+
 
 void Mass::setMass(const double newMass)
 {
@@ -40,13 +42,29 @@ void Mass::setVelocity(const double newVelocity)
 }
 
 
-void Mass::draw(void) const
+void Mass::draw(const int xOffset, const int yOffset) const
 {
-	glColor3ub(redVal, greenVal, blueVal);
-	glBegin(GL_QUADS);
+	if (state == true)
+	{
+		glColor3ub(redVal, greenVal, blueVal);
+		glBegin(GL_TRIANGLE_FAN);
 
-	/* @Terri I'm not sure exactly what protocol you've been doing drawing
-	these, so I'm gonna leave it to you to finish this function */
-	
-	glEnd();
+		if (position < maxDisplacement)
+		{
+			glVertex3i(position + xOffset, yOffset);
+			glVertex3i(position + xOffset + width, yOffset);
+			glVertex3i(position + xOffset + width, yOffset + height);
+			glVertex3i(position + xOffset, yOffset + height);	
+		}
+
+		else
+		{
+			glVertex3i(maxDisplacement + xOffset, yOffset);
+			glVertex3i(maxDisplacement + xOffset + width, yOffset);
+			glVertex3i(maxDisplacement + xOffset + width, yOffset + height);
+			glVertex3i(maxDisplacement + xOffset, yOffset + height);
+		}
+		
+		glEnd();
+	}
 }
