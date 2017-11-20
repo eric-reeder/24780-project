@@ -23,10 +23,9 @@ protected:
     void drawBorder(void) const;
 
 public:
-    GraphicsWindow(int appWidth, int appHeight, int inputMargin,
-                   double widthFraction, double heightFraction, int inputXPosition,
-                   int inputYPosition);
+    GraphicsWindow();
     void setPosition(const int newXPosition, const int newYPosition);
+    void setSize(const int newWidth, const int newHeight);
     void draw(void) const;
 };
 

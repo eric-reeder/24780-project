@@ -10,16 +10,8 @@
     heightFraction: Fraction of app window height this window will be
     inputXPosition: X coordinate of top left corner
     inputYPosition: Y coordinate of top left corner  */
-GraphicsWindow::GraphicsWindow(int appWidth, int appHeight, int inputMargin,
-                               double widthFraction, double heightFraction, int inputXPosition,
-                               int inputYPosition)
+GraphicsWindow::GraphicsWindow()
 {
-    margin = inputMargin;
-    width = (int)((double)appWidth * widthFraction) - 2 * margin;
-    height = (int)((double)appHeight * widthFraction) - 2 * margin;
-    xPosition = inputXPosition + margin;
-    yPosition = inputYPosition + margin;
-
     borderWeight = 2;
     borderRed = 0;
     borderGreen = 0;
@@ -38,6 +30,12 @@ void GraphicsWindow::setPosition(const int newXPosition, const int newYPosition)
 {
     xPosition = newXPosition;
     yPosition = newYPosition;
+}
+
+void GraphicsWindow::setSize(const int newWidth, const int newHeight)
+{
+    width = newWidth;
+    height = newHeight;
 }
 
 /*  Draws background of graphics window  */
