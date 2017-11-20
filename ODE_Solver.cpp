@@ -13,8 +13,6 @@ ODE_Solver::ODE_Solver()
 	mass = nullptr;
 	springStiffness = nullptr;
 	dampCoefficient = nullptr;
-	disp = 0;
-	velocity = 0;
 	massNo = 0;
 	springNo = 0;
 	damperNo = 0;
@@ -78,7 +76,7 @@ void ODE_Solver::damper_init(const Damper& d1, const Damper& d2, const Damper& d
 }
 
 // Function to initialize the forces
-void force_init(const Force& force1, const Force& force2)
+void ODE_Solver::force_init(const Force& force1, const Force& force2)
 {
 	this ->force1 = force1;
 	this ->force2 = force2;
@@ -113,7 +111,7 @@ void ODE_Solver::solveVelocity(double timeStep, Mass& mass1, Mass& mass2)
 	if (massNo == 1)
 	{
 		RK = new RungeKutta2ODE;
-		velocity = RK->solveVelocity(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
+		velocity = RK->solveVelocity();
 		if(mass1.getState())
 			mass1.setVelocity(velocity[0]);
 		else
@@ -122,7 +120,7 @@ void ODE_Solver::solveVelocity(double timeStep, Mass& mass1, Mass& mass2)
 	else if (massNo == 2)
 	{
 		RK = new RungeKutta4ODE;
-		velocity = RK->solveVelocity(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
+		velocity = RK->solveVelocity();
 		mass1.setVelocity(velocity[0]);
 		mass1.setVelocity(velocity[1]);
 	}
@@ -147,8 +145,8 @@ void ODE_Solver::CleanUp()
 void ODE_Solver::reset()
 {
 	CleanUp();
-	disp = 0;
-	velocity = 0;
+	velocity.resize(0);
+	disp.resize(0);
 	massNo = 0;
 	springNo = 0;
 	damperNo = 0;
