@@ -3,6 +3,7 @@
 #include "ODE_Solver.h"
 #include "Runge_Kutta.h"
 #include "RungeKutta2ODE.h"
+#include "RungeKutta4ODE.h"
 
 // Constructor
 ODE_Solver::ODE_Solver()
