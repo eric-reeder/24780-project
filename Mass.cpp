@@ -22,9 +22,9 @@ double Mass::getMass(void) const
 	return mass;
 }
 
-void Mass::setMass(const UIWindow uiWindow)
+void Mass::setMass(const double newMass)
 {
-	// @Sidharth this is you
+	mass = newMass;
 }
 
 

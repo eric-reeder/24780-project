@@ -1,5 +1,4 @@
 #include "Damper.h"
-#include "UIWindow.h"
 #include "fssimplewindow.h"
 
 
@@ -21,9 +20,9 @@ double Damper::getDamping(void) const
 }
 
 
-void Damper::setDamping(const UIWindow uiWindow)
+void Damper::setDamping(const double newDamping)
 {
-	// @Sidarth this is you
+	damping = newDamping;
 }
 
 

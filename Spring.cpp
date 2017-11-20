@@ -21,9 +21,9 @@ double Spring::getStiffness(void) const
 }
 
 
-void Spring::setStiffness(const UIWindow uiWindow)
+void Spring::setStiffness(const double newStiffness)
 {
-	// @Sidharth this is you
+	stiffness = newStiffness;
 }
 
 

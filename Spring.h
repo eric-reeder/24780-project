@@ -14,7 +14,7 @@ public:
 	Spring();
 
 	double getStiffness(void) const;
-	void setStiffness(const UIWindow uiWindow);
+	void setStiffness(const double newStiffness);
 
 	double getLength(void) const;
 	void setLength(const double newLength);

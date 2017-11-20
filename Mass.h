@@ -17,7 +17,7 @@ public:
     Mass();
 
     double getMass(void) const;
-    void setMass(const UIWindow uiWindow);
+    void setMass(const double newMass);
 
     double getVelocity(void) const;
     void setVelocity(const double newVelocity);
