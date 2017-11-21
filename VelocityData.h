@@ -5,7 +5,7 @@ class VelocityData
 {//This class creates the velocity data as an incoming array
 protected:
 	double timestep;  //timestep variable 
-	double *velocity[]; //creates empty array for velocity 
+	double *velocity; //creates empty array for velocity 
 
 public:
 	VelocityData(); //constructor
