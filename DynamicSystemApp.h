@@ -17,7 +17,8 @@ protected:
     // App window
     int width;
     int height;
-    int margin;
+    int margin; // Margin between app window edges and sub-windows, as well as
+                // margin between sub-windows
 
     double uiWindowWidthFraction; // Fraction of app window width
     double uiWindowHeightFraction; // Fraction of app window height
@@ -77,7 +78,6 @@ protected:
     void drawApp(void) const;
 
 public:
-    dynamicSystemApp();
     dynamicSystemApp(int windowWidth, int windowHeight);
     void run(void);
 };
