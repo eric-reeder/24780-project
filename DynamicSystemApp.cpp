@@ -54,11 +54,11 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
         2 * margin;
 }
 
-/*  Sets initial input values for all simulation objects based on the values of 
-    the sliders contained in the user input window.  */
-void DynamicSystemApp::initializeApp(void)
+/*  Sets relevant values of masses, springs, and dampers based on values
+    of input sliders  */
+void DynamicSystemApp::initializeSystemComponents(void)
 {
-    // Set simulatino object values
+    // Set simulation object values
     mass1.setMass(uiWindow.getMass1Mass());
     mass2.setMass(uiWindow.getMass2Mass());
     spring1.setStiffness(uiWindow.getSpring1Stiffness());
@@ -71,7 +71,11 @@ void DynamicSystemApp::initializeApp(void)
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
     force2.setType(uiWindow.getForce2Type());
     force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
+}
 
+/*  Sets positions and sizes of sub-windows  */
+void DynamicSystemApp::initializeGraphicsWindows(void)
+{
     // Set position and size of sub-windows
     uiWindow.setPosition(uiWindowXPosition, uiWindowYPosition);
     uiWindow.setSize(uiWindowWidth, uiWindowHeight);
@@ -79,6 +83,24 @@ void DynamicSystemApp::initializeApp(void)
     animationWindow.setSize(animationWindowWidth, animationWindowHeight);
     plotWindow.setPosition(plotWindowXPosition, plotWindowYPosition);
     plotWindow.setSize(plotWindowWidth, plotWindowHeight);
+}
+
+/*  Sends mass, spring, damper, and force values to those contained in objects  */
+void DynamicSystemApp::initializeSolver(void)
+{
+    // Initialize ODE solver parameters
+    solver.massInit(mass1, mass1);
+    solver.springInit(spring1, spring2, spring3);
+    solver.damperInit(damper1, damper2, damper3);
+    solver.forceInit(force1, force2);
+}
+
+/*  Initializes all app components  */
+void DynamicSystemApp::initializeApp(void)
+{
+    initializeSystemComponents();
+    initializeGraphicsWindows();
+    initializeSolver();
 }
 
 /*  Resets positions and velocities of all simulation objects to zero and clears
@@ -102,7 +124,6 @@ void DynamicSystemApp::resetSystem(void)
 /*  Draws all components of the App (sliders/UI window, animation, and plots)  */
 void DynamicSystemApp::drawApp(void) const
 {
-    // Need to input xy coordinates for all draw functions
     uiWindow.draw();
     animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, 
         damper2, damper3);
@@ -138,15 +159,15 @@ void DynamicSystemApp::run(void)
             if (elapsedTime <= maxSimTime)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
-                // The solve function should use call by reference to modify the 
-                // parameters of the simulation objects
-                solver.solve(mass1, mass2, spring1, spring2, spring3, damper1, 
-                    damper2, damper3, force1, force2, timeStep);
+                solver.solve(timeStep, mass1, mass2);
+                // Update values of springs and dampers here
                 elapsedTime += timeStep;
             }
         }
 
         bool resetPress = uiWindow.checkMouse(mouseLeft, mouseX, mouseY);
+        initializeGraphicsWindows();
+        initializeSolver();
         if (resetPress == true)
         {
             resetSystem();

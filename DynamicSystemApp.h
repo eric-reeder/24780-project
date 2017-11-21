@@ -69,11 +69,14 @@ protected:
     // Time
     double timeStep;
     double elapsedTime = 0.0;
-    const double MILLISEC_TO_SEC = 1 / 1000.0;
+    const double MILLISEC_TO_SEC = 1.0 / 1000.0;
     const double maxSimTime = 60;
     const int sleepTime = 20;
 
     // Protected member functions
+    void initializeSystemComponents(void);
+    void initializeGraphicsWindows(void);
+    void initializeSolver(void);
     void initializeApp(void);
     void resetSystem(void);
     void drawApp(void) const;
