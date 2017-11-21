@@ -113,7 +113,7 @@ void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 		// Updating velocities
 		velocity = RK->solveVelocity();
 		mass1.setVelocity(velocity[0]);
-		mass1.setVelocity(velocity[1]);
+		mass2.setVelocity(velocity[1]);
 	}
 }
 
