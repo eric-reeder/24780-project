@@ -5,6 +5,7 @@
 //  Created by Teresa Kent on 11/20/17.
 //  Copyright © 2017 CMU. All rights reserved.
 //
+#include "DynamicSystemApp.h"
 
 #ifndef AnimationWindow_h
 #define AnimationWindow_h
@@ -50,6 +51,7 @@ public:
     double dampingConstatn2;
     double dampingConstant3;
     
+    dynamicSystemApp dsa;
     
     double mass1;
     double mass2;
@@ -71,8 +73,8 @@ public:
     void DrawWalls(void);
     void DrawBorder(void);
     void DrawForce(void);
-    void setPosition(double XStart,double YStart, double xsize, double ysize, double winx, double winy, double NewThickness, double NewMargin);
-    void setConstants(double newforce1state, double newforce2state, double newmass1state,double NewMass2State,double NewDamper1, double NewDamper2, double NewDamper3, double NewSpring1, double NewSpring2, double NewSpring3,double NewForce1,double NewForce2);
+    void setPosition(double XStart,double YStart);
+    void setConstants(void);
     
 };
 

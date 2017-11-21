@@ -1,4 +1,3 @@
-
 #include "AnimationWindow.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,18 +50,18 @@ AnimationWindow::AnimationWindow()
     thickness=0;
 }
 // ERIC THIS WILL POP AN ERROR I NEED MORE INFO FOR MY PROJECT WHAT IT IS ASKING FOR IS NOT SENT
-void AnimationWindow::setPosition(double XStart,double YStart, double xsize, double ysize, double winx, double winy, double NewThickness, double NewMargin)
+void AnimationWindow::setPosition(double XStart,double YStart)
 {
     WinXStart=XStart;
     WinYStart=YStart;
-    windowxsize=xsize;
-    windowysize=ysize;
-    windowx=winx;
-    windowy=winy;
-    thickness=NewThickness;
-    margin=NewMargin;
+    windowxsize=dsa.animationWindowWidthFraction;
+    windowysize=dsa.animationWindowHeightFraction;
+    windowx=dsa.width;
+    windowy=dsa.height;
+    margin=dsa.margin;
+    thickness=margin*5;
 }
-void AnimationWindow::setConstants(double newforce1state, double newforce2state, double newmass1state,double NewMass2State,double NewDamper1, double NewDamper2, double NewDamper3, double NewSpring1, double NewSpring2, double NewSpring3,double NewForce1,double NewForce2)
+void AnimationWindow::setConstants(void)
 {
     force1state=newforce1state;
     force2state=newforce2state;
@@ -179,36 +178,36 @@ void AnimationWindow::SpringDraw(void)
 }
 void AnimationWindow::DrawMass()
 {
-        glColor3ub(200,0,0);
-        glBegin(GL_QUADS);
+    glColor3ub(200,0,0);
+    glBegin(GL_QUADS);
+    
+    double yc=windowy*windowysize/2;
+    double yt=yc-windowy/10;
+    double yb=yc+windowy/20;
+    double Wx=1-windowxsize;
+    double SpacingX=windowxsize*windowx/3;
+    if (mass1state==1)
+    {
+        double xc1=windowx*Wx+x1*c+SpacingX;
+        double xl1=xc1-windowx/25;
+        double xr1=xc1+windowx/25;
+        glVertex2f(xl1,yt);
+        glVertex2f(xl1,yb);
+        glVertex2f(xr1,yb);
+        glVertex2f(xr1,yt);
+    }
+    if (mass2state==1)
+    {
+        double xc2=windowx*Wx+x2+2*SpacingX;
+        double xl2=xc2-windowx/25;
+        double xr2=xc2+windowx/25;
         
-        double yc=windowy*windowysize/2;
-        double yt=yc-windowy/10;
-        double yb=yc+windowy/20;
-        double Wx=1-windowxsize;
-        double SpacingX=windowxsize*windowx/3;
-        if (mass1state==1)
-        {
-            double xc1=windowx*Wx+x1*c+SpacingX;
-            double xl1=xc1-windowx/25;
-            double xr1=xc1+windowx/25;
-            glVertex2f(xl1,yt);
-            glVertex2f(xl1,yb);
-            glVertex2f(xr1,yb);
-            glVertex2f(xr1,yt);
-        }
-        if (mass2state==1)
-        {
-            double xc2=windowx*Wx+x2+2*SpacingX;
-            double xl2=xc2-windowx/25;
-            double xr2=xc2+windowx/25;
-            
-            glVertex2f(xl2,yt);
-            glVertex2f(xl2,yb);
-            glVertex2f(xr2,yb);
-            glVertex2f(xr2,yt);
-        }
-        glEnd();
+        glVertex2f(xl2,yt);
+        glVertex2f(xl2,yb);
+        glVertex2f(xr2,yb);
+        glVertex2f(xr2,yt);
+    }
+    glEnd();
 }
 void AnimationWindow::DrawWalls()
 {
@@ -224,7 +223,7 @@ void AnimationWindow::DrawWalls()
     glVertex2f(windowx-3*margin-6*thickness,windowy*windowysize-3*margin-thickness);
     glVertex2f(windowx-3*margin-6*thickness,3*margin+thickness);
     glEnd();
-
+    
     
 }
 void AnimationWindow::DrawBorder()
@@ -433,7 +432,7 @@ void AnimationWindow::DrawDamper(void)
     }
 }
 void AnimationWindow::draw(int mass1, int mass2, int spring1, int spring2, int spring3, int damper1,
-                      int damper2, int damper3)
+                           int damper2, int damper3)
 {
     x1=mass1;
     x2=mass2;
@@ -444,5 +443,5 @@ void AnimationWindow::draw(int mass1, int mass2, int spring1, int spring2, int s
     DrawBorder();
     DrawMass();
     
-
+    
 }
