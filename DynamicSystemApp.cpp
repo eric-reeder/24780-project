@@ -67,8 +67,10 @@ void DynamicSystemApp::initializeApp(void)
     damper1.setDamping(uiWindow.getDamper1Damping());
     damper2.setDamping(uiWindow.getDamper2Damping());
     damper3.setDamping(uiWindow.getDamper3Damping());
-    force1.setForce(uiWindow.getForce1Data());
-    force2.setForce(uiWindow.getForce2Data());
+    force1.setType(uiWindow.getForce1Type());
+    force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
+    force2.setType(uiWindow.getForce2Type());
+    force2.setVlue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
 
     // Set position and size of sub-windows
     uiWindow.setPosition(uiWindowXPosition, uiWindowYPosition);
