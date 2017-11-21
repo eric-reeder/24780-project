@@ -7,6 +7,7 @@ class Damper : public SimulationObject
 {
 protected:
 	double damping;
+    double velocity;
 	double length;
 
 public:
@@ -14,6 +15,9 @@ public:
 
 	double getDamping(void) const;
 	void setDamping(const double newDamping);
+    
+    double getVelocity(void) const;
+    void setVelocity(const double newVelocity);
 
 	double getLength(void) const;
 	void setLength(const double newLength);

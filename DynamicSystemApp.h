@@ -1,3 +1,6 @@
+#ifndef DYNAMICSYSTEMAPP_H
+#define DYNAMICSYSTEMAPP_H
+
 #include "Mass.h"
 #include "Spring.h"
 #include "Damper.h"
@@ -7,11 +10,8 @@
 #include "PlotWindow.h"
 #include "ODESolver.h"
 
-#ifndef DYNAMICSYSTEMAPP_H
-#define DYNAMICSYSTEMAPP_H
-
 /*  Highest level class in the app, controls overall functionality  */
-class dynamicSystemApp
+class DynamicSystemApp
 {
 protected:
     // App window
@@ -75,10 +75,11 @@ protected:
 
     // Protected member functions
     void initializeApp(void);
+    void resetSystem(void);
     void drawApp(void) const;
 
 public:
-    dynamicSystemApp(int windowWidth, int windowHeight);
+    DynamicSystemApp(int windowWidth, int windowHeight);
     void run(void);
 };
 

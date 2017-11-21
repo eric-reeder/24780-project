@@ -38,7 +38,7 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
     animationWindowWidth = (int)((double)windowWidth * 
         animationWindowWidthFraction) - 2 * margin;
     animationWindowHeight = (int)((double)windowHeight * 
-        animationWindowHeightFraction) - * margin;
+        animationWindowHeightFraction) - 2 * margin;
 
 
     // Set position and size of plot window
@@ -48,9 +48,9 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
         (double)width);
     plotWindowYPosition = (int)((1.0 - plotWindowHeightFraction) *
         (double)height);
-    plotWindowWidth = (int)((double)windowWidth * alotWindowWidthFraction) - 
+    plotWindowWidth = (int)((double)windowWidth * plotWindowWidthFraction) -
         2 * margin;
-    plotWindowHeight = (int)((double)windowHeight * alotWindowHeightFraction) - 
+    plotWindowHeight = (int)((double)windowHeight * plotWindowHeightFraction) -
         2 * margin;
 }
 
@@ -70,7 +70,7 @@ void DynamicSystemApp::initializeApp(void)
     force1.setType(uiWindow.getForce1Type());
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
     force2.setType(uiWindow.getForce2Type());
-    force2.setVlue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
+    force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
 
     // Set position and size of sub-windows
     uiWindow.setPosition(uiWindowXPosition, uiWindowYPosition);
