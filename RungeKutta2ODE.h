@@ -30,6 +30,10 @@ public:
 
 	//computes forces
 	void computeForces(Force force1);
+	
+	//functions for ODEs
+	double f1(double x2);
+	double f2(double x1, double x2, double mass, double springStiffness, double dampCoefficient, double Force1);
 
 	//computes RK parameters
 	void computeRKparameters(void);
