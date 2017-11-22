@@ -1,5 +1,6 @@
 #include "RungeKutta2ODE.h"
 #include <math.h>
+#include <vector>
 
 // Constructor
 RungeKutta2ODE::RungeKutta2ODE(double t, double x1_in, double x2_in)
