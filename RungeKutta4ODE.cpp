@@ -72,15 +72,15 @@ void RungeKutta4ODE::computeForces(Force force1, Force force2)
 
 
 //functions f1, f2, f3 & f4 compute instantaneous values of x1, x2, x3, x4
-double f1(double x3)
+double RungeKutta4ODE::f1(double x3)
 {
 	return x3;
 }
-double f2(double x4)
+double RungeKutta4ODE::f2(double x4)
 {
 	return x4;
 }
-double f3(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force1)
+double RungeKutta4ODE::f3(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force1)
 {
 	double f3;
 	if (mass[0] != 0)
@@ -94,7 +94,7 @@ double f3(double x1, double x2, double x3, double x4, double mass[2], double spr
 	}
 	return f3;
 }
-double f4(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force2)
+double RungeKutta4ODE::f4(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force2)
 {
 	double f4;
 	if (mass[1] != 0)
