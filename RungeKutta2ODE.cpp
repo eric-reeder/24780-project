@@ -42,11 +42,11 @@ void RungeKutta2ODE::computeForces(Force force1)
 	}
 }
 
-double f1(double x2)
+double RungeKutta2ODE::f1(double x2)
 {
 	return x2;
 }
-double f2(double x1, double x2, double mass, double springStiffness, double dampCoefficient, double Force1)
+double RungeKutta2ODE::f2(double x1, double x2, double mass, double springStiffness, double dampCoefficient, double Force1)
 {
 	double f2;
 	if (mass != 0)
