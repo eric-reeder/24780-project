@@ -5,13 +5,14 @@
 #include <iostream>
 
 // Constructor
-RungeKutta4ODE::RungeKutta4ODE()
+RungeKutta4ODE::RungeKutta4ODE(double t, double x1_in, double x2_in, double x3_in, double x4_in)
 {
 	// initial condition
-	x1 = 0.;
-	x2 = 0.;
-	x3 = 0.;
-	x4 = 0.;
+	x1 = x1_in;
+	x2 = x2_in;
+	x3 = x3_in;
+	x4 = x4_in;
+	time = t;
 
 	// RK parameters setting to zero
 	for (int i = 0; i < 4; i++)
@@ -128,7 +129,6 @@ void RungeKutta4ODE::computeRKparameters(void)
 	k4[1] = timeStep*f2(x4 + 0.5*k3[3]);
 	k4[2] = timeStep*f3(x1 + 0.5*k3[0], x2 + 0.5*k3[1], x3 + 0.5*k3[2], x4 + 0.5*k3[3], mass, springStiffness, dampCoefficient, Force1);
 	k4[3] = timeStep*f4(x1 + 0.5*k3[0], x2 + 0.5*k3[1], x3 + 0.5*k3[2], x4 + 0.5*k3[3], mass, springStiffness, dampCoefficient, Force2);
-	time = time + timeStep;
 }
 
 std::vector<double> RungeKutta4ODE::solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2)
