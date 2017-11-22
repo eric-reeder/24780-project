@@ -2,11 +2,12 @@
 #include <math.h>
 
 // Constructor
-RungeKutta2ODE::RungeKutta2ODE()
+RungeKutta2ODE::RungeKutta2ODE(double t, double x1_in, double x2_in)
 {
 	// initial condition
-	x1 = 0.;
-	x2 = 0.;
+	x1 = x1_in;
+	x2 = x2_in;
+	time = t;
 	
 	// RK parameters setting to zero
 	for (int i = 0; i < 2; i++)
@@ -65,7 +66,6 @@ void RungeKutta2ODE::computeRKparameters(void)
 	k3[1] = timeStep*f2(x1 + 0.5*k2[0], x2 + 0.5*k2[1], mass, springStiffness, dampCoefficient, Force1);
 	k4[0] = timeStep*f1(x1 + 0.5*k3[0]);
 	k4[1] = timeStep*f2(x1 + 0.5*k3[0], x2 + 0.5*k3[1], mass, springStiffness, dampCoefficient, Force1);
-	time = time + timeStep;
 }
 
 std::vector<double> RungeKutta2ODE::solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2)
