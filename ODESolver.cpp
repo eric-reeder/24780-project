@@ -85,10 +85,13 @@ void ODESolver::forceInit(const Force& force1, const Force& force2)
 // Function to solve the ODE for displacement and velocity
 void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 {
+	// Updating total time
+	time += timeStep;
+	
 	// Solves the ODE by calling the 2 ODE RK solver or the 4 ODE RK solver according to the number of masses
 	if (massNo == 1)
 	{
-		RK = new RungeKutta2ODE;
+		RK = new RungeKutta2ODE(time, disp[0],velocity[0]);
 		disp = RK->solveDisp(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
 		velocity = RK->solveVelocity();
 		if (mass1.getState())
@@ -104,7 +107,7 @@ void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 	}
 	else if (massNo == 2)
 	{
-		RK = new RungeKutta4ODE;
+		RK = new RungeKutta4ODE(time,disp[0],disp[1],velocity[0],velocity[1]);
 		// Updating displacements
 		disp = RK->solveDisp(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
 		mass1.setPosition(mass1.getPosition() + disp[0]);		// Updating position of mass1
@@ -115,6 +118,10 @@ void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 		mass1.setVelocity(velocity[0]);
 		mass2.setVelocity(velocity[1]);
 	}
+	
+	// Deallocating memory for RK pointer as this function will be called multiple times
+	delete RK;
+	RK = nullptr;
 }
 
 /*
