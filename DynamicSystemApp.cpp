@@ -166,7 +166,7 @@ void DynamicSystemApp::run(void)
         }
 
         bool resetPress = uiWindow.checkMouse(mouseLeft, mouseX, mouseY);
-        initializeGraphicsWindows();
+        initializeSystemComponents();
         initializeSolver();
         if (resetPress == true)
         {
