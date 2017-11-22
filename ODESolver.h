@@ -19,6 +19,7 @@ protected:
 	int massNo, springNo, damperNo;								// Number of masses, springs and dampers (Input for this will be given from the main())	
 	Force force1, force2;									// Force objects containing info about the force types and values		
 	double timeStep;											// Time step to be taken as input from the main()								
+	double time;												// Total time
 	std::vector<double> disp, velocity;										// Displacement and velocity at a particular time step
 	RungeKutta *RK;												// Object for the Runge-Kutta solver
 
