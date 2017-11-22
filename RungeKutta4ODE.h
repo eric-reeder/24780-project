@@ -27,7 +27,7 @@ protected:
 
 public:
 	// Constructor
-	RungeKutta4ODE();	
+	RungeKutta4ODE(double t, double x1_in, double x2_in, double x3_in, double x4_in);	
 
 	//computes forces
 	void computeForces(Force force1, Force force2);
