@@ -2,7 +2,6 @@
 #define MASS_H
 
 #include "SimulationObject.h"
-#include "UIWindow.h"
 
 class Mass : public SimulationObject
 {
@@ -12,7 +11,7 @@ protected:
     double maxDisplacement;
 
     int width;
-    int heigth;
+    int height;
 
 public:
     Mass();

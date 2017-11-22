@@ -1,7 +1,6 @@
 #include "Spring.h"
-#include "UIWindow.h"
+#include "SimulationObject.h"
 #include "fssimplewindow.h"
-
 
 Spring::Spring()
 {
@@ -40,7 +39,7 @@ void Spring::setLength(const double newLength)
 }
 
 
-void draw(void) const
+void Spring::draw(void) const
 {
 	glColor3ub(redVal, greenVal, blueVal);
 

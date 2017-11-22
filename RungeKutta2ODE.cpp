@@ -20,21 +20,21 @@ RungeKutta2ODE::RungeKutta2ODE()
 
 void RungeKutta2ODE::computeForces(Force force1)
 {
-	switch (force1.type)
+	switch (force1.getType())
 	{
 	case 0:
 	{
-		Force1 = force1.getvalue[0] * sin(force1.getvalue[1] * time);
+		Force1 = force1.getValue()[0] * sin(force1.getValue()[1] * time);
 		break;
 	}
 	case 1:
 	{
-		Force1 = force1.getvalue[0] * exp(-force1.getvalue[1] * time);
+		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * time);
 		break;
 	}
 	case 2:
 	{
-		Force1 = force1.getvalue[0];
+		Force1 = force1.getValue()[0];
 		break;
 	}
 	}

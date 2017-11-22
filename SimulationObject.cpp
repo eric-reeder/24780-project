@@ -12,21 +12,27 @@ SimulationObject::SimulationObject()
 }
 
 
-double SimulationObject::getPosition(void) const
-{
-    return position;
-}
-
-
 void SimulationObject::setState(const bool newState)
 {
     state = newState;
 }
 
 
+bool SimulationObject::getState(void) const
+{
+    return state;
+}
+
+
 void SimulationObject::setPosition(const double newPosition)
 {
     position = newPosition;
+}
+
+
+double SimulationObject::getPosition(void) const
+{
+    return position;
 }
 
 

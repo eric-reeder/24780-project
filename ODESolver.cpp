@@ -63,15 +63,15 @@ void ODESolver::damperInit(const Damper& d1, const Damper& d2, const Damper& d3)
 	{
 		damperNo = 3;
 		this ->dampCoefficient = new double[damperNo];
-		this ->dampCoefficient[0] = (int)(d1.getState())*d1.getCoefficient();
-		this ->dampCoefficient[1] = (int)(d2.getState())*d2.getCoefficient();
-		this ->dampCoefficient[2] = (int)(d3.getState())*d3.getCoefficient();
+		this ->dampCoefficient[0] = (int)(d1.getState())*d1.getDamping();
+		this ->dampCoefficient[1] = (int)(d2.getState())*d2.getDamping();
+		this ->dampCoefficient[2] = (int)(d3.getState())*d3.getDamping();
 	}
 	else if(massNo == 1)
 	{
 		damperNo = 1;
 		this ->dampCoefficient = new double[damperNo];
-		this ->dampCoefficient[0] = (int)(d1.getState())*d1.getCoefficient() + (int)(d3.getState())*d3.getCoefficient();
+		this ->dampCoefficient[0] = (int)(d1.getState())*d1.getDamping() + (int)(d3.getState())*d3.getDamping();
 	}
 }
 

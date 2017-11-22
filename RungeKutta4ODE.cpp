@@ -25,44 +25,44 @@ RungeKutta4ODE::RungeKutta4ODE()
 
 void RungeKutta4ODE::computeForces(Force force1, Force force2)
 {
-	switch (force1.type)
+	switch (force1.getType())
 	{
 	case 0:
 	{
-		Force1 = force1.getvalue[0] * sin(force1.getvalue[1] * time);
+		Force1 = force1.getValue()[0] * sin(force1.getValue()[1] * time);
 		std::cout << Force1 << std::endl;
 		break;
 	}
 	case 1:
 	{
-		Force1 = force1.getvalue[0] * exp(-force1.getvalue[1] * time);
+		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * time);
 		std::cout << Force1 << std::endl;
 		break;
 	}
 	case 2:
 	{
-		Force1 = force1.getvalue[0];
+		Force1 = force1.getValue()[0];
 		std::cout << Force1 << std::endl;
 		break;
 	}
 	}
-	switch (force2.type)
+	switch (force2.getType())
 	{
 	case 0:
 	{
-		Force2 = force2.getvalue[0] * sin(force2.getvalue[1] * time);
+		Force2 = force2.getValue()[0] * sin(force2.getValue()[1] * time);
 		std::cout << Force2 << std::endl;
 		break;
 	}
 	case 1:
 	{
-		Force2 = force2.getvalue[0] * exp(-force2.getvalue[1] * time);
+		Force2 = force2.getValue()[0] * exp(-force2.getValue()[1] * time);
 		std::cout << Force2 << std::endl;
 		break;
 	}
 	case 2:
 	{
-		Force2 = force2.getvalue[0];
+		Force2 = force2.getValue()[0];
 		std::cout << Force2 << std::endl;
 		break;
 	}

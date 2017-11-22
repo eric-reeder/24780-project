@@ -3,9 +3,9 @@
 #include "Spring.h"
 #include "Damper.h"
 #include "Force.h"
-#include "UIWindow.h"
-#include "AnimationWindow.h"
-#include "PlotWindow.h"
+#include "UIWindowTest.h"
+#include "AnimationWindowTest.h"
+#include "PlotWindowTest.h"
 #include "ODESolver.h"
 #include "fssimplewindow.h"
 #include <chrono>
@@ -122,11 +122,10 @@ void DynamicSystemApp::resetSystem(void)
 }
 
 /*  Draws all components of the App (sliders/UI window, animation, and plots)  */
-void DynamicSystemApp::drawApp(void) const
+void DynamicSystemApp::drawApp(void)
 {
     uiWindow.draw();
-    animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, 
-        damper2, damper3);
+    animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
     plotWindow.draw(mass1, mass2, elapsedTime);
 }
 

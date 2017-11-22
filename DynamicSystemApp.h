@@ -5,9 +5,9 @@
 #include "Spring.h"
 #include "Damper.h"
 #include "Force.h"
-#include "UIWindow.h"
-#include "AnimationWindow.h"
-#include "PlotWindow.h"
+#include "UIWindowTest.h"
+#include "AnimationWindowTest.h"
+#include "PlotWindowTest.h"
 #include "ODESolver.h"
 
 /*  Highest level class in the app, controls overall functionality  */
@@ -54,9 +54,9 @@ protected:
     Force force2;
 
     // Graphics components
-    UIWindow uiWindow;
-    AnimationWindow animationWindow;
-    PlotWindow plotWindow;
+    UIWindowTest uiWindow;
+    AnimationWindowTest animationWindow;
+    PlotWindowTest plotWindow;
     ODESolver solver;
 
     // Mouse
@@ -79,7 +79,7 @@ protected:
     void initializeSolver(void);
     void initializeApp(void);
     void resetSystem(void);
-    void drawApp(void) const;
+    void drawApp(void);
 
 public:
     DynamicSystemApp(int windowWidth, int windowHeight);

@@ -51,18 +51,18 @@ void Mass::draw(const int xOffset, const int yOffset) const
 
 		if (position < maxDisplacement)
 		{
-			glVertex3i(position + xOffset, yOffset);
-			glVertex3i(position + xOffset + width, yOffset);
-			glVertex3i(position + xOffset + width, yOffset + height);
-			glVertex3i(position + xOffset, yOffset + height);	
+			glVertex2i(position + xOffset, yOffset);
+			glVertex2i(position + xOffset + width, yOffset);
+			glVertex2i(position + xOffset + width, yOffset + height);
+			glVertex2i(position + xOffset, yOffset + height);
 		}
 
 		else
 		{
-			glVertex3i(maxDisplacement + xOffset, yOffset);
-			glVertex3i(maxDisplacement + xOffset + width, yOffset);
-			glVertex3i(maxDisplacement + xOffset + width, yOffset + height);
-			glVertex3i(maxDisplacement + xOffset, yOffset + height);
+			glVertex2i(maxDisplacement + xOffset, yOffset);
+			glVertex2i(maxDisplacement + xOffset + width, yOffset);
+			glVertex2i(maxDisplacement + xOffset + width, yOffset + height);
+			glVertex2i(maxDisplacement + xOffset, yOffset + height);
 		}
 		
 		glEnd();

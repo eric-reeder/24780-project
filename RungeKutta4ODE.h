@@ -36,7 +36,7 @@ public:
 	void computeRKparameters(void);
 	
 	//solves for displacement
-	std::vector<double> RungeKutta4ODE::solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2);
+	std::vector<double> solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2);
 
 	//solves for velocity
 	std::vector<double> solveVelocity(void);

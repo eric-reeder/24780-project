@@ -2,7 +2,6 @@
 #define SPRING_H
 
 #include "SimulationObject.h"
-#include "UIWindow.h"
 
 class Spring : public SimulationObject
 {

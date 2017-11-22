@@ -14,6 +14,7 @@ public:
     SimulationObject();
 
     void setState(const bool newState);
+    bool getState(void) const;
 
     double getPosition(void) const;
     void setPosition(const double newPosition);
@@ -24,6 +25,6 @@ public:
 
     void setColor(const int newRedVal, const int newGreenVal, 
         const int newBlueVal);
-}
+};
 
 #endif /* SIMULATIONOBJECT_H */
