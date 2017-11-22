@@ -4,7 +4,6 @@
 // Constructor
 RungeKutta::RungeKutta()
 {
-	time = 0;
 }
 
 // Destructor
