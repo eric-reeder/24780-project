@@ -8,7 +8,6 @@ class Spring : public SimulationObject
 protected:
 	double stiffness;
 	double length;
-	double equilibriumLength;
 
 public:
 	Spring();
@@ -18,9 +17,6 @@ public:
 
 	double getLength(void) const;
 	void setLength(const double newLength);
-
-	double getEquilibriumLength(void) const;
-	void setEquilibriumLength(const double newEquilibriumLength);
 
 	void draw(void) const;
 };
