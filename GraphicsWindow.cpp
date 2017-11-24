@@ -12,7 +12,7 @@
     inputYPosition: Y coordinate of top left corner  */
 GraphicsWindow::GraphicsWindow()
 {
-    borderWeight = 2;
+    borderWeight = 6;
     borderRed = 0;
     borderGreen = 0;
     borderBlue = 0;
@@ -54,17 +54,17 @@ void GraphicsWindow::drawBackground(void) const
 void GraphicsWindow::drawBorder(void) const
 {
     glColor3ub(borderRed, borderGreen, borderBlue);
-    glBegin(GL_LINES);
     glLineWidth(borderWeight);
+    glBegin(GL_LINES);
 
-    glVertex2i(xPosition, yPosition);
-    glVertex2i(xPosition + width, yPosition);
+    glVertex2i(xPosition - borderWeight/2, yPosition);
+    glVertex2i(xPosition + width + borderWeight/2, yPosition);
 
     glVertex2i(xPosition + width, yPosition);
     glVertex2i(xPosition + width, yPosition + height);
 
-    glVertex2i(xPosition + width, yPosition + height);
-    glVertex2i(xPosition, yPosition + height);
+    glVertex2i(xPosition + width + borderWeight/2, yPosition + height);
+    glVertex2i(xPosition - borderWeight/2, yPosition + height);
 
     glVertex2i(xPosition, yPosition + height);
     glVertex2i(xPosition, yPosition);

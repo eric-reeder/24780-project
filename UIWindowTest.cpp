@@ -1,15 +1,5 @@
 #include "UIWindowTest.h"
 
-void UIWindowTest::setPosition(int xPosition, int yPosition)
-{
-
-}
-
-void UIWindowTest::setSize(int width, int height)
-{
-
-}
-
 double UIWindowTest::getMass1Mass(void)
 {
 	return 1.0;

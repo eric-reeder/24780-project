@@ -6,7 +6,7 @@ class GraphicsWindow
 protected:
     int width;
     int height;
-    int margin; // Pixels between edges of graphics windows
+//    int margin; // Pixels between edges of graphics windows
     int xPosition;
     int yPosition;
 

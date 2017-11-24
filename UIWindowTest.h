@@ -6,9 +6,6 @@
 class UIWindowTest : public GraphicsWindow
 {
 public:
-	void setPosition(int xPosition, int yPosition);
-	void setSize(int width, int height);
-
 	double getMass1Mass(void);
 	double getMass2Mass(void);
 

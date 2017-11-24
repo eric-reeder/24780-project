@@ -9,6 +9,7 @@
 #include "ODESolver.h"
 #include "fssimplewindow.h"
 #include <chrono>
+#include <iostream>
 
 /*  Creates app object and sets values for app window width and height
     Inputs:
@@ -18,23 +19,25 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
 {
     width = windowWidth;
     height = windowHeight;
-    margin = 5;
+    margin = 10;
 
     // Set position and size of UI Window
     uiWindowWidthFraction = 0.3;
     uiWindowHeightFraction = 1.0;
-    uiWindowXPosition = 0;
-    uiWindowYPosition = 0;
-    uiWindowWidth = (int)((double)windowWidth * uiWindowWidthFraction) - 
+    uiWindowXPosition = margin;
+    uiWindowYPosition = margin;
+    uiWindowWidth = (int)((double)windowWidth * uiWindowWidthFraction) -
     2 * margin;
-    uiWindowHeight = (int)((double)windowHeight * uiWindowHeightFraction) - 
+    uiWindowHeight = (int)((double)windowHeight * uiWindowHeightFraction) -
     2 * margin;
+    
 
     // Set position and size of animation window
     animationWindowWidthFraction = 0.7;
     animationWindowHeightFraction = 0.5;
     animationWindowXPosition = (int)((1.0 - animationWindowWidthFraction) 
-        * (double)width);
+        * (double)width) + margin;
+    animationWindowYPosition = margin;
     animationWindowWidth = (int)((double)windowWidth * 
         animationWindowWidthFraction) - 2 * margin;
     animationWindowHeight = (int)((double)windowHeight * 
@@ -45,9 +48,9 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
     plotWindowWidthFraction = 0.7;
     plotWindowHeightFraction = 0.5;
     plotWindowXPosition = (int)((1.0 - plotWindowWidthFraction) * 
-        (double)width);
+        (double)width) + margin;
     plotWindowYPosition = (int)((1.0 - plotWindowHeightFraction) *
-        (double)height);
+        (double)height) + margin;
     plotWindowWidth = (int)((double)windowWidth * plotWindowWidthFraction) -
         2 * margin;
     plotWindowHeight = (int)((double)windowHeight * plotWindowHeightFraction) -
@@ -61,12 +64,28 @@ void DynamicSystemApp::initializeSystemComponents(void)
     // Set simulation object values
     mass1.setMass(uiWindow.getMass1Mass());
     mass2.setMass(uiWindow.getMass2Mass());
+
     spring1.setStiffness(uiWindow.getSpring1Stiffness());
+    spring1.setLength(mass1.getPosition());
+
     spring2.setStiffness(uiWindow.getSpring2Stiffness());
+    spring2.setLength(mass2.getPosition() - mass1.getPosition());
+
     spring3.setStiffness(uiWindow.getSpring3Stiffness());
+    spring3.setLength(mass3.getPosition());
+
     damper1.setDamping(uiWindow.getDamper1Damping());
+    damper1.setLength(spring1.getLength());
+    damper1.setVelocity(mass1.getVelocity());
+
     damper2.setDamping(uiWindow.getDamper2Damping());
+    damper2.setLength(spring2.getLength());
+    damper2.setVelocity(mass2.getVelocity() - mass1.getVelocity());
+
     damper3.setDamping(uiWindow.getDamper3Damping());
+    damper3.setLength(spring3.getLength());
+    damper3.setVelocity(-mass2.getVelocity());
+
     force1.setType(uiWindow.getForce1Type());
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
     force2.setType(uiWindow.getForce2Type());
@@ -123,7 +142,7 @@ void DynamicSystemApp::resetSystem(void)
 
 /*  Draws all components of the App (sliders/UI window, animation, and plots)  */
 void DynamicSystemApp::drawApp(void)
-{
+{    
     uiWindow.draw();
     animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
     plotWindow.draw(mass1, mass2, elapsedTime);
