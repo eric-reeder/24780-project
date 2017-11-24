@@ -1,4 +1,8 @@
 #include "AnimationWindow.h"
+#include "Spring.h"
+#include "Damper.h"
+#include "Mass.h"
+#include "GraphicsWindow.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -197,7 +201,7 @@ void AnimationWindow::DrawWalls()
  glEnd();
  }
  */
-void AnimationWindow::draw(mass mass1, mass mass2, mass mass3, spring spring1, spring spring2, spring spring3, damper damper1, damper damper2, damper damper3)
+void AnimationWindow::draw(Mass mass1, Mass mass2, Mass mass3, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3)
 {
     spring1len=X1Actual-LeftCenter;
     spring2len=X2Actual-X1Actual;

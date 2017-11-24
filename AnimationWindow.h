@@ -10,6 +10,11 @@
 #ifndef AnimationWindow_h
 #define AnimationWindow_h
 
+#include "Spring.h"
+#include "Damper.h"
+#include "Mass.h"
+#include "GraphicsWindow.h"
+
 class AnimationWindow: public GraphicsWindow
 {
 protected:
@@ -54,8 +59,8 @@ public:
     
     
     AnimationWindow();
-    void draw(int mass1, int mass2, int spring1, int spring2, int spring3, int damper1,
-              int damper2, int damper3);
+    void draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1,
+              Damper damper2, Damper damper3);
     void SpringDraw(void);
     void DrawDamper(void);
     void DrawMass(void);
