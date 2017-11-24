@@ -22,10 +22,10 @@ AnimationWindow::AnimationWindow()
 // ERIC THIS WILL POP AN ERROR I NEED MORE INFO FOR MY PROJECT WHAT IT IS ASKING FOR IS NOT SENT
 void AnimationWindow::WindowInfo(void)
 {
-    WinXStart=XStart;
-    WinYStart=YStart;
-    windowx=WindowWidth;
-    windowy=WindowHeight;
+    WinXStart=xPosition;
+    WinYStart=yPosition;
+    windowx=width;
+    windowy=height;
 }
 
 double AnimationWindow::getLocations(void) const
