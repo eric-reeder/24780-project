@@ -1,23 +1,15 @@
-#ifndef _PlotWindow_IS_INCLUDED_ 
-#define _PlotWindow_IS_INCLUDED_
+#ifndef _PLOTWINDOW_IS_INCLUDED_
+#define _PLOTWINDOW_IS_INCLUDED_ 
 
+#include "GraphicsWindow.h"
 
-class GraphPosition
-{
-protected:
-	double position; 
+//This class creates the plot window. It inherits information from the Graphics Class. 
 
-public: 
-	void GraphPosition(void);
-};
-
-class GraphVelocity
-{
-protected: 
-	double velocity; 
+class PlotWindow::public GraphicsWindow
+{//Public memebers from the GraphicsWindow class will be available. 
 
 public: 
-	void GraphVelocity(void);
+	void reset(void);
 };
 
 #endif
