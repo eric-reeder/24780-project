@@ -5,6 +5,9 @@
 #include <math.h>
 #include "fssimplewindow.h"
 
+// The x values need to be set by the main function everything else should work for itself
+// Oh and the state values should be set for each of them
+
 AnimationWindow::AnimationWindow()
 {
     c=1;
@@ -42,191 +45,109 @@ AnimationWindow::AnimationWindow()
     
     windowx=0;// total x window size
     windowy=0;// total y window size
-    windowysize=0;// portion of y window I am allowed
-    windowxsize=0;// portion of x window I am allowed
+    // windowysize=0;// portion of y window I am allowed
+    // windowxsize=0;// portion of x window I am allowed
     WinXStart=0; // Xstart point in the window
     WinYStart=0; // Y start point in the window
-    margin=0;
-    thickness=0;
+    // These variables are not being passed from the inital function so are hard coded to values.  May want to improve it later.  The thickness controls the wall thicknesses.  The margin controls the distance from the xstart point to the walls
+    margin=5;
+    thickness=5;
 }
 // ERIC THIS WILL POP AN ERROR I NEED MORE INFO FOR MY PROJECT WHAT IT IS ASKING FOR IS NOT SENT
 void AnimationWindow::setPosition(double XStart,double YStart)
 {
     WinXStart=XStart;
     WinYStart=YStart;
-    windowxsize=dsa.animationWindowWidthFraction;
-    windowysize=dsa.animationWindowHeightFraction;
-    windowx=dsa.width;
-    windowy=dsa.height;
-    margin=dsa.margin;
-    thickness=margin*5;
+}
+void AnimationWindow::setSize(double WindowWidth, double WindowHeight)
+{
+    windowx=WindowWidth;
+    windowy=WindowHeight;
+}
+double AnimationWindow::getLocations(void) const
+{
+    return x1;
+    return x2;
+}
+
+
+void AnimationWindow::setLocations(const double Newx1,double Newx2)
+{
+    x1=Newx1;
+    x2=Newx2;
+    if (x1>maxdisplacment)
+    {
+        x1=maxdisplacment;
+    }
+    else
+    {
+        x1=x1;
+    }
+    if (x2>maxdisplacment)
+    {
+        x2=maxdisplacment
+    }
+    else
+    {
+        x2=x2;
+    }
+}
+double AnimationWindow:: SetZeros(void) const
+{
+    LeftCenter=WinXStart+margin+thickness/2;
+    RightCenter=windowx-margin-thickness;
+    Spacing=(windowx-WinXStart)/3;
+    X1Zero=WinXStart+Spacing;
+    X2Xero=WinXStart+2*Spacing;
+    X1Actual=X1Zero+x1;
+    X2Actual=X2Xero+x2+x1;
+    YSpring=windowy/4+windowy/35;
+    YDamper=windowy/4-windowy/35;
+    YMass=windowy/4;
+    YForce=windowy/4-windowy/15;
 }
 void AnimationWindow::setConstants(void)
 {
+    spring1len=X1Actual-LeftCenter;
+    spring2len=X2Actual-X1Actual;
+    spring3len=RightCenter-X2Actual;
+    
+    spring1.setLength(spring1len);
+    spring2.setLength(spring2len);
+    spring3.setLength(spring3len);
+    damper1.setLength(spring1len);
+    damper2.setLength(spring2len);
+    damper3.setLength(spring2len);
+    
     force1state=newforce1state;
     force2state=newforce2state;
     mass1state=newmass1state;
     mass2state=NewMass2State;
-    damper1state=NewDamper1;
-    damper2state=NewDamper2;
-    damper3state=NewDamper3;
-    spring1state=NewSpring1;
-    spring2state=NewSpring2;
-    spring3state=NewSpring3;
     force2=NewForce2;
     force1=NewForce1;
 }
-void AnimationWindow::SpringDraw(void)
-{
-    {
-        // A few constants non spring dependent
-        double Wx=1-windowxsize;
-        double SpacingX=windowxsize*windowx/3;
-        float linethickness=10;
-        double lspring=windowx*windowy/50000;
-        
-        double xl1=WinXStart+3*margin+2*thickness;
-        double xc1=windowx*Wx+x1*c+SpacingX;
-        double xdist=xc1-xl1;
-        double xspring=xdist/20;
-        double yspring=sqrt(pow(lspring,2)-pow(xspring,2));
-        double x=xl1;
-        double yc1=windowy*windowysize*windowysize+windowy/40;
-        double yu1=yc1-yspring;
-        double yd1=yc1+yspring;
-        
-        double xl2=windowx*Wx+x1*c+SpacingX;
-        double xr2=windowx*Wx+x2+2*SpacingX;
-        double xdist2=xr2-xl2;
-        double xspring2=xdist2/20;
-        double yspring2=sqrt(pow(lspring,2)-pow(xspring2,2));
-        double x2a=xl2;
-        double yc2=windowy*windowysize*windowysize+windowy/40;
-        double yu2=yc1-yspring2;
-        double yd2=yc1+yspring2;
-        
-        double xl3=windowx*Wx+x2+2*SpacingX;
-        double xr3=windowx-3*margin-2*thickness;
-        double xdist3=xr3-xl3;
-        double xspring3=xdist3/20;;
-        double yspring3=sqrt(pow(lspring,2)-pow(xspring3,2));
-        double x3a=xl3;
-        double yc3=windowy*windowysize*windowysize+windowy/40;
-        double yu3=yc1-yspring3;
-        double yd3=yc1+yspring3;
-        
-        glBegin(GL_LINES);
-        glLineWidth(linethickness);
-        if (spring1state==1)
-        {
-            for (int i=0;i<5;i++)
-            {
-                glVertex2d(x,yc1);
-                x=x+xspring;
-                glVertex2d(x,yu1);
-                glVertex2d(x,yu1);
-                x=x+xspring;
-                glVertex2d(x,yc1);
-                glVertex2d(x,yc1);
-                x=x+xspring;
-                glVertex2d(x,yd1);
-                glVertex2d(x,yd1);
-                x=x+xspring;
-                glVertex2d(x,yc1);
-            }
-        }
-        if (spring2state==1)
-        {
-            for (int i=0;i<5;i++)
-            {
-                glVertex2d(x2a,yc2);
-                x2a=x2a+xspring2;
-                glVertex2d(x2a,yu2);
-                glVertex2d(x2a,yu2);
-                x2a=x2a+xspring2;
-                glVertex2d(x2a,yc2);
-                glVertex2d(x2a,yc2);
-                x2a=x2a+xspring2;
-                glVertex2d(x2a,yd2);
-                glVertex2d(x2a,yd2);
-                x2a=x2a+xspring2;
-                glVertex2d(x2a,yc2);
-            }
-        }
-        
-        if (spring3state==1)
-        {
-            for (int i=0;i<5;i++)
-            {
-                glVertex2d(x3a,yc3);
-                x3a=x3a+xspring3;
-                glVertex2d(x3a,yu3);
-                glVertex2d(x3a,yu3);
-                x3a=x3a+xspring3;
-                glVertex2d(x3a,yc3);
-                glVertex2d(x3a,yc3);
-                x3a=x3a+xspring3;
-                glVertex2d(x3a,yd3);
-                glVertex2d(x3a,yd3);
-                x3a=x3a+xspring3;
-                glVertex2d(x3a,yc3);
-            }
-        }
-        
-        glEnd();
-    }
-}
-void AnimationWindow::DrawMass()
-{
-    glColor3ub(200,0,0);
-    glBegin(GL_QUADS);
-    
-    double yc=windowy*windowysize/2;
-    double yt=yc-windowy/10;
-    double yb=yc+windowy/20;
-    double Wx=1-windowxsize;
-    double SpacingX=windowxsize*windowx/3;
-    if (mass1state==1)
-    {
-        double xc1=windowx*Wx+x1*c+SpacingX;
-        double xl1=xc1-windowx/25;
-        double xr1=xc1+windowx/25;
-        glVertex2f(xl1,yt);
-        glVertex2f(xl1,yb);
-        glVertex2f(xr1,yb);
-        glVertex2f(xr1,yt);
-    }
-    if (mass2state==1)
-    {
-        double xc2=windowx*Wx+x2+2*SpacingX;
-        double xl2=xc2-windowx/25;
-        double xr2=xc2+windowx/25;
-        
-        glVertex2f(xl2,yt);
-        glVertex2f(xl2,yb);
-        glVertex2f(xr2,yb);
-        glVertex2f(xr2,yt);
-    }
-    glEnd();
-}
+
 void AnimationWindow::DrawWalls()
 {
     glColor3ub(0,0,0);
     glBegin(GL_QUADS);
-    glVertex2f(WinXStart+3*margin+thickness,3*margin+thickness);
-    glVertex2f(WinXStart+3*margin+thickness,windowy*windowysize-3*margin-thickness);
-    glVertex2f(WinXStart+3*margin+6*thickness,windowy*windowysize-3*margin-thickness);
-    glVertex2f(WinXStart+3*margin+6*thickness,3*margin+thickness);
+    glVertex2f(LeftCenter+margin-thickness/2,margin);
+    glVertex2f(LeftCenter+margin-thickness/2,windowy/2-margin);
+    glVertex2f(LeftCenter+margin+thickness/2,windowy/2-margin);
+    glVertex2f(LeftCenter+margin+thickness/2,margin);
     
-    glVertex2f(windowx-3*margin-thickness,3*margin+thickness);
-    glVertex2f(windowx-3*margin-thickness,windowy*windowysize-3*margin-thickness);
-    glVertex2f(windowx-3*margin-6*thickness,windowy*windowysize-3*margin-thickness);
-    glVertex2f(windowx-3*margin-6*thickness,3*margin+thickness);
+    glVertex2f(RightCenter-margin-thickness/2,margin);
+    glVertex2f(RightCenter-margin-thickness/2,windowy/2-margin);
+    glVertex2f(RightCenter-margin+thickness/2,windowy/2-margin);
+    glVertex2f(RightCenter-margin+thickness/2,margin);
     glEnd();
     
     
 }
-void AnimationWindow::DrawBorder()
+/* This function draws a border which I think is a good idea to have so theres a clear divide between the windows however I will leave this at erics discretion
+ note if you want this in the function I may have deleted a few perameters but I can add them back in later
+ 
+ void AnimationWindow::DrawBorder()
 {
     double cx1=WinXStart+margin;
     double cx2=windowx-margin;
@@ -263,7 +184,9 @@ void AnimationWindow::DrawBorder()
     glEnd();
     
 }
-void AnimationWindow::DrawForce()
+ */
+/* How do you want me to do the forcing function? With the sine changes or the other things
+ void AnimationWindow::DrawForce()
 {
     glColor3ub(0,0,0);
     double lengthsize=windowx*.05;
@@ -336,112 +259,22 @@ void AnimationWindow::DrawForce()
     
     glEnd();
 }
-void AnimationWindow::DrawDamper(void)
-{
-    {
-        double Wx=1-windowxsize;
-        double SpacingX=windowxsize*windowx/3;
-        float linethickness=10;
-        double yct=windowy*.01;
-        
-        double xl1=WinXStart+3*margin+2*thickness;
-        double xc1=windowx*Wx+x1*c+SpacingX;
-        double xdist=xc1-xl1;
-        double yc1=windowy*windowysize*windowysize-windowy/35;
-        double partiallength=xdist/3;
-        
-        double xl2=windowx*Wx+x1*c+SpacingX;
-        double xr2=windowx*Wx+x2+2*SpacingX;
-        double xdist2=xr2-xl2;
-        double yc2=windowy*windowysize*windowysize-windowy/35;
-        double partiallength2=xdist2*5/12;
-        
-        double xl3=windowx*Wx+x2+2*SpacingX;
-        double xr3=windowx-3*margin-2*thickness;
-        double xdist3=xr3-xl3;
-        double yc3=windowy*windowysize*windowysize-windowy/35;
-        double partiallength3=xdist3*5/12;
-        
-        
-        glBegin(GL_LINES);
-        glLineWidth(linethickness);
-        if (damper1state==1)
-        {
-            glVertex2d(xl1, yc1);
-            glVertex2d(xl1+partiallength, yc1);
-            
-            glVertex2d(xl1+partiallength, yc1+yct);
-            glVertex2d(xl1+partiallength, yc1-yct);
-            
-            glVertex2d(xl1+2*partiallength/3, yc1+2*yct);
-            glVertex2d(xl1+3*partiallength/2, yc1+2*yct);
-            
-            glVertex2d(xl1+2*partiallength/3, yc1-2*yct);
-            glVertex2d(xl1+3*partiallength/2, yc1-2*yct);
-            
-            glVertex2d(xl1+3*partiallength/2, yc1+2*yct);
-            glVertex2d(xl1+3*partiallength/2, yc1-2*yct);
-            
-            glVertex2d(xl1+3*partiallength/2, yc1);
-            glVertex2d(xc1, yc1);
-            
-        }
-        if (damper2state==1)
-        {
-            glVertex2d(xl2, yc2);
-            glVertex2d(xl2+partiallength2, yc2);
-            
-            glVertex2d(xl2+partiallength2, yc2+yct);
-            glVertex2d(xl2+partiallength2, yc2-yct);
-            
-            glVertex2d(xl2+2*partiallength2/3, yc2+2*yct);
-            glVertex2d(xl2+3*partiallength2/2, yc2+2*yct);
-            
-            glVertex2d(xl2+2*partiallength2/3, yc2-2*yct);
-            glVertex2d(xl2+3*partiallength2/2, yc2-2*yct);
-            
-            glVertex2d(xl2+3*partiallength2/2, yc2+2*yct);
-            glVertex2d(xl2+3*partiallength2/2, yc2-2*yct);
-            
-            glVertex2d(xl2+3*partiallength2/2, yc2);
-            glVertex2d(xr2, yc2);
-            
-        }
-        if (damper3state==1)
-        {
-            glVertex2d(xl3, yc3);
-            glVertex2d(xl3+partiallength3, yc3);
-            
-            glVertex2d(xl3+partiallength3, yc3+yct);
-            glVertex2d(xl3+partiallength3, yc3-yct);
-            
-            glVertex2d(xl3+2*partiallength3/3, yc3+2*yct);
-            glVertex2d(xl3+3*partiallength3/2, yc3+2*yct);
-            
-            glVertex2d(xl3+2*partiallength3/3, yc3-2*yct);
-            glVertex2d(xl3+3*partiallength3/2, yc3-2*yct);
-            
-            glVertex2d(xl3+3*partiallength3/2, yc3+2*yct);
-            glVertex2d(xl3+3*partiallength3/2, yc3-2*yct);
-            
-            glVertex2d(xl3+3*partiallength3/2, yc3);
-            glVertex2d(xr3, yc3);
-            
-        }
-        glEnd();
-    }
-}
+ */
 void AnimationWindow::draw(int mass1, int mass2, int spring1, int spring2, int spring3, int damper1,
                            int damper2, int damper3)
 {
-    x1=mass1;
-    x2=mass2;
-    DrawDamper();
-    SpringDraw();
+    AnimationWindow.SetZeros();
+    AnimationWindow.setConstants();
+    spring1.draw(LeftCenter,YSpring,spring1len);
+    spring2.draw(X1Actual,YSpring,spring2len);
+    spring3.draw(X2Actual,YSpring,spring3len);
+    damper1.draw(LeftCenter,YDamper,spring1len,windowy);
+    damper2.draw(X1Actual,YDamper,spring2len,windowy);
+    damper3.draw(X2Actual,YDamper,spring3len,windowy);
+    mass1.draw(X1Actual, YMass) const;
+    mass2.draw(X2Actual, YMass) const;
     DrawWalls();
-    DrawForce();
-    DrawBorder();
-    DrawMass();
+    // DrawForce();
     
     
 }
