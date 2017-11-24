@@ -62,8 +62,6 @@ public:
     void DrawWalls(void);
     void DrawBorder(void);
     void DrawForce(void);
-    void WindowInfo(void);
-    void setConstants(void);
     
 };
 
