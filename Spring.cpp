@@ -6,6 +6,7 @@ Spring::Spring()
 {
 	position = 0;
 	length = 0;
+	equilibriumLength = 0;
 	stiffness = 0;
     state = true;
     redVal = 0;
@@ -36,6 +37,18 @@ double Spring::getLength(void) const
 void Spring::setLength(const double newLength)
 {
 	length = newLength;
+}
+
+
+double Spring::getEquilibriumLength(void) const
+{
+	return equilibriumLength;
+}
+
+
+void Spring::setEquilibriumLength(const double newEquilibriumLength)
+{
+	equilibriumLength = newEquilibriumLength;
 }
 
 
