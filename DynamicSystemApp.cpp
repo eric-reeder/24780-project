@@ -72,7 +72,7 @@ void DynamicSystemApp::initializeSystemComponents(void)
     spring2.setLength(mass2.getPosition() - mass1.getPosition());
 
     spring3.setStiffness(uiWindow.getSpring3Stiffness());
-    spring3.setLength(mass3.getPosition());
+    spring3.setLength(mass2.getPosition());
 
     damper1.setDamping(uiWindow.getDamper1Damping());
     damper1.setLength(spring1.getLength());
