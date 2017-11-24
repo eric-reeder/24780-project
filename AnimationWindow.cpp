@@ -54,16 +54,14 @@ AnimationWindow::AnimationWindow()
     thickness=5;
 }
 // ERIC THIS WILL POP AN ERROR I NEED MORE INFO FOR MY PROJECT WHAT IT IS ASKING FOR IS NOT SENT
-void AnimationWindow::setPosition(double XStart,double YStart)
+void AnimationWindow::WindowInfo(void)
 {
     WinXStart=XStart;
     WinYStart=YStart;
-}
-void AnimationWindow::setSize(double WindowWidth, double WindowHeight)
-{
     windowx=WindowWidth;
     windowy=WindowHeight;
 }
+
 double AnimationWindow::getLocations(void) const
 {
     return x1;

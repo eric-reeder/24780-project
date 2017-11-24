@@ -10,7 +10,7 @@
 #ifndef AnimationWindow_h
 #define AnimationWindow_h
 
-class AnimationWindow
+class AnimationWindow: protected GraphicsWindow
 {
 protected:
     // window size values
@@ -69,9 +69,7 @@ public:
     double dampingConstant1;
     double dampingConstatn2;
     double dampingConstant3;
-    
-    dynamicSystemApp dsa;
-    
+
     double mass1;
     double mass2;
     
@@ -92,7 +90,7 @@ public:
     void DrawWalls(void);
     void DrawBorder(void);
     void DrawForce(void);
-    void setPosition(double XStart,double YStart);
+    void WindowInfo(void);
     void setConstants(void);
     
 };
