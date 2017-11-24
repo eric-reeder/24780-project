@@ -11,47 +11,13 @@
 AnimationWindow::AnimationWindow()
 {
     c=1;
+    // c is the variable so if we wanted to up the animations responsiveness to position change or downgrade the animations response to position change we could
     
-    force1=0;
-    force2=0;
-    x1=0;// center position of mass 1
-    x2=0;// center position of mass2
-    
-    spring1state=0;
-    spring2state=0;
-    spring3state=0;
-    
-    stiffness1=0;
-    stiffness2=0;
-    stiffness3=0;
-    
-    dampingConstant1=0;
-    dampingConstatn2=0;
-    dampingConstant3=0;
-    
-    damper1state=0;
-    damper2state=0;
-    damper3state=0;
-    
-    mass1=0;
-    mass2=0;
-    
-    mass1state=0;
-    mass2state=0;
-    
-    force1state=0;
-    force2state=0;
-    
-    
-    windowx=0;// total x window size
-    windowy=0;// total y window size
-    // windowysize=0;// portion of y window I am allowed
-    // windowxsize=0;// portion of x window I am allowed
-    WinXStart=0; // Xstart point in the window
-    WinYStart=0; // Y start point in the window
     // These variables are not being passed from the inital function so are hard coded to values.  May want to improve it later.  The thickness controls the wall thicknesses.  The margin controls the distance from the xstart point to the walls
-    margin=5;
-    thickness=5;
+    WallMargin=5;
+    ThicknessMargin=5;
+    //Max displacemnt prevents the object from going off screne
+    maxdisplacement=30;
 }
 // ERIC THIS WILL POP AN ERROR I NEED MORE INFO FOR MY PROJECT WHAT IT IS ASKING FOR IS NOT SENT
 void AnimationWindow::WindowInfo(void)
@@ -67,8 +33,9 @@ double AnimationWindow::getLocations(void) const
     return x1;
     return x2;
 }
+// Brings Mass1 and Mass2s position into the animation window
 
-
+// prevents the object from going offscrene
 void AnimationWindow::setLocations(const double Newx1,double Newx2)
 {
     x1=Newx1;
@@ -116,15 +83,9 @@ void AnimationWindow::setConstants(void)
     damper1.setLength(spring1len);
     damper2.setLength(spring2len);
     damper3.setLength(spring2len);
-    
-    force1state=newforce1state;
-    force2state=newforce2state;
-    mass1state=newmass1state;
-    mass2state=NewMass2State;
-    force2=NewForce2;
-    force1=NewForce1;
 }
 
+//Walls spring mass damper is conected to
 void AnimationWindow::DrawWalls()
 {
     glColor3ub(0,0,0);
