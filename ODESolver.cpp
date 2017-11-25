@@ -16,6 +16,11 @@ ODESolver::ODESolver()
 	massNo = 0;
 	springNo = 0;
 	damperNo = 0;
+	// Initial displacements and velocities
+	disp.push_back(0);
+	disp.push_back(0);
+	velocity.push_back(0);
+	velocity.push_back(0);
 }
 
 // Function to initialize mass[]; Takes mass objects from the main()
