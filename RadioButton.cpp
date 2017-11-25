@@ -24,17 +24,44 @@ void DrawCircle(double cx, double cy, double radius, int fill)
 
 void RadioButton::Initialize(const double winWidth, const double startY)
 {
-  radius = 6;
-  centerX = winWidth/20;
-  centreY = startY;
-  state = 0;
+	radius = 6;
+	centreX = winWidth / 20;
+	centreY = startY;
+	state = 0;
 }
 
 void RadioButton::DrawRadio(void) const
 {
-  int fill = 0;
-	int buttonSpace = (8*14);
-  DrawCircle(centreX,centreY,radius,fill);
-  DrawCircle(centreX + buttonSpace, centreY, radius, fill);
-  DrawCircle(centreX + (2*buttonSpace), centreY, radius, fill);
+	
+	int fill = 0;
+	int buttonSpace = (8 * 14);
+	DrawCircle(centreX, centreY, radius, fill);
+	DrawCircle(centreX + buttonSpace, centreY, radius, fill);
+	DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+}
+
+void RadioButton::SetValue(int set)
+{
+	state = set;
+}
+
+double RadioButton::returnCentreX(void) const
+{
+	return centreX;
+}
+
+const double RadioButton::returnCentreY(void) const
+{
+	return centreY;
+}
+
+const double RadioButton::returnRadius(void) const
+{
+	return radius;
+}
+
+
+const int RadioButton::RadioOutput(void) const
+{
+	return state;
 }
