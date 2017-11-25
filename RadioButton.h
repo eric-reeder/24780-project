@@ -1,6 +1,7 @@
 #ifndef RADIOBUTTON_H
   #define RADIOBUTTON_H
 
+  const double YS_PI = 3.1415927;
   class RadioButton
 {
 protected:

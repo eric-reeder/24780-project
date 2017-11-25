@@ -4,6 +4,7 @@
 #include "GraphicsWindow.h"
 #include "Slider.h"
 #include "RadioButton.h"
+#include "ysglfontdata.h"
 
 
 const double UIWindow::getMass1Mass(void)
