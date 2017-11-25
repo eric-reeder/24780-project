@@ -1,4 +1,5 @@
 #include "Slider.h"
+#include "fssimplewindow.h"
 
 void Slider::Initialize(const double winWidth, const double winHeight, const double sliderYCoord)
 {
@@ -36,7 +37,7 @@ const double Slider::SliderOutput(void)
 	return output;
 }
 
-double Slider::returnXValue(void) const
+const double Slider::returnXValue(void) const
 {
 	return dialStartX;
 }
@@ -61,7 +62,7 @@ void Slider::SetValue(const int mx)
 	sliderX = mx;
 }
 
-class MassSlider : public Slider
+/*class MassSlider : public Slider
 {
 
 };
@@ -80,4 +81,4 @@ class AmplitudeSlider : public Slider
 
 class FrequencySlider : public Slider
 {
-};
+};*/

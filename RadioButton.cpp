@@ -1,4 +1,5 @@
 #include "RadioButton.h"
+#include "fssimplewindow.h"
 
 void DrawCircle(double cx, double cy, double radius, int fill)
 {

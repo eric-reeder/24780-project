@@ -1,15 +1,28 @@
 #ifndef UI_WINDOW_H
   #define UI_WINDOW_H
-
+  
+  #include "Slider.h"
+  #include "RadioButton.h"
+  
   class UIWindow : public GraphicsWindow
 {
 protected:
-	MassSlider mslider[N_MASSES];
-	SpringSlider k[N_SPRINGS];
-	DampenerSlider c[N_SPRINGS];
-	AmplitudeSlider A[N_FORCES];
-	FrequencySlider f[N_FORCES];
-	RadioButton r[N_FORCES];
+	Slider mass1;
+	Slider mass2;
+	Slider Spring1;
+	Slider Spring2;
+	Slider Spring3;
+	Slider Dampener1;
+	Slider Dampener2;
+	Slider Dampener3;
+	Slider Amplitude1;
+	Slider Amplitude2;
+	Slider Frequency1;
+	Slider Frequency2;
+	RadioButton r1;
+	RadioButton r2;
+	
+	
 	
 public:
 	
