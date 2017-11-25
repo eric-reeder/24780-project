@@ -134,8 +134,11 @@ void DynamicSystemApp::resetSystem(void)
     spring1.setLength(0.0);
     spring2.setLength(0.0);
     spring3.setLength(0.0);
+    damper1.setLength(0.0);
     damper1.setVelocity(0.0);
+    damper2.setLength(0.0);
     damper2.setVelocity(0.0);
+    damper3.setLength(0.0);
     damper3.setVelocity(0.0);
     plotWindow.reset();
 }
@@ -178,7 +181,6 @@ void DynamicSystemApp::run(void)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
                 solver.solve(timeStep, mass1, mass2);
-                // Update values of springs and dampers here
                 elapsedTime += timeStep;
             }
         }

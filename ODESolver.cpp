@@ -29,7 +29,7 @@ void ODESolver::massInit(const Mass& m1, const Mass& m2)
 		this ->mass[0] = m1.getMass();
 		this ->mass[1] = m2.getMass();
 	}
-	else if(massNo = 1)
+	else if(massNo == 1)
 		this ->mass[0] = (int)(m1.getState()) * m1.getMass() + (int)(m2.getState()) * m2.getMass();
 }
 

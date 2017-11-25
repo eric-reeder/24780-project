@@ -6,7 +6,7 @@
 #include "Damper.h"
 #include "Force.h"
 #include "UIWindowTest.h"
-#include "AnimationWindowTest.h"
+#include "AnimationWindow.h"
 #include "PlotWindowTest.h"
 #include "ODESolver.h"
 
@@ -55,7 +55,7 @@ protected:
 
     // Graphics components
     UIWindowTest uiWindow;
-    AnimationWindowTest animationWindow;
+    AnimationWindow animationWindow;
     PlotWindowTest plotWindow;
     ODESolver solver;
 
