@@ -10,8 +10,8 @@ protected:
     double velocity;
     double maxDisplacement;
 
-    int width;
-    int height;
+    int widthm;
+    int heightm;
 
 public:
     Mass();

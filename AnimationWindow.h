@@ -44,6 +44,7 @@ protected:
     double X2Xero; // Starting point for the second mass
     double X1Actual;// Actual locaton of the first mass
     double X2Actual;// Actual location of the second mass
+    double Spacing;
     
     double spring1len;
     double spring2len;
@@ -54,18 +55,19 @@ protected:
     double x1;
     double x2;
     
+    double springHeight;
+    
     
 public:
     
     
     AnimationWindow();
-    void draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1,
-              Damper damper2, Damper damper3);
-    void SpringDraw(void);
-    void DrawDamper(void);
-    void DrawMass(void);
+    void draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3);
+    double getLocations(void) const;
     void DrawWalls(void);
-    void DrawBorder(void);
+    void setLocations(const double Newx1,double Newx2);
+    // void DrawBorder(void);
+    void SetZeros(void);
     void DrawForce(void);
     
 };

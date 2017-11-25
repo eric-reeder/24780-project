@@ -8,6 +8,7 @@
 #include <time.h>
 #include <math.h>
 #include "fssimplewindow.h"
+#include "AnimationWindow.h"
 
 // The x values need to be set by the main function everything else should work for itself
 // Oh and the state values should be set for each of them
@@ -19,9 +20,10 @@ AnimationWindow::AnimationWindow()
     
     // These variables are not being passed from the inital function so are hard coded to values.  May want to improve it later.  The thickness controls the wall thicknesses.  The margin controls the distance from the xstart point to the walls
     WallMargin=5;
-    ThicknessMargin=5;
+    ThicknessMargin=10;
     //Max displacemnt prevents the object from going off screne
-    maxdisplacement=30;
+    maxdisplacment=30;
+    springHeight=25;
 }
 double AnimationWindow::getLocations(void) const
 {
@@ -52,19 +54,19 @@ void AnimationWindow::setLocations(const double Newx1,double Newx2)
         x2=x2;
     }
 }
-double AnimationWindow:: SetZeros(void) const
+void AnimationWindow:: SetZeros(void)
 {
-    LeftCenter=XPosition+margin+thickness/2;
-    RightCenter=width-margin-thickness;
-    Spacing=(width-XPosition)/3;
-    X1Zero=XPosition+Spacing;
-    X2Xero=XPosition+2*Spacing;
+    LeftCenter=xPosition+WallMargin+ThicknessMargin/2;
+    RightCenter=xPosition+width-WallMargin-ThicknessMargin;
+    Spacing=(width)/3;
+    X1Zero=xPosition+Spacing;
+    X2Xero=xPosition+2*Spacing;
     X1Actual=X1Zero+x1;
     X2Actual=X2Xero+x2+x1;
-    YSpring=height/4+height/35;
-    YDamper=height/4-height/35;
-    YMass=height/4;
-    YForce=height/4-height/15;
+    YSpring=height/2+height/25;
+    YDamper=height/2-height/20;
+    YMass=height/2;
+    YForce=height/2-height/15;
 }
 
 //Walls spring mass damper is conected to
@@ -72,15 +74,15 @@ void AnimationWindow::DrawWalls()
 {
     glColor3ub(0,0,0);
     glBegin(GL_QUADS);
-    glVertex2f(LeftCenter+margin-thickness/2,margin);
-    glVertex2f(LeftCenter+margin-thickness/2,height/2-margin);
-    glVertex2f(LeftCenter+margin+thickness/2,height/2-margin);
-    glVertex2f(LeftCenter+margin+thickness/2,margin);
+    glVertex2f(LeftCenter+WallMargin-ThicknessMargin/2,yPosition+WallMargin);
+    glVertex2f(LeftCenter+WallMargin-ThicknessMargin/2,height-WallMargin);
+    glVertex2f(LeftCenter+WallMargin+ThicknessMargin/2,height-WallMargin);
+    glVertex2f(LeftCenter+WallMargin+ThicknessMargin/2,yPosition+WallMargin);
     
-    glVertex2f(RightCenter-margin-thickness/2,margin);
-    glVertex2f(RightCenter-margin-thickness/2,height/2-margin);
-    glVertex2f(RightCenter-margin+thickness/2,height/2-margin);
-    glVertex2f(RightCenter-margin+thickness/2,margin);
+    glVertex2f(RightCenter-WallMargin-ThicknessMargin/2,yPosition+WallMargin);
+    glVertex2f(RightCenter-WallMargin-ThicknessMargin/2,height-WallMargin);
+    glVertex2f(RightCenter-WallMargin+ThicknessMargin/2,height-WallMargin);
+    glVertex2f(RightCenter-WallMargin+ThicknessMargin/2,yPosition+WallMargin);
     glEnd();
     
     
@@ -201,31 +203,34 @@ void AnimationWindow::DrawWalls()
  glEnd();
  }
  */
-void AnimationWindow::draw(Mass mass1, Mass mass2, Mass mass3, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3)
+void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3)
 {
-    spring1len=X1Actual-LeftCenter;
+    drawBackground();
+    drawBorder();
+    spring1len=X1Actual-LeftCenter+ThicknessMargin/2;
     spring2len=X2Actual-X1Actual;
-    spring3len=RightCenter-X2Actual;
+    spring3len=RightCenter-X2Actual-ThicknessMargin/4;
     
-    spring1.setLength(spring1len);
-    spring2.setLength(spring2len);
-    spring3.setLength(spring3len);
-    damper1.setLength(spring1len);
-    damper2.setLength(spring2len);
-    damper3.setLength(spring2len);
+    spring1.setVisualLength(spring1len);
+    spring2.setVisualLength(spring2len);
+    spring3.setVisualLength(spring3len);
+    damper1.setVisiLength(spring1len);
+    damper2.setVisiLength(spring2len);
+    damper3.setVisiLength(spring3len);
     
-    AnimationWindow.SetZeros();
-    AnimationWindow.setConstants();
-    spring1.draw(LeftCenter,YSpring,spring1len);
-    spring2.draw(X1Actual,YSpring,spring2len);
-    spring3.draw(X2Actual,YSpring,spring3len);
+    SetZeros();
+    
+    spring1.draw(LeftCenter,YSpring,springHeight);
+    spring2.draw(X1Actual,YSpring,springHeight);
+    spring3.draw(X2Actual,YSpring,springHeight);
+    
     damper1.draw(LeftCenter,YDamper,spring1len,height);
     damper2.draw(X1Actual,YDamper,spring2len,height);
     damper3.draw(X2Actual,YDamper,spring3len,height);
-    mass1.draw(X1Actual, YMass) const;
-    mass2.draw(X2Actual, YMass) const;
+    
+    mass1.draw(X1Actual, YMass);
+    mass2.draw(X2Actual, YMass);
     DrawWalls();
-    // DrawForce();
     
     
 }

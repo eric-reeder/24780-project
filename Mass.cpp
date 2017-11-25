@@ -5,12 +5,11 @@
 
 Mass::Mass()
 {
-	position = 0;
-	mass = 0.0;
-	velocity = 0.0;
-	maxDisplacement = 1;
-	width = 50;
-	height = 50;
+    position = 0;
+    mass = 0.0;
+    velocity = 0.0;
+    widthm = 100;
+    heightm = 100;
     state = true;
     redVal = 255;
     blueVal = 0;
@@ -20,51 +19,38 @@ Mass::Mass()
 
 double Mass::getMass(void) const
 {
-	return mass;
+    return mass;
 }
 
 
 void Mass::setMass(const double newMass)
 {
-	mass = newMass;
+    mass = newMass;
 }
 
 
 double Mass::getVelocity(void) const
 {
-	return velocity;
+    return velocity;
 }
 
 
 void Mass::setVelocity(const double newVelocity)
 {
-	velocity = newVelocity;
+    velocity = newVelocity;
 }
 
 
-void Mass::draw(const int xOffset, const int yOffset) const
+void Mass::draw(const int xPos, const int yOffset) const
 {
-	if (state == true)
-	{
-		glColor3ub(redVal, greenVal, blueVal);
-		glBegin(GL_TRIANGLE_FAN);
-
-		if (position < maxDisplacement)
-		{
-			glVertex2i(position + xOffset, yOffset);
-			glVertex2i(position + xOffset + width, yOffset);
-			glVertex2i(position + xOffset + width, yOffset + height);
-			glVertex2i(position + xOffset, yOffset + height);
-		}
-
-		else
-		{
-			glVertex2i(maxDisplacement + xOffset, yOffset);
-			glVertex2i(maxDisplacement + xOffset + width, yOffset);
-			glVertex2i(maxDisplacement + xOffset + width, yOffset + height);
-			glVertex2i(maxDisplacement + xOffset, yOffset + height);
-		}
-		
-		glEnd();
-	}
+    glColor3ub(redVal, greenVal, blueVal);
+    glBegin(GL_QUADS);
+    if (state == true)
+    {
+        glVertex2f(xPos+widthm/2,yOffset-heightm/2);
+        glVertex2f(xPos+widthm/2,yOffset+heightm/2);
+        glVertex2f(xPos-widthm/2,yOffset+heightm/2);
+        glVertex2f(xPos-widthm/2,yOffset-heightm/2);
+    }
+    glEnd();
 }
