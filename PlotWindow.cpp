@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "PlotWindow.h"
+#include "fssimplewindow.h"
   
 /*Creates a graphics window object with black border and white background
 Inputs :
@@ -17,15 +18,18 @@ Inputs:
 newXPosition: X coordinate of top left corner
 newYPosition: Y coordinate of top left corner  */
 
-const int PlotWindowXposition = 400; 
-const int PlotWindowYposition = 800; 
+int PlotWindowXposition = 400; 
+int PlotWindowYposition = 800; 
+
+int PlotWindowWidth = 600;
+int PlotWindowHeight = 500;
 
 PlotWindow::PlotWindow()
 {
 	borderWeight = 2;
-	borderRed = 0;
-	borderGreen = 0;
-	borderBlue = 0;
+	int borderRed = 0;
+	int borderGreen = 0;
+	int borderBlue = 0;
 
 	backgroundRed = 255;
 	backgroundGreen = 255;
@@ -90,14 +94,14 @@ void GraphicsWindow::draw() const
 	drawBorder();
 }
 
-voidPlotWindow::DrawPositionAxes(void)
+void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
 	glColor3ub(borderRed, borderGreen, borderBlue);
 	glBegin(GL_LINES);
 	glLineWidth(plotWeight);
 
 	glVertex2i(PositionGraphXMargin, PositionGraphYMargin);
-	glVertex21(PositionGraphXMargin + PositionXAxisLength, PositionGraphYMargin + PositionYAxisHeight)
+	glVertex2i(PositionGraphXMargin + PositionXAxisLength, PositionGraphYMargin + PositionYAxisHeight);
 
 	glEnd();
 }
@@ -110,7 +114,7 @@ void PlotWindow::DrawVelocityAxes(void)
 	glLineWidth(plotWeight);
 
 	glVertex2i(VelocityGraphXMargin, VelocityGraphYMargin);
-	glVertex21(VelocityGraphXMargin + VelocityXAxisLength, VelocityYMargin + VelocityYAxisHeight)
+	glVertex2i(VelocityGraphXMargin + VelocityXAxisLength, VelocityGraphYMargin + VelocityYAxisHeight);
 
 	glEnd();
 }
@@ -123,11 +127,4 @@ void PlotWindow::GraphPosition(void)
 void PlotWindow::GraphVelocity(void)
 {
 
-}
-
-
-void PlotWindow::CleanUp();
-{
-	delete[] displacement; 
-	delete[] velocity; 
 }

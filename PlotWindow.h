@@ -48,8 +48,7 @@ public:
 	void DrawPositionAxes(void); //function to draw axes 
 	void DrawVelocityAxes(void);
 	void GraphPosition(void); //function for drawing position graph
-
-	CleanUp(); //frees up memory for displacement and velocity vectors 
+	void GraphVelocity(void);
 };
 
 #endif
