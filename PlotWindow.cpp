@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "PlotWindow.h"
+#include "Mass.h"
 #include "fssimplewindow.h"
   
 /*Creates a graphics window object with black border and white background
@@ -27,71 +28,15 @@ int PlotWindowHeight = 500;
 PlotWindow::PlotWindow()
 {
 	borderWeight = 2;
-	int borderRed = 0;
-	int borderGreen = 0;
-	int borderBlue = 0;
+	borderRed = 0;
+	borderGreen = 0;
+	borderBlue = 0;
 
 	backgroundRed = 255;
 	backgroundGreen = 255;
 	backgroundBlue = 255;
 
 	plotWeight = 1; 
-}
-
-
-void GraphicsWindow::setPosition(const int newXPosition, const int newYPosition)
-{
-	PlotWindowXposition = newXPosition;
-	PlotWindowYposition = newYPosition;
-}
-
-void GraphicsWindow::setSize(const int newWidth, const int newHeight)
-{
-	PlotWindowWidth = newWidth;
-	PlotWindowHeight = newHeight;
-}
-
-//  Draws background of graphics window  //
-
-void GraphicsWindow::drawBackground(void) const
-{
-	glColor3ub(backgroundRed, backgroundGreen, backgroundBlue);
-	glBegin(GL_QUADS);
-	glVertex2i(xPosition, yPosition);
-	glVertex2i(xPosition + width, yPosition);
-	glVertex2i(xPosition + width, yPosition + height);
-	glVertex2i(xPosition, yPosition + height);
-	glEnd();
-}
-
-// Draws border on graphics window  //
-void GraphicsWindow::drawBorder(void) const
-{
-	glColor3ub(borderRed, borderGreen, borderBlue);
-	glBegin(GL_LINES);
-	glLineWidth(borderWeight);
-
-	glVertex2i(xPosition, yPosition);
-	glVertex2i(xPosition + width, yPosition);
-
-	glVertex2i(xPosition + width, yPosition);
-	glVertex2i(xPosition + width, yPosition + height);
-
-	glVertex2i(xPosition + width, yPosition + height);
-	glVertex2i(xPosition, yPosition + height);
-
-	glVertex2i(xPosition, yPosition + height);
-	glVertex2i(xPosition, yPosition);
-	glEnd();
-}
-
-
-
-//  Draws the graphics window  //
-void GraphicsWindow::draw() const
-{
-	drawBackground();
-	drawBorder();
 }
 
 void PlotWindow::DrawPositionAxes(void)
@@ -127,4 +72,15 @@ void PlotWindow::GraphPosition(void)
 void PlotWindow::GraphVelocity(void)
 {
 
+}
+
+void PlotWindow::reset(void)
+{
+    
+}
+
+void PlotWindow::draw(Mass mass1, Mass mass2, double timeStep)
+{
+    drawBackground();
+    drawBorder();
 }

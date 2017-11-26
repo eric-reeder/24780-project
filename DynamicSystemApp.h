@@ -7,7 +7,7 @@
 #include "Force.h"
 #include "UIWindowTest.h"
 #include "AnimationWindow.h"
-#include "PlotWindowTest.h"
+#include "PlotWindow.h"
 #include "ODESolver.h"
 
 /*  Highest level class in the app, controls overall functionality  */
@@ -56,7 +56,7 @@ protected:
     // Graphics components
     UIWindowTest uiWindow;
     AnimationWindow animationWindow;
-    PlotWindowTest plotWindow;
+    PlotWindow plotWindow;
     ODESolver solver;
 
     // Mouse

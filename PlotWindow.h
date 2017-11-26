@@ -2,7 +2,6 @@
 #define _PLOTWINDOW_IS_INCLUDED_ 
 
 #include "GraphicsWindow.h"
-#include "DynamicSystemApp.h"
 #include "Mass.h"
 #include <vector>
 
@@ -49,6 +48,8 @@ public:
 	void DrawVelocityAxes(void);
 	void GraphPosition(void); //function for drawing position graph
 	void GraphVelocity(void);
+    void reset(void);
+    void draw(Mass mass1, Mass mass2, double timeStep);
 };
 
 #endif
