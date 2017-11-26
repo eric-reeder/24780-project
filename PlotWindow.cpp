@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include <PlotWindow.h>
-
-//Eric, this is copied from your GraphicsWindow class and assumed we could just determine
-//the approximate coordinates. I put in dummy values for now. 
+#include "PlotWindow.h"
 
 
 //Set the x- and y-positions to 0. (Eric, I wasn't sure about the exact coordinates.) 
@@ -83,9 +80,16 @@ void GraphicsWindow::drawBorder(void) const
 	glEnd();
 }
 
+
+
 /*  Draws the graphics window  */
 void GraphicsWindow::draw() const
 {
 	drawBackground();
 	drawBorder();
+}
+
+void PlotWindow::reset(void)
+{//This function resets the graphs to zero
+
 }
