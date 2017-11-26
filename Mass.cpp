@@ -34,6 +34,11 @@ double Mass::getVelocity(void) const
     return velocity;
 }
 
+double Mass::getPosition(void) const
+{
+    return position;
+}
+
 
 void Mass::setVelocity(const double newVelocity)
 {

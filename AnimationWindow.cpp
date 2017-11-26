@@ -33,10 +33,13 @@ double AnimationWindow::getLocations(void) const
 // Brings Mass1 and Mass2s position into the animation window
 
 // prevents the object from going offscrene
-void AnimationWindow::setLocations(const double Newx1,double Newx2)
+void AnimationWindow::setLocations(void)
 {
-    x1=Newx1;
-    x2=Newx2;
+    Mass mass1;
+    Mass mass2;
+    
+    x1=mass1.getPosition();
+    x2=mass2.getPosition();
     if (x1>maxdisplacment)
     {
         x1=maxdisplacment;
@@ -207,6 +210,7 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
 {
     drawBackground();
     drawBorder();
+    setLocations();
     spring1len=X1Actual-LeftCenter+ThicknessMargin/2;
     spring2len=X2Actual-X1Actual;
     spring3len=RightCenter-X2Actual-ThicknessMargin/4;
