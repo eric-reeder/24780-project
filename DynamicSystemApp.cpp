@@ -90,6 +90,15 @@ void DynamicSystemApp::initializeSystemComponents(void)
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
     force2.setType(uiWindow.getForce2Type());
     force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
+    
+    mass1.setState(true);
+    mass2.setState(true);
+    spring1.setState(true);
+    spring2.setState(true);
+    spring3.setState(true);
+    damper1.setState(true);
+    damper2.setState(true);
+    damper2.setState(true);
 }
 
 /*  Sets positions and sizes of sub-windows  */
@@ -180,6 +189,8 @@ void DynamicSystemApp::run(void)
             if (elapsedTime <= maxSimTime)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
+                std::cout << "mass 1: " << mass1.getPosition() << std::endl;
+                std::cout << "mass 2: " << mass2.getPosition() << std::endl;
                 solver.solve(timeStep, mass1, mass2);
                 elapsedTime += timeStep;
             }
