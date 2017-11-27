@@ -19,7 +19,7 @@ protected:
 	double initialvelocity; 
 
 	double velocity; 
-	double position; 
+	double position;
 
 	
 	//defintes the thickness of the line
