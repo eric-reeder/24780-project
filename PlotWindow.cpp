@@ -45,8 +45,8 @@ PlotWindow::PlotWindow()
 	initialtime = 0.0;
 	time = 9.0; 
 
-	velocity = 8.7; 
-	position = 12.0;
+	velocity = 8.7; //test value
+	position = 12.0; //test value 
 }
 
 void PlotWindow::DrawPositionAxes(void)
