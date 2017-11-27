@@ -2,8 +2,6 @@
 #include "fssimplewindow.h"
 #include<math.h>
 
-
-
 void DrawCircle(double cx, double cy, double radius, int fill)
 {
 	double x,y,angle;
@@ -39,9 +37,31 @@ void RadioButton::DrawRadio(void) const
 	
 	int fill = 0;
 	int buttonSpace = (8 * 14);
-	DrawCircle(centreX, centreY, radius, fill);
-	DrawCircle(centreX + buttonSpace, centreY, radius, fill);
-	DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+	if (state == 0)
+	{
+		DrawCircle(centreX, centreY, radius, fill);
+		DrawCircle(centreX + buttonSpace, centreY, radius, fill);
+		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+	}
+	if (state == 1)
+	{
+		DrawCircle(centreX, centreY, radius, 1);
+		DrawCircle(centreX + buttonSpace, centreY, radius, fill);
+		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+	}
+	if (state == 2)
+	{
+		DrawCircle(centreX, centreY, radius, fill);
+		DrawCircle(centreX + buttonSpace, centreY, radius, 1);
+		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+	}
+	if (state == 3)
+	{
+		DrawCircle(centreX, centreY, radius, fill);
+		DrawCircle(centreX + buttonSpace, centreY, radius, fill);
+		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, 1);
+	}
+	
 }
 
 void RadioButton::SetValue(int set)

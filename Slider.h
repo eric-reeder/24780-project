@@ -1,6 +1,6 @@
 #ifndef SLIDER_H
   #define SLIDER_H
-  class Slider
+class Slider
 {
 protected:
 	double dialStartX, dialStartY, height, width;
@@ -11,10 +11,11 @@ public:
 	void DrawSlider(void) const;
 	const double SliderOutput(void);
 	void SetValue(const int mx);
-	const double returnXValue(void) const;
+	double returnXValue(void) const;
 	const double returnYValue(void) const;
 	const double returnWidthValue(void) const;
 	const double returnHeightValue(void) const;
 
 };
+
 #endif

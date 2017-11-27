@@ -9,7 +9,7 @@ void Slider::Initialize(const double winWidth, const double winHeight, const dou
 
 	sliderX = dialStartX;
 	width = (2 * winWidth) / 3;
-	height = (2 * winHeight) / 70;
+	height = (2 * winHeight) / 200;
 	output = 0;
 }
 
@@ -22,22 +22,22 @@ void Slider::DrawSlider(void) const
 	glEnd();
 
 	glBegin(GL_QUADS);
-	glVertex2d(dialStartX, dialStartY - height);
-	glVertex2d(dialStartX + (2*width/70), dialStartY - height);
-	glVertex2d(dialStartX + (2*width/70), dialStartY + height);
-	glVertex2d(dialStartX, dialStartY + height);
+	glVertex2d(sliderX, dialStartY - height);
+	glVertex2d(sliderX + (2*width/70), dialStartY - height);
+	glVertex2d(sliderX + (2*width/70), dialStartY + height);
+	glVertex2d(sliderX, dialStartY + height);
 	glEnd();
 
 }
 
 const double Slider::SliderOutput(void)
 {
-	output = (sliderX - dialStartX) / 100;
+	output = ((sliderX - dialStartX) / (width)) * 100;
 
 	return output;
 }
 
-const double Slider::returnXValue(void) const
+double Slider::returnXValue(void) const
 {
 	return dialStartX;
 }
@@ -62,23 +62,4 @@ void Slider::SetValue(const int mx)
 	sliderX = mx;
 }
 
-/*class MassSlider : public Slider
-{
 
-};
-
-class SpringSlider : public Slider
-{
-};
-
-class DampenerSlider : public Slider
-{
-};
-
-class AmplitudeSlider : public Slider
-{
-};
-
-class FrequencySlider : public Slider
-{
-};*/

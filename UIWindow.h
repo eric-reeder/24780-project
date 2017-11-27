@@ -4,7 +4,7 @@
   #include "Slider.h"
   #include "RadioButton.h"
   
-  class UIWindow : public GraphicsWindow
+class UIWindow: public GraphicsWindow
 {
 protected:
 	Slider mass1;
@@ -22,10 +22,13 @@ protected:
 	RadioButton r1;
 	RadioButton r2;
 	
-	
-	
+	int xPosition, yPosition, width, height, startX,startY,startWidth,startHeight;
+	int On;
+
 public:
-	
+	void setPosition(const int uiWindowXPosition, const int uiWindowYPosition);
+	void setSize(const int uiWindowWidth, const int uiWindowHeight);
+	const double getMass1Mass(void);
 	const double getMass2Mass(void);
 	const double getSpring1Stiffness(void);
 	const double getSpring2Stiffness(void);
@@ -40,6 +43,11 @@ public:
 	const double getForce2Value1(void);
 	const double getForce2Value2(void);
 	void DrawUIWindow(void);
+	void DrawStart(double sliderYCoord);
+	const double returnStartX(void);
+	const double returnStartY(void);
+	const double returnStartHeight(void);
+	const double returnStartWidth(void);
+	void returnOn(const int play);
 };
-
 #endif
