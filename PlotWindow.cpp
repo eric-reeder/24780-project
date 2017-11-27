@@ -2,7 +2,7 @@
 #include "PlotWindow.h"
 #include "Mass.h"
 #include "fssimplewindow.h"
-  
+
 /*Creates a graphics window object with black border and white background
 Inputs :
 appWidth: Width of app window
@@ -12,22 +12,22 @@ widthFraction : Fraction of app window width this window will be
 heightFraction : Fraction of app window height this window will be
 inputXPosition : X coordinate of top left corner
 inputYPosition : Y coordinate of top left corner  * /
-
-
 // Sets x and y coordinates of top left corner
 Inputs:
 newXPosition: X coordinate of top left corner
 newYPosition: Y coordinate of top left corner  */
 
-int PlotWindowXposition = 400; 
-int PlotWindowYposition = 800; 
 
-int PlotWindowWidth = 600;
-int PlotWindowHeight = 500;
 
 PlotWindow::PlotWindow()
 {
-	borderWeight = 2;
+	plotWindowXPosition = 400;
+	plotWindowYPosition = 800;
+
+	PlotWindowWidth = 600;
+	PlotWindowHeight = 500;
+	
+	borderWeight = 6;
 	borderRed = 0;
 	borderGreen = 0;
 	borderBlue = 0;
@@ -36,7 +36,17 @@ PlotWindow::PlotWindow()
 	backgroundGreen = 255;
 	backgroundBlue = 255;
 
-	plotWeight = 1; 
+	plotWeight = 1;
+	
+	graphRed = 0;
+	graphGreen = 0;
+	graphBlue = 0;
+
+	initialtime = 0.0;
+	time = 9.0; 
+
+	velocity = 8.7; 
+	position = 12.0;
 }
 
 void PlotWindow::DrawPositionAxes(void)
@@ -64,23 +74,46 @@ void PlotWindow::DrawVelocityAxes(void)
 	glEnd();
 }
 
+//double Mass::getPosition(void) const
+//{//Gets the real-time position from the Mass class
+//	return position;
+//}
+
+//double Mass::getVelocity(void) const
+//{//Gets the real-time velocity from the Mass class 
+//	return velocity;
+//}
+
+//void Mass::setVelocity(const double newVelocity)
+//{
+//	velocity = newVelocity;
+//}
+
 void PlotWindow::GraphPosition(void)
 {
-
+	glColor3ub(graphRed, graphGreen, graphBlue);
+	glBegin(GL_LINE_STRIP);
+	glVertex2d(initialtime, initialposition);
+	glVertex2d(initialtime + time, initialposition + position);
+	glEnd();
 }
 
 void PlotWindow::GraphVelocity(void)
 {
-
+	glColor3ub(graphRed, graphGreen, graphBlue);
+	glBegin(GL_LINE_STRIP);
+	glVertex2d(initialtime, initialvelocity);
+	glVertex2d(initialtime + time, initialposition + velocity);
+	glEnd();
 }
 
 void PlotWindow::reset(void)
 {
-    
+
 }
 
 void PlotWindow::draw(Mass mass1, Mass mass2, double timeStep)
 {
-    drawBackground();
-    drawBorder();
+	drawBackground();
+	drawBorder();
 }
