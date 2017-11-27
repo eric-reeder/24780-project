@@ -25,8 +25,6 @@ public:
     void setVisualLength(const double VisLeng);
     
     void draw(double startxPoint,double startyPoint,double lspring) const;
-    
-    void setState(const int newState);
 };
 
 #endif /* SPRING_H */

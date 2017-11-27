@@ -7,7 +7,7 @@ double UIWindowTest::getMass1Mass(void)
 
 double UIWindowTest::getMass2Mass(void)
 {
-	return 0.0;
+	return 1.0;
 }
 
 double UIWindowTest::getSpring1Stiffness(void)
@@ -17,27 +17,27 @@ double UIWindowTest::getSpring1Stiffness(void)
 
 double UIWindowTest::getSpring2Stiffness(void)
 {
-	return 0.0;
+	return 1.0;
 }
 
 double UIWindowTest::getSpring3Stiffness(void)
 {
-	return 0.0;
+	return 1.0;
 }
 
 double UIWindowTest::getDamper1Damping(void)
 {
-	return 0.0;
+	return 0.5;
 }
 
 double UIWindowTest::getDamper2Damping(void)
 {
-	return 0.0;
+	return 0.5;
 }
 
 double UIWindowTest::getDamper3Damping(void)
 {
-	return 0.0;
+	return 0.5;
 }
 
 int UIWindowTest::getForce1Type(void)
@@ -47,7 +47,7 @@ int UIWindowTest::getForce1Type(void)
 
 double UIWindowTest::getForce1Value1(void)
 {
-	return 1.0;
+	return 10.0;
 }
 
 double UIWindowTest::getForce1Value2(void)
@@ -62,7 +62,7 @@ int UIWindowTest::getForce2Type(void)
 
 double UIWindowTest::getForce2Value1(void)
 {
-	return 0.0;
+	return 10.0;
 }
 
 double UIWindowTest::getForce2Value2(void)
@@ -72,7 +72,7 @@ double UIWindowTest::getForce2Value2(void)
 
 bool UIWindowTest::checkRunning(void)
 {
-	return false;
+	return true;
 }
 
 bool UIWindowTest::checkMouse(int mouseLeft, int mouseX, int mouseY)

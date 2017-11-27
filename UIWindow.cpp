@@ -14,7 +14,7 @@ bool UIWindow::checkRunning(void)
 	{
 		return true;
 	}
-	if (On == 0)
+	else
 	{
 		return false;
 	}

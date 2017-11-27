@@ -3,6 +3,7 @@
   
   #include "Slider.h"
   #include "RadioButton.h"
+#include "GraphicsWindow.h"
   
   
 class UIWindow: public GraphicsWindow
