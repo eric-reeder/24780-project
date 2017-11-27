@@ -20,13 +20,7 @@ newYPosition: Y coordinate of top left corner  */
 
 
 PlotWindow::PlotWindow()
-{
-	plotWindowXPosition = 400;
-	plotWindowYPosition = 800;
-
-	PlotWindowWidth = 600;
-	PlotWindowHeight = 500;
-	
+{//Constructs plot window 
 	borderWeight = 6;
 	borderRed = 0;
 	borderGreen = 0;
@@ -36,7 +30,7 @@ PlotWindow::PlotWindow()
 	backgroundGreen = 255;
 	backgroundBlue = 255;
 
-	plotWeight = 1;
+	/*plotWeight = 1;
 	
 	graphRed = 0;
 	graphGreen = 0;
@@ -45,18 +39,29 @@ PlotWindow::PlotWindow()
 	initialtime = 0.0;
 	time = 9.0; 
 
-	velocity = 8.7; //test value
-	position = 12.0; //test value 
+	PositionGraphXMargin = 2; 
+	PositionGraphYMargin = 2;
+
+	VelocityGraphXMargin = 2;
+	VelocityGraphYMargin = 4; 
+
+	velocity = 8.7; 
+	position = 12.0;*/
 }
 
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
-	glColor3ub(borderRed, borderGreen, borderBlue);
+	glColor3ub(0, 0, 0);
 	glBegin(GL_LINES);
-	glLineWidth(plotWeight);
+	glLineWidth(0.1);
 
-	glVertex2i(PositionGraphXMargin, PositionGraphYMargin);
-	glVertex2i(PositionGraphXMargin + PositionXAxisLength, PositionGraphYMargin + PositionYAxisHeight);
+	//Draws y axis 
+	glVertex2i(450, 650);
+	glVertex2i(450, 450);
+
+	//Draws x axis 
+	glVertex2i(800, 650);
+	glVertex2i(450, 650);
 
 	glEnd();
 }
@@ -64,46 +69,48 @@ void PlotWindow::DrawPositionAxes(void)
 
 void PlotWindow::DrawVelocityAxes(void)
 {//Draws velocity graph axes
-	glColor3ub(borderRed, borderGreen, borderBlue);
+	glColor3ub(0, 0, 0);
 	glBegin(GL_LINES);
-	glLineWidth(plotWeight);
+	glLineWidth(0.1); 
 
-	glVertex2i(VelocityGraphXMargin, VelocityGraphYMargin);
-	glVertex2i(VelocityGraphXMargin + VelocityXAxisLength, VelocityGraphYMargin + VelocityYAxisHeight);
+	//Draws y axis 
+	glVertex2i(850, 650);
+	glVertex2i(850, 450);
+
+	//Draws x axis 
+	glVertex2i(1200, 650);
+	glVertex2i(850, 650);
 
 	glEnd();
 }
 
-//double Mass::getPosition(void) const
-//{//Gets the real-time position from the Mass class
+//double Mass::getVelocity(void) const
+//{
+//	return velocity;
+//}
+//
+//double Mass::getPosition(void) 
+//{
+//	position = position + 1;
 //	return position;
 //}
 
-//double Mass::getVelocity(void) const
-//{//Gets the real-time velocity from the Mass class 
-//	return velocity;
-//}
-
-//void Mass::setVelocity(const double newVelocity)
-//{
-//	velocity = newVelocity;
-//}
 
 void PlotWindow::GraphPosition(void)
 {
-	glColor3ub(graphRed, graphGreen, graphBlue);
+	glColor3ub(0, 0, 255);
 	glBegin(GL_LINE_STRIP);
-	glVertex2d(initialtime, initialposition);
-	glVertex2d(initialtime + time, initialposition + position);
+	glVertex2d(500, 600);
+	glVertex2d(600, 650);
 	glEnd();
 }
 
 void PlotWindow::GraphVelocity(void)
 {
-	glColor3ub(graphRed, graphGreen, graphBlue);
+	glColor3ub(0, 255, 0);
 	glBegin(GL_LINE_STRIP);
-	glVertex2d(initialtime, initialvelocity);
-	glVertex2d(initialtime + time, initialposition + velocity);
+	glVertex2d(1000, 600);
+	glVertex2d(1100, 600);
 	glEnd();
 }
 
@@ -116,4 +123,9 @@ void PlotWindow::draw(Mass mass1, Mass mass2, double timeStep)
 {
 	drawBackground();
 	drawBorder();
+	DrawPositionAxes();
+	DrawVelocityAxes();
+	GraphPosition(); 
+	GraphVelocity();
+
 }
