@@ -5,7 +5,7 @@
 #include "Force.h"
 #include "UIWindowTest.h"
 #include "AnimationWindowTest.h"
-#include "PlotWindowTest.h"
+#include "PlotWindow.h"
 #include "ODESolver.h"
 #include "fssimplewindow.h"
 #include <chrono>
