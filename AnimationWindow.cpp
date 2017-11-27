@@ -23,6 +23,7 @@ AnimationWindow::AnimationWindow()
     ThicknessMargin=10;
     //Max displacemnt prevents the object from going off screne
     maxdisplacment=30;
+    mindisplacment=-30;
     springHeight=25;
 }
 double AnimationWindow::getLocations(void) const
@@ -33,16 +34,33 @@ double AnimationWindow::getLocations(void) const
 // Brings Mass1 and Mass2s position into the animation window
 
 // prevents the object from going offscrene
-void AnimationWindow::setLocations(void)
+void AnimationWindow::setLocations(Mass mass1, Mass mass2)
 {
-    Mass mass1;
-    Mass mass2;
     
+    /*int i;
+    i=i+1;
+    i=i%10;
+    if (i>5)
+    {
+        x1=x1+.1;
+        x2=x2+.2;
+    }
+    else
+    {
+        x1=x1-.1;
+        x2=x2-.2;
+    }
+    printf(" i %lf ",i);
+    */
     x1=mass1.getPosition();
     x2=mass2.getPosition();
     if (x1>maxdisplacment)
     {
         x1=maxdisplacment;
+    }
+    else if(x1<mindisplacment)
+    {
+        x1=mindisplacment;
     }
     else
     {
@@ -51,6 +69,10 @@ void AnimationWindow::setLocations(void)
     if (x2>maxdisplacment)
     {
         x2=maxdisplacment;
+    }
+    else if(x2<mindisplacment)
+    {
+        x2=mindisplacment;
     }
     else
     {
@@ -70,6 +92,10 @@ void AnimationWindow:: SetZeros(void)
     YDamper=height/2-height/20;
     YMass=height/2;
     YForce=height/2-height/15;
+    if (X1Actual+50>X2Actual)
+    {
+        X1Actual=X2Actual-50;
+    }
 }
 
 //Walls spring mass damper is conected to
@@ -208,9 +234,10 @@ void AnimationWindow::DrawWalls()
  */
 void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3)
 {
+    //printf("%lf %lf",x1,x2);
     drawBackground();
     drawBorder();
-    setLocations();
+    setLocations(mass1, mass2);
     spring1len=X1Actual-LeftCenter+ThicknessMargin/2;
     spring2len=X2Actual-X1Actual;
     spring3len=RightCenter-X2Actual-ThicknessMargin/4;

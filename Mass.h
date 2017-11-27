@@ -21,7 +21,7 @@ public:
 
     double getVelocity(void) const;
     void setVelocity(const double newVelocity);
-    double getPosition(void) const;
+    double getPosition(void);
 
     void draw(const int xOffset, const int yOffset) const;
 };

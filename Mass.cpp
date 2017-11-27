@@ -1,6 +1,7 @@
 #include "Mass.h"
 #include "SimulationObject.h"
 #include "fssimplewindow.h"
+#include <stdio.h>
 
 
 Mass::Mass()
@@ -34,8 +35,9 @@ double Mass::getVelocity(void) const
     return velocity;
 }
 
-double Mass::getPosition(void) const
+double Mass::getPosition(void) 
 {
+    position=position+1;
     return position;
 }
 

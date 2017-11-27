@@ -51,6 +51,7 @@ protected:
     double spring3len;
     
     double maxdisplacment;
+    double mindisplacment;
     
     double x1;
     double x2;
@@ -65,7 +66,7 @@ public:
     void draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3);
     double getLocations(void) const;
     void DrawWalls(void);
-    void setLocations(void);
+    void setLocations(Mass mass1, Mass mass2);
     // void DrawBorder(void);
     void SetZeros(void);
     void DrawForce(void);
