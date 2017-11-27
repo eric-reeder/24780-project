@@ -52,8 +52,8 @@ void AnimationWindow::setLocations(Mass mass1, Mass mass2)
     }
     printf(" i %lf ",i);
     */
-    x1=mass1.getPosition();
-    x2=mass2.getPosition();
+    x1=mass1.Weee();
+    x2=mass2.Weee();
     if (x1>maxdisplacment)
     {
         x1=maxdisplacment;
@@ -88,8 +88,8 @@ void AnimationWindow:: SetZeros(void)
     X2Xero=xPosition+2*Spacing;
     X1Actual=X1Zero+x1;
     X2Actual=X2Xero+x2+x1;
-    YSpring=height/2+height/25;
-    YDamper=height/2-height/20;
+    YSpring=height/2+height/20;
+    YDamper=height/2-height/10;
     YMass=height/2;
     YForce=height/2-height/15;
     if (X1Actual+50>X2Actual)

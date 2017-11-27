@@ -35,9 +35,8 @@ double Mass::getVelocity(void) const
     return velocity;
 }
 
-double Mass::getPosition(void) 
+double Mass::Weee(void)
 {
-    position=position+1;
     return position;
 }
 
