@@ -26,8 +26,7 @@ protected:
 	int On;
 
 public:
-	void setPosition(const int uiWindowXPosition, const int uiWindowYPosition);
-	void setSize(const int uiWindowWidth, const int uiWindowHeight);
+	
 	const double getMass1Mass(void);
 	const double getMass2Mass(void);
 	const double getSpring1Stiffness(void);

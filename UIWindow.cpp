@@ -32,18 +32,6 @@ const double UIWindow::returnStartY(void)
 
 
 
-void UIWindow::setPosition(const int uiWindowXPosition, const int uiWindowYPosition)
-{
-	xPosition = uiWindowXPosition;
-	yPosition = uiWindowYPosition;
-
-}
-
-void UIWindow::setSize(const int uiWindowWidth, const int uiWindowHeight)
-{
-	width = uiWindowWidth;
-	height = uiWindowHeight;
-}
 
 const double UIWindow::getMass1Mass(void)
 {
