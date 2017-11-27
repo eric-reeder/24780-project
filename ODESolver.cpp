@@ -101,12 +101,12 @@ void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 		velocity = RK->solveVelocity();
 		if (mass1.getState())
 		{
-			mass1.setPosition(mass1.getPosition() + disp[0]);		// Updating position of mass1
+			mass1.setPosition(disp[0]);							// Updating position of mass1
 			mass1.setVelocity(velocity[0]);							// Updating the velocity of mass2
 		}
 		else
 		{
-			mass2.setPosition(mass2.getPosition() + disp[0]);		// Updating position of mass2
+			mass2.setPosition(disp[0]);							// Updating position of mass2
 			mass2.setVelocity(velocity[0]);							// Updating the velocity of mass2
 		}
 	}
@@ -115,8 +115,8 @@ void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 		RK = new RungeKutta4ODE(time,disp[0],disp[1],velocity[0],velocity[1]);
 		// Updating displacements
 		disp = RK->solveDisp(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
-		mass1.setPosition(mass1.getPosition() + disp[0]);		// Updating position of mass1
-		mass2.setPosition(mass2.getPosition() + disp[1]);		// Updating position of mass2
+		mass1.setPosition(disp[0]);								// Updating position of mass1
+		mass2.setPosition(disp[1]);								// Updating position of mass2
 
 		// Updating velocities
 		velocity = RK->solveVelocity();
