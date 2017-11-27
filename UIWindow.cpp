@@ -6,7 +6,30 @@
 #include "Slider.h"
 #include "RadioButton.h"
 #include "ysglfontdata.h"
+#include "fssimplewindow.h"
 
+bool UIWindow::checkRunning(void)
+{
+	if (On == 1)
+	{
+		return true;
+	}
+	if (On == 0)
+	{
+		return false;
+	}
+}
+bool UIWindow::checkMouse(int mouseLeft, int mouseX, int mouseY)
+{
+	if (1 == mouseLeft)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 void UIWindow::returnOn(const int play)
 {
 	On = play;
@@ -342,7 +365,10 @@ void UIWindow::DrawUIWindow(void)
 
 		int mx, my, lb, rb, mb;
 		FsGetMouseState(lb, mb, rb, mx, my);
-		if (1 == lb)
+		bool check;
+		check = checkMouse(lb, mx, my);
+
+		if (check == true)
 		{
 			
 			if ((double)mx >= mass1.returnXValue() && (double)mx <= mass1.returnXValue() + mass1.returnWidthValue() && (double)my <= mass1.returnYValue() + mass1.returnHeightValue() && (double)my >= mass1.returnYValue() - mass1.returnHeightValue())
