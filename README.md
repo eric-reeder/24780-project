@@ -11,12 +11,11 @@ Comments should be employed liberally throughout your code to ensure that it's f
 First, a comment should always be placed on the first lines after the function declaration to describe what the function does, as well as what the input and out parameters are. For example:
 
 ```C++
+/*  Calculates the value of the unit step function as a function of time
+    Inputs: time [s]
+    Outputs: force [N]  */
 double unitStep(double time)
-{
-// Calculates the value of the unit step function as a function of time
-// Inputs: time [s]
-// Outputs: force [N]
-    
+{    
     double outForce;
     
     if (time > 0)
@@ -95,7 +94,12 @@ public:
 Additionally, each class should be contained within it's own C++ and header file. The .cpp file should be named "ClassName.cpp", and the header should be named "ClassName.h". It is important to remember to use an include guard in each header file to ensure that each class is not accidentally defined twice. The include guard macro should be named "CLASSNAME_H". For example:
 
 ```C++
-// Box.cpp
+// Box.h
+
+#ifndef BOX_H
+#define BOX_H
+
+#include <stdio.h>
 
 class Box
 {
@@ -110,13 +114,14 @@ public:
     void setWidth(const int newWidth);
     void setHeight(const int newHeight);
 };
+
+#endif /* BOX_H */
 ```
 
 ```C++
-// Box.h
+// Box.cpp
 
-#ifndef BOX_H
-#define BOX_H
+#include <stdio.h>
 
 int Box::getWidth(void) const
 {
@@ -140,8 +145,6 @@ void setHeight(const int newHeight)
 {
     height = newHeight;
 }
-
-#endif /* BOX_H */
 ```
 
 ### Use of Non-Variable Constants (a.k.a Magic Numbers)
