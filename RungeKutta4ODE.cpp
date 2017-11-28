@@ -37,13 +37,13 @@ void RungeKutta4ODE::computeForces(Force force1, Force force2)
 	case 1:
 	{
 		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * time);
-		std::cout << Force1 << std::endl;
+//        std::cout << Force1 << std::endl;
 		break;
 	}
 	case 2:
 	{
 		Force1 = force1.getValue()[0];
-		std::cout << Force1 << std::endl;
+//        std::cout << Force1 << std::endl;
 		break;
 	}
 	}
@@ -52,19 +52,19 @@ void RungeKutta4ODE::computeForces(Force force1, Force force2)
 	case 0:
 	{
 		Force2 = force2.getValue()[0] * sin(force2.getValue()[1] * time);
-		std::cout << Force2 << std::endl;
+//        std::cout << Force2 << std::endl;
 		break;
 	}
 	case 1:
 	{
 		Force2 = force2.getValue()[0] * exp(-force2.getValue()[1] * time);
-		std::cout << Force2 << std::endl;
+//        std::cout << Force2 << std::endl;
 		break;
 	}
 	case 2:
 	{
 		Force2 = force2.getValue()[0];
-		std::cout << Force2 << std::endl;
+//        std::cout << Force2 << std::endl;
 		break;
 	}
 	}
@@ -148,10 +148,10 @@ std::vector<double> RungeKutta4ODE::solveDisp(double tS, double m[2], double sS[
 	x1 = x1 + (k1[0] + 2.*k2[0] + 2.*k3[0] + k4[0]) / 6.;
 	x2 = x2 + (k1[1] + 2.*k2[1] + 2.*k3[1] + k4[1]) / 6.;
 	std::vector<double> disp = { x1, x2 };
-	for (int i = 0; i < 2; i++)
-	{
-		std::cout << disp[i] << std::endl;
-	}
+//    for (int i = 0; i < 2; i++)
+//    {
+//        std::cout << disp[i] << std::endl;
+//    }
 	return disp;
 }
 
@@ -160,10 +160,10 @@ std::vector<double> RungeKutta4ODE::solveVelocity(void)
 	x3 = x3 + (k1[2] + 2.*k2[2] + 2.*k3[2] + k4[2]) / 6.;
 	x4 = x4 + (k1[3] + 2.*k2[3] + 2.*k3[3] + k4[3]) / 6.;
 	std::vector<double> vel = { x3, x4 };
-	for (int i = 0; i < 2; i++)
-	{
-		std::cout << vel[i] << std::endl;
-	}
+//    for (int i = 0; i < 2; i++)
+//    {
+//        std::cout << vel[i] << std::endl;
+//    }
 	return vel;
 }
 
