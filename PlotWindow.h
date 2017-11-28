@@ -54,15 +54,37 @@ protected:
 	int graphGreen; 
 	int graphBlue; 
 
+	double position1; 
+	double position2;
+	
+	double velocity1; 
+	double velocity2;
+
 public:
 	PlotWindow(); //Initalizes plot window
 
-	void DrawPositionAxes(void); //function to draw axes 
-	void DrawVelocityAxes(void);
+	//function to draw axes 
+	void DrawPositionAxes(void);
+	void DrawVelocityAxes(void); 
+
+	//function to draw graphs 
 	void GraphPosition(void); //function for drawing position graph
 	void GraphVelocity(void);
-	void reset(void);
+	
+	
+	//Functions that call real-time positions and velocities from the Mass class
+	//void Velocity(Mass &mass1, Mass &mass2) const;
+	//void Position(Mass &mass1, Mass &mass2) const;
+	
+	//Returns Graphing and Velocity information from Mass class 
+	double ReturnGraphingPosition(void);
+	double ReturnVelocityPosition(void);
+
+	//Draws Winwos
 	void draw(Mass mass1, Mass mass2, double timeStep);
+	
+	//Resets info 
+	void reset(void);
 };
 
 #endif
