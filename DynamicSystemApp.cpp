@@ -189,16 +189,14 @@ void DynamicSystemApp::run(void)
             if (elapsedTime <= maxSimTime)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
-                std::cout << "mass 1: " << mass1.getPosition() << std::endl;
-                std::cout << "mass 2: " << mass2.getPosition() << std::endl;
                 solver.solve(timeStep, mass1, mass2);
                 elapsedTime += timeStep;
             }
         }
 
-        bool resetPress = uiWindow.checkMouse(mouseLeft, mouseX, mouseY);
-        initializeSystemComponents();
-        initializeSolver();
+        bool resetPress = uiWindow.checkMouse(mouseLeft, mouseX, mouseY); // Update buttons/sliders from mouse input
+        initializeSystemComponents(); // Updates objects based on solver output
+        initializeSolver(); // Updates solver parameters
         if (resetPress == true)
         {
             resetSystem();
