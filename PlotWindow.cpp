@@ -84,17 +84,31 @@ void PlotWindow::DrawVelocityAxes(void)
 	glEnd();
 }
 
-//double Mass::getVelocity(void) const
-//{
-//	return velocity;
+//void PlotWindow::Velocity(Mass &mass1, Mass &mass2) const 
+//{//This calls the velocities for mass 1 and 2  from the Mass class 
+//	double PlotWindow::*velocity1 = &mass1.getVelocity;
+//	double PlotWindow::*velocity2 = &mass2.getVelocity; 
+//	
 //}
 //
-//double Mass::getPosition(void) 
-//{
-//	position = position + 1;
-//	return position;
+//void PlotWindow::Position(Mass &mass1, Mass &mass2) const
+//{//This calls the positions for mass 1 and 2 from the Mass class 
+//	double PlotWindow::*position1 = &mass1.Weee;
+//	double PlotWindow::*position2 = &mass2.Weee; 
 //}
 
+double PlotWindow::ReturnGraphingPosition(void)
+{//This returns the positions for input into the graph function 
+	return position1; 
+	return position2;
+	printf("%lf", "%lf", velocity1, velocity2); //This is for debugging purposes 
+}
+
+double PlotWindow::ReturnVelocityPosition(void)
+{//This returns the velocities for input into the graph function 
+	return velocity1; 
+	return velocity2; 
+}
 
 void PlotWindow::GraphPosition(void)
 {
@@ -118,6 +132,7 @@ void PlotWindow::reset(void)
 {
 
 }
+
 
 void PlotWindow::draw(Mass mass1, Mass mass2, double timeStep)
 {
