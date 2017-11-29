@@ -1,7 +1,4 @@
 #include "UIWindow.h"
-
-
-
 #include "GraphicsWindow.h"
 #include "Slider.h"
 #include "RadioButton.h"
@@ -14,7 +11,7 @@ bool UIWindow::checkRunning(void)
 	{
 		return true;
 	}
-	if (On == 0)
+	else
 	{
 		return false;
 	}
