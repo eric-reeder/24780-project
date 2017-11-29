@@ -242,6 +242,7 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
     spring2len=X2Actual-X1Actual;
     spring3len=RightCenter-X2Actual-ThicknessMargin/4;
     
+
     spring1.setVisualLength(spring1len);
     spring2.setVisualLength(spring2len);
     spring3.setVisualLength(spring3len);

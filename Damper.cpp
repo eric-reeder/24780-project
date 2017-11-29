@@ -1,5 +1,7 @@
 #include "Damper.h"
 #include "fssimplewindow.h"
+#include "ysglfontdata.h"
+
 
 
 Damper::Damper()
@@ -12,7 +14,7 @@ Damper::Damper()
     redVal = 0;
     blueVal = 0;
     greenVal = 255;
-    linethickness=2;
+    linethickness=7;
 }
 
 
@@ -65,29 +67,31 @@ void Damper::setVisiLength(const double newvLength)
 
 void Damper::draw(double startxPoint,double startyPoint,double lspring,double windowy) const
 {
-    double yct=windowy*.01;
+    double yct=windowy*.03;
     
     double xl1=startxPoint;
     double xc1=startxPoint+VisLength;
     double xdist=xc1-xl1;
     double yc1=startyPoint;
-    double partiallength=xdist/3;
+    double partiallength=5*xdist/12;
+    glLineWidth(linethickness);
     
     glColor3ub(redVal, greenVal, blueVal);
-    glBegin(GL_LINES);
-    glLineWidth(linethickness);
+    
     if (state==1)
     {
+        glBegin(GL_LINES);
+        glLineWidth(linethickness);
         glVertex2d(xl1, yc1);
-        glVertex2d(xl1+partiallength, yc1);
+        glVertex2d(xl1+partiallength*14/12, yc1);
         
-        glVertex2d(xl1+partiallength, yc1+yct);
-        glVertex2d(xl1+partiallength, yc1-yct);
+        glVertex2d(xl1+partiallength*14/12, yc1+yct);
+        glVertex2d(xl1+partiallength*14/12, yc1-yct);
         
-        glVertex2d(xl1+2*partiallength/3, yc1+2*yct);
+        glVertex2d(xl1+partiallength, yc1+2*yct);
         glVertex2d(xl1+3*partiallength/2, yc1+2*yct);
         
-        glVertex2d(xl1+2*partiallength/3, yc1-2*yct);
+        glVertex2d(xl1+partiallength, yc1-2*yct);
         glVertex2d(xl1+3*partiallength/2, yc1-2*yct);
         
         glVertex2d(xl1+3*partiallength/2, yc1+2*yct);
@@ -95,10 +99,53 @@ void Damper::draw(double startxPoint,double startyPoint,double lspring,double wi
         
         glVertex2d(xl1+3*partiallength/2, yc1);
         glVertex2d(xc1, yc1);
+        glEnd();
+        int Dampera=damping/10;
+        int Damperb=damping-Dampera;
+        int Damperc=damping-Dampera-Damperb;
+        char YayDamper[10];
+        for (int i=0;i<10;i++)
+        {
+            if (Dampera==i)
+            {
+                YayDamper[0]=48+i;
+                if (YayDamper[0]==48)
+                {
+                    YayDamper[0]=32;
+                }
+            }
+        }
+        for (int j=0;j<10;j++)
+        {
+            if (Damperb==j)
+            {
+                YayDamper[1]=48+j;
+            }
+        }
+        for (int k=0;k<10;k++)
+        {
+            if (Damperc==k)
+            {
+                YayDamper[2]=46;
+                YayDamper[3]=48+k;
+
+                
+            }
+        }
+        YayDamper[4]=32;
+        YayDamper[5]=78;
+        YayDamper[6]=47;
+        YayDamper[7]=109;
+        YayDamper[8]=94;
+        YayDamper[9]=50;
+        char* d=&YayDamper[0];
+        glColor3b(0, 0, 0);
+        glRasterPos2d(xl1+5*partiallength/4-60,yc1-4*yct);
+        YsGlDrawFontBitmap12x16(d);
+        
+        
         
     }
     
-    
-    glEnd();
 }
 

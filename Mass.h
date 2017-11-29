@@ -22,6 +22,7 @@ public:
     double getVelocity(void) const;
     void setVelocity(const double newVelocity);
     double Weee(void);
+    void CheckState(void);
 
     void draw(const int xOffset, const int yOffset) const;
 };
