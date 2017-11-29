@@ -63,7 +63,7 @@ void Mass::draw(const int xPos, const int yOffset) const
         int massa=mass/10;
         int massb=mass-massa;
         int massc=mass-massa-massb;
-        char masses[7];
+        char masses[8];
         for (int i=0;i<10;i++)
         {
             if (massa==i)
@@ -94,6 +94,7 @@ void Mass::draw(const int xPos, const int yOffset) const
         masses[4]=32;
         masses[5]=107;
         masses[6]=103;
+        masses[7]=0;
         char* d=&masses[0];
         glColor3b(0, 0, 0);
         glRasterPos2d(xPos-42,yOffset);

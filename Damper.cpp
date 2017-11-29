@@ -103,7 +103,7 @@ void Damper::draw(double startxPoint,double startyPoint,double lspring,double wi
         int Dampera=damping/10;
         int Damperb=damping-Dampera;
         int Damperc=damping-Dampera-Damperb;
-        char YayDamper[10];
+        char YayDamper[11];
         for (int i=0;i<10;i++)
         {
             if (Dampera==i)
@@ -138,6 +138,7 @@ void Damper::draw(double startxPoint,double startyPoint,double lspring,double wi
         YayDamper[7]=109;
         YayDamper[8]=94;
         YayDamper[9]=50;
+        YayDamper[10]=0;
         char* d=&YayDamper[0];
         glColor3b(0, 0, 0);
         glRasterPos2d(xl1+5*partiallength/4-60,yc1-4*yct);

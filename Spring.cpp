@@ -90,7 +90,7 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
         int springa=stiffness/10;
         int springb=stiffness-springa;
         int springc=stiffness-springa-springb;
-        char YaySpring[8];
+        char YaySpring[9];
         for (int i=0;i<10;i++)
         {
             if (springa==i)
@@ -121,6 +121,7 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
         YaySpring[5]=78;
         YaySpring[6]=47;
         YaySpring[7]=109;
+        YaySpring[8]=0;
         char* d=&YaySpring[0];
         glColor3b(0, 0, 0);
         glRasterPos2d(xl1+Visilength/2-48,yd1+lspring);
