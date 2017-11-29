@@ -14,13 +14,15 @@ bool UIWindow::checkRunning(void)
 	{
 		return true;
 	}
-	else
+	if (On == 0)
 	{
 		return false;
 	}
 }
-bool UIWindow::checkMouse(int mouseLeft, int mouseX, int mouseY)
+bool UIWindow::checkMouse(int mouseLeft, int &mouseX, int &mouseY)
 {
+	int mb,rb;
+	FsGetMouseEvent(mouseLeft,mb,rb,mouseX,mouseY);
 	if (1 == mouseLeft)
 	{
 		return true;
@@ -363,8 +365,8 @@ void UIWindow::DrawUIWindow(void)
 
 		DrawStart(Frequency2.returnYValue() + lineSpacing);
 
-		int mx, my, lb, rb, mb;
-		FsGetMouseState(lb, mb, rb, mx, my);
+		int mx, my, lb;
+		
 		bool check;
 		check = checkMouse(lb, mx, my);
 

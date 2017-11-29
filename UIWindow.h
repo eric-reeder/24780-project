@@ -3,7 +3,6 @@
   
   #include "Slider.h"
   #include "RadioButton.h"
-#include "GraphicsWindow.h"
   
   
 class UIWindow: public GraphicsWindow
@@ -50,7 +49,7 @@ public:
 	const double returnStartHeight(void);
 	const double returnStartWidth(void);
 	void returnOn(const int play);
-	bool checkMouse(int mouseLeft, int mouseX, int mouseY);
+	bool checkMouse(int mouseLeft, int &mouseX, int &mouseY);
 	bool checkRunning(void);
 };
 #endif
