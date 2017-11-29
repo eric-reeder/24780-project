@@ -64,41 +64,39 @@ void DynamicSystemApp::initializeSystemComponents(void)
     // Set simulation object values
     mass1.setMass(uiWindow.getMass1Mass());
     mass2.setMass(uiWindow.getMass2Mass());
+    mass1.setState(uiWindow.getMass1State());
 
     spring1.setStiffness(uiWindow.getSpring1Stiffness());
     spring1.setLength(mass1.getPosition());
+    spring1.setState(uiWindow.getSpring1State());
 
     spring2.setStiffness(uiWindow.getSpring2Stiffness());
     spring2.setLength(mass2.getPosition() - mass1.getPosition());
+    spring2.setState(uiWindow.getSpring2State());
 
     spring3.setStiffness(uiWindow.getSpring3Stiffness());
     spring3.setLength(mass2.getPosition());
+    spring3.setState(uiWindow.getSpring3State());
 
     damper1.setDamping(uiWindow.getDamper1Damping());
     damper1.setLength(spring1.getLength());
     damper1.setVelocity(mass1.getVelocity());
+    damper1.setState(uiWindow.getDamper1State());
 
     damper2.setDamping(uiWindow.getDamper2Damping());
     damper2.setLength(spring2.getLength());
     damper2.setVelocity(mass2.getVelocity() - mass1.getVelocity());
+    damper2.setState(uiWindow.getDamper2State());
 
     damper3.setDamping(uiWindow.getDamper3Damping());
     damper3.setLength(spring3.getLength());
     damper3.setVelocity(-mass2.getVelocity());
+    damper3.setState(uiWindow.getDamper3State());
 
     force1.setType(uiWindow.getForce1Type());
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
     force2.setType(uiWindow.getForce2Type());
     force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
-    
-    mass1.setState(true);
-    mass2.setState(true);
-    spring1.setState(true);
-    spring2.setState(true);
-    spring3.setState(true);
-    damper1.setState(true);
-    damper2.setState(true);
-    damper2.setState(true);
 }
 
 /*  Sets positions and sizes of sub-windows  */
