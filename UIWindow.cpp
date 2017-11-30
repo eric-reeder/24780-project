@@ -8,7 +8,7 @@
 #include "ysglfontdata.h"
 #include "fssimplewindow.h"
 
-UIWindow::UIWindow() 
+void UIWindow::Initialize(void) 
 {
 	
 	mass1.Initialize(width, height, yPosition + ((1.5*height) / 26));

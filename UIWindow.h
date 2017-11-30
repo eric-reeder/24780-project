@@ -39,7 +39,7 @@ protected:
 
 public:
 	
-	UIWindow();
+	void Initialize(void);
 	const double getMass1Mass(void);
 	const double getMass2Mass(void);
 	const double getSpring1Stiffness(void);
