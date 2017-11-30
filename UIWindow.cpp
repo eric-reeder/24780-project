@@ -95,7 +95,7 @@ const double UIWindow::getForce2Value2(void)
 	return Frequency2.SliderOutput(100,0);
 }
 
-void UIWindow::DrawUIWindow(void)
+void UIWindow::draw(void)
 {
 	const double leftMargin = width / 40;
 	const int fontHeight = 12;
@@ -377,79 +377,79 @@ const int UIWindow::onval(void) const
 {
 	return On;
 }
-const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
+const bool UIWindow::checkMouse()
 {
-	int mb, rb;
-	FsGetMouseEvent(mouseLeft, mb, rb, mouseX, mouseY);
-	if (1 == mouseLeft)
+	int lb, mb, rb, mx, my;
+	FsGetMouseEvent(lb, mb, rb, mx, my);
+	if (1 == lb)
 	{
-		if ((double)mouseX >= mass1.returnXValue() && (double)mouseX <= mass1.returnXValue() + mass1.returnWidthValue() && (double)mouseY <= mass1.returnYValue() + mass1.returnHeightValue() && (double)mouseY >= mass1.returnYValue() - mass1.returnHeightValue())
+		if ((double)mx >= mass1.returnXValue() && (double)mx <= mass1.returnXValue() + mass1.returnWidthValue() && (double)my <= mass1.returnYValue() + mass1.returnHeightValue() && (double)my >= mass1.returnYValue() - mass1.returnHeightValue())
 		{
-			mass1.SetValue((int)mouseX);
+			mass1.SetValue((int)mx);
 
 			
 		}
-		if ((double)mouseX >= mass2.returnXValue() && (double)mouseX <= mass2.returnXValue() + mass2.returnWidthValue() && (double)mouseY <= mass2.returnYValue() + mass2.returnHeightValue() && (double)mouseY >= mass2.returnYValue() - mass2.returnHeightValue())
+		if ((double)mx >= mass2.returnXValue() && (double)mx <= mass2.returnXValue() + mass2.returnWidthValue() && (double)my <= mass2.returnYValue() + mass2.returnHeightValue() && (double)my >= mass2.returnYValue() - mass2.returnHeightValue())
 		{
-			mass2.SetValue(mouseX);
+			mass2.SetValue(mx);
 		}
-		if ((double)mouseX >= Spring1.returnXValue() && (double)mouseX <= Spring1.returnXValue() + Spring1.returnWidthValue() && (double)mouseY <= Spring1.returnYValue() + Spring1.returnHeightValue() && (double)mouseY >= Spring1.returnYValue() - Spring1.returnHeightValue())
+		if ((double)mx >= Spring1.returnXValue() && (double)mx <= Spring1.returnXValue() + Spring1.returnWidthValue() && (double)my <= Spring1.returnYValue() + Spring1.returnHeightValue() && (double)my >= Spring1.returnYValue() - Spring1.returnHeightValue())
 		{
-			Spring1.SetValue(mouseX);
+			Spring1.SetValue(mx);
 		}
-		if ((double)mouseX >= Spring2.returnXValue() && (double)mouseX <= Spring2.returnXValue() + Spring2.returnWidthValue() && (double)mouseY <= Spring2.returnYValue() + Spring2.returnHeightValue() && (double)mouseY >= Spring2.returnYValue() - Spring2.returnHeightValue())
+		if ((double)mx >= Spring2.returnXValue() && (double)mx <= Spring2.returnXValue() + Spring2.returnWidthValue() && (double)my <= Spring2.returnYValue() + Spring2.returnHeightValue() && (double)my >= Spring2.returnYValue() - Spring2.returnHeightValue())
 		{
-			Spring2.SetValue(mouseX);
-		}
-
-		if ((double)mouseX >= Spring3.returnXValue() && (double)mouseX <= Spring3.returnXValue() + Spring3.returnWidthValue() && (double)mouseY <= Spring3.returnYValue() + Spring3.returnHeightValue() && (double)mouseY >= Spring3.returnYValue() - Spring3.returnHeightValue())
-		{
-			Spring3.SetValue(mouseX);
+			Spring2.SetValue(mx);
 		}
 
-		if ((double)mouseX >= Dampener1.returnXValue() && (double)mouseX <= Dampener1.returnXValue() + Dampener1.returnWidthValue() && (double)mouseY <= Dampener1.returnYValue() + Dampener1.returnHeightValue() && (double)mouseY >= Dampener1.returnYValue() - Dampener1.returnHeightValue())
+		if ((double)mx >= Spring3.returnXValue() && (double)mx <= Spring3.returnXValue() + Spring3.returnWidthValue() && (double)my <= Spring3.returnYValue() + Spring3.returnHeightValue() && (double)my >= Spring3.returnYValue() - Spring3.returnHeightValue())
 		{
-			Dampener1.SetValue(mouseX);
+			Spring3.SetValue(mx);
 		}
 
-		if ((double)mouseX >= Dampener2.returnXValue() && (double)mouseX <= Dampener2.returnXValue() + Dampener2.returnWidthValue() && (double)mouseY <= Dampener2.returnYValue() + Dampener2.returnHeightValue() && (double)mouseY >= Dampener2.returnYValue() - Dampener2.returnHeightValue())
+		if ((double)mx >= Dampener1.returnXValue() && (double)mx <= Dampener1.returnXValue() + Dampener1.returnWidthValue() && (double)my <= Dampener1.returnYValue() + Dampener1.returnHeightValue() && (double)my >= Dampener1.returnYValue() - Dampener1.returnHeightValue())
 		{
-			Dampener2.SetValue(mouseX);
-		}
-		if ((double)mouseX >= Dampener3.returnXValue() && (double)mouseX <= Dampener3.returnXValue() + Dampener3.returnWidthValue() && (double)mouseY <= Dampener3.returnYValue() + Dampener3.returnHeightValue() && (double)mouseY >= Dampener3.returnYValue() - Dampener3.returnHeightValue())
-		{
-			Dampener3.SetValue(mouseX);
+			Dampener1.SetValue(mx);
 		}
 
-		if ((double)mouseX >= Amplitude1.returnXValue() && (double)mouseX <= Amplitude1.returnXValue() + Amplitude1.returnWidthValue() && (double)mouseY <= Amplitude1.returnYValue() + Amplitude1.returnHeightValue() && (double)mouseY >= Amplitude1.returnYValue() - Amplitude1.returnHeightValue())
+		if ((double)mx >= Dampener2.returnXValue() && (double)mx <= Dampener2.returnXValue() + Dampener2.returnWidthValue() && (double)my <= Dampener2.returnYValue() + Dampener2.returnHeightValue() && (double)my >= Dampener2.returnYValue() - Dampener2.returnHeightValue())
 		{
-			Amplitude1.SetValue(mouseX);
+			Dampener2.SetValue(mx);
 		}
-		if ((double)mouseX >= Amplitude2.returnXValue() && (double)mouseX <= Amplitude2.returnXValue() + Amplitude2.returnWidthValue() && (double)mouseY <= Amplitude2.returnYValue() + Amplitude2.returnHeightValue() && (double)mouseY >= Amplitude2.returnYValue() - Amplitude2.returnHeightValue())
+		if ((double)mx >= Dampener3.returnXValue() && (double)mx <= Dampener3.returnXValue() + Dampener3.returnWidthValue() && (double)my <= Dampener3.returnYValue() + Dampener3.returnHeightValue() && (double)my >= Dampener3.returnYValue() - Dampener3.returnHeightValue())
 		{
-			Amplitude2.SetValue(mouseX);
-		}
-		if ((double)mouseX >= Frequency1.returnXValue() && (double)mouseX <= Frequency1.returnXValue() + Frequency1.returnWidthValue() && (double)mouseY <= Frequency1.returnYValue() + Frequency1.returnHeightValue() && (double)mouseY >= Frequency1.returnYValue() - Frequency1.returnHeightValue())
-		{
-			Frequency1.SetValue(mouseX);
+			Dampener3.SetValue(mx);
 		}
 
-		if ((double)mouseX >= Frequency2.returnXValue() && (double)mouseX <= Frequency2.returnXValue() + Frequency2.returnWidthValue() && (double)mouseY <= Frequency2.returnYValue() + Frequency2.returnHeightValue() && (double)mouseY >= Frequency2.returnYValue() - Frequency2.returnHeightValue())
+		if ((double)mx >= Amplitude1.returnXValue() && (double)mx <= Amplitude1.returnXValue() + Amplitude1.returnWidthValue() && (double)my <= Amplitude1.returnYValue() + Amplitude1.returnHeightValue() && (double)my >= Amplitude1.returnYValue() - Amplitude1.returnHeightValue())
 		{
-			Frequency2.SetValue(mouseX);
+			Amplitude1.SetValue(mx);
 		}
-		if ((double)mouseX <= r1.returnCentreX() + r1.returnRadius() && (double)mouseX >= r1.returnCentreX() - r1.returnRadius() && (double)mouseY <= r1.returnCentreY() + r1.returnRadius() && (double)mouseY >= r1.returnCentreY() - r1.returnRadius())
+		if ((double)mx >= Amplitude2.returnXValue() && (double)mx <= Amplitude2.returnXValue() + Amplitude2.returnWidthValue() && (double)my <= Amplitude2.returnYValue() + Amplitude2.returnHeightValue() && (double)my >= Amplitude2.returnYValue() - Amplitude2.returnHeightValue())
+		{
+			Amplitude2.SetValue(mx);
+		}
+		if ((double)mx >= Frequency1.returnXValue() && (double)mx <= Frequency1.returnXValue() + Frequency1.returnWidthValue() && (double)my <= Frequency1.returnYValue() + Frequency1.returnHeightValue() && (double)my >= Frequency1.returnYValue() - Frequency1.returnHeightValue())
+		{
+			Frequency1.SetValue(mx);
+		}
+
+		if ((double)mx >= Frequency2.returnXValue() && (double)mx <= Frequency2.returnXValue() + Frequency2.returnWidthValue() && (double)my <= Frequency2.returnYValue() + Frequency2.returnHeightValue() && (double)my >= Frequency2.returnYValue() - Frequency2.returnHeightValue())
+		{
+			Frequency2.SetValue(mx);
+		}
+		if ((double)mx <= r1.returnCentreX() + r1.returnRadius() && (double)mx >= r1.returnCentreX() - r1.returnRadius() && (double)my <= r1.returnCentreY() + r1.returnRadius() && (double)my >= r1.returnCentreY() - r1.returnRadius())
 		{
 			DrawCircle(r1.returnCentreX(), r1.returnCentreY(), 4, 1);
 			r1.SetValue(1);
 		}
 
-		if ((double)mouseX <= r1.returnCentreX() + r1.returnRadioSpaceMargin1() + r1.returnRadius() && (double)mouseX >= r1.returnCentreX() + r1.returnRadioSpaceMargin1() - r1.returnRadius() && (double)mouseY <= r1.returnCentreY() + r1.returnRadius() && (double)mouseY >= r1.returnCentreY() - r1.returnRadius())
+		if ((double)mx <= r1.returnCentreX() + r1.returnRadioSpaceMargin1() + r1.returnRadius() && (double)mx >= r1.returnCentreX() + r1.returnRadioSpaceMargin1() - r1.returnRadius() && (double)my <= r1.returnCentreY() + r1.returnRadius() && (double)my >= r1.returnCentreY() - r1.returnRadius())
 		{
 			DrawCircle(r1.returnCentreX() + r1.returnRadioSpaceMargin1(), r1.returnCentreY(), 4, 1);
 			r1.SetValue(2);
 		}
-		if ((double)mouseX <= r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()) + r1.returnRadius() && (double)mouseX >= r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()) - r1.returnRadius() && (double)mouseY <= r1.returnCentreY() + r1.returnRadius() && (double)mouseY >= r1.returnCentreY() - r1.returnRadius())
+		if ((double)mx <= r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()) + r1.returnRadius() && (double)mx >= r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()) - r1.returnRadius() && (double)my <= r1.returnCentreY() + r1.returnRadius() && (double)my >= r1.returnCentreY() - r1.returnRadius())
 		{
 			DrawCircle(r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()), r1.returnCentreY(), 4, 1);
 			r1.SetValue(3);
@@ -458,18 +458,18 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Frequency1.SetValue(Frequency1.returnXValue());
 		}
-		if ((double)mouseX <= r2.returnCentreX() + r2.returnRadius() && (double)mouseX >= r2.returnCentreX() - r2.returnRadius() && (double)mouseY <= r2.returnCentreY() + r2.returnRadius() && (double)mouseY >= r2.returnCentreY() - r2.returnRadius())
+		if ((double)mx <= r2.returnCentreX() + r2.returnRadius() && (double)mx >= r2.returnCentreX() - r2.returnRadius() && (double)my <= r2.returnCentreY() + r2.returnRadius() && (double)my >= r2.returnCentreY() - r2.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			r2.SetValue(1);
 		}
 
-		if ((double)mouseX <= r2.returnCentreX() + r2.returnRadioSpaceMargin1() + r2.returnRadius() && (double)mouseX >= r2.returnCentreX() + r2.returnRadioSpaceMargin1() - r2.returnRadius() && (double)mouseY <= r2.returnCentreY() + r2.returnRadius() && (double)mouseY >= r2.returnCentreY() - r2.returnRadius())
+		if ((double)mx <= r2.returnCentreX() + r2.returnRadioSpaceMargin1() + r2.returnRadius() && (double)mx >= r2.returnCentreX() + r2.returnRadioSpaceMargin1() - r2.returnRadius() && (double)my <= r2.returnCentreY() + r2.returnRadius() && (double)my >= r2.returnCentreY() - r2.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			r2.SetValue(2);
 		}
-		if ((double)mouseX <= r2.returnCentreX() + (2 * r2.returnRadioSpaceMargin1()) + r2.returnRadius() && (double)mouseX >= r2.returnCentreX() + (2 * r2.returnRadioSpaceMargin1()) - r2.returnRadius() && (double)mouseY <= r2.returnCentreY() + r2.returnRadius() && (double)mouseY >= r2.returnCentreY() - r2.returnRadius())
+		if ((double)mx <= r2.returnCentreX() + (2 * r2.returnRadioSpaceMargin1()) + r2.returnRadius() && (double)mx >= r2.returnCentreX() + (2 * r2.returnRadioSpaceMargin1()) - r2.returnRadius() && (double)my <= r2.returnCentreY() + r2.returnRadius() && (double)my >= r2.returnCentreY() - r2.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + (2 * radioSpaceMargin), r2.returnCentreY(), 4, 1);
 			r2.SetValue(3);
@@ -478,13 +478,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Frequency2.SetValue(Frequency2.returnXValue());
 		}
-		if ((double)mouseX <= Mass1Check.returnCentreX() + Mass1Check.returnRadius() && (double)mouseX >= Mass1Check.returnCentreX() - Mass1Check.returnRadius() && (double)mouseY <= Mass1Check.returnCentreY() + Mass1Check.returnRadius() && (double)mouseY >= Mass1Check.returnCentreY() - Mass1Check.returnRadius())
+		if ((double)mx <= Mass1Check.returnCentreX() + Mass1Check.returnRadius() && (double)mx >= Mass1Check.returnCentreX() - Mass1Check.returnRadius() && (double)my <= Mass1Check.returnCentreY() + Mass1Check.returnRadius() && (double)my >= Mass1Check.returnCentreY() - Mass1Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Mass1Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Mass1Check.returnCentreX() + Mass1Check.returnRadioSpaceMargin2() + Mass1Check.returnRadius() && (double)mouseX >= Mass1Check.returnCentreX() + Mass1Check.returnRadioSpaceMargin2() - Mass1Check.returnRadius() && (double)mouseY <= Mass1Check.returnCentreY() + Mass1Check.returnRadius() && (double)mouseY >= Mass1Check.returnCentreY() - Mass1Check.returnRadius())
+		if ((double)mx <= Mass1Check.returnCentreX() + Mass1Check.returnRadioSpaceMargin2() + Mass1Check.returnRadius() && (double)mx >= Mass1Check.returnCentreX() + Mass1Check.returnRadioSpaceMargin2() - Mass1Check.returnRadius() && (double)my <= Mass1Check.returnCentreY() + Mass1Check.returnRadius() && (double)my >= Mass1Check.returnCentreY() - Mass1Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Mass1Check.SetValue(2);
@@ -494,13 +494,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			mass1.SetValue(mass1.returnXValue());
 		}
-		if ((double)mouseX <= Mass2Check.returnCentreX() + Mass2Check.returnRadius() && (double)mouseX >= Mass2Check.returnCentreX() - Mass2Check.returnRadius() && (double)mouseY <= Mass2Check.returnCentreY() + Mass2Check.returnRadius() && (double)mouseY >= Mass2Check.returnCentreY() - Mass2Check.returnRadius())
+		if ((double)mx <= Mass2Check.returnCentreX() + Mass2Check.returnRadius() && (double)mx >= Mass2Check.returnCentreX() - Mass2Check.returnRadius() && (double)my <= Mass2Check.returnCentreY() + Mass2Check.returnRadius() && (double)my >= Mass2Check.returnCentreY() - Mass2Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Mass2Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Mass2Check.returnCentreX() + Mass2Check.returnRadioSpaceMargin2() + Mass2Check.returnRadius() && (double)mouseX >= Mass2Check.returnCentreX() + Mass2Check.returnRadioSpaceMargin2() - Mass2Check.returnRadius() && (double)mouseY <= Mass2Check.returnCentreY() + Mass2Check.returnRadius() && (double)mouseY >= Mass2Check.returnCentreY() - Mass2Check.returnRadius())
+		if ((double)mx <= Mass2Check.returnCentreX() + Mass2Check.returnRadioSpaceMargin2() + Mass2Check.returnRadius() && (double)mx >= Mass2Check.returnCentreX() + Mass2Check.returnRadioSpaceMargin2() - Mass2Check.returnRadius() && (double)my <= Mass2Check.returnCentreY() + Mass2Check.returnRadius() && (double)my >= Mass2Check.returnCentreY() - Mass2Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Mass2Check.SetValue(2);
@@ -510,13 +510,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			mass2.SetValue(mass2.returnXValue());
 		}
-		if ((double)mouseX <= Spring1Check.returnCentreX() + Spring1Check.returnRadius() && (double)mouseX >= Spring1Check.returnCentreX() - Spring1Check.returnRadius() && (double)mouseY <= Spring1Check.returnCentreY() + Spring1Check.returnRadius() && (double)mouseY >= Spring1Check.returnCentreY() - Spring1Check.returnRadius())
+		if ((double)mx <= Spring1Check.returnCentreX() + Spring1Check.returnRadius() && (double)mx >= Spring1Check.returnCentreX() - Spring1Check.returnRadius() && (double)my <= Spring1Check.returnCentreY() + Spring1Check.returnRadius() && (double)my >= Spring1Check.returnCentreY() - Spring1Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Spring1Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Spring1Check.returnCentreX() + Spring1Check.returnRadioSpaceMargin2() + Spring1Check.returnRadius() && (double)mouseX >= Spring1Check.returnCentreX() + Spring1Check.returnRadioSpaceMargin2() - Spring1Check.returnRadius() && (double)mouseY <= Spring1Check.returnCentreY() + Spring1Check.returnRadius() && (double)mouseY >= Spring1Check.returnCentreY() - Spring1Check.returnRadius())
+		if ((double)mx <= Spring1Check.returnCentreX() + Spring1Check.returnRadioSpaceMargin2() + Spring1Check.returnRadius() && (double)mx >= Spring1Check.returnCentreX() + Spring1Check.returnRadioSpaceMargin2() - Spring1Check.returnRadius() && (double)my <= Spring1Check.returnCentreY() + Spring1Check.returnRadius() && (double)my >= Spring1Check.returnCentreY() - Spring1Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Spring1Check.SetValue(2);
@@ -526,13 +526,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Spring1.SetValue(Spring1.returnXValue());
 		}
-		if ((double)mouseX <= Spring2Check.returnCentreX() + Spring2Check.returnRadius() && (double)mouseX >= Spring2Check.returnCentreX() - Spring2Check.returnRadius() && (double)mouseY <= Spring2Check.returnCentreY() + Spring2Check.returnRadius() && (double)mouseY >= Spring2Check.returnCentreY() - Spring2Check.returnRadius())
+		if ((double)mx <= Spring2Check.returnCentreX() + Spring2Check.returnRadius() && (double)mx >= Spring2Check.returnCentreX() - Spring2Check.returnRadius() && (double)my <= Spring2Check.returnCentreY() + Spring2Check.returnRadius() && (double)my >= Spring2Check.returnCentreY() - Spring2Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Spring2Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Spring2Check.returnCentreX() + Spring2Check.returnRadioSpaceMargin2() + Spring2Check.returnRadius() && (double)mouseX >= Spring2Check.returnCentreX() + Spring2Check.returnRadioSpaceMargin2() - Spring2Check.returnRadius() && (double)mouseY <= Spring2Check.returnCentreY() + Spring2Check.returnRadius() && (double)mouseY >= Spring2Check.returnCentreY() - Spring2Check.returnRadius())
+		if ((double)mx <= Spring2Check.returnCentreX() + Spring2Check.returnRadioSpaceMargin2() + Spring2Check.returnRadius() && (double)mx >= Spring2Check.returnCentreX() + Spring2Check.returnRadioSpaceMargin2() - Spring2Check.returnRadius() && (double)my <= Spring2Check.returnCentreY() + Spring2Check.returnRadius() && (double)my >= Spring2Check.returnCentreY() - Spring2Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Spring2Check.SetValue(2);
@@ -542,13 +542,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Spring2.SetValue(Spring2.returnXValue());
 		}
-		if ((double)mouseX <= Spring3Check.returnCentreX() + Spring3Check.returnRadius() && (double)mouseX >= Spring3Check.returnCentreX() - Spring3Check.returnRadius() && (double)mouseY <= Spring3Check.returnCentreY() + Spring3Check.returnRadius() && (double)mouseY >= Spring3Check.returnCentreY() - Spring3Check.returnRadius())
+		if ((double)mx <= Spring3Check.returnCentreX() + Spring3Check.returnRadius() && (double)mx >= Spring3Check.returnCentreX() - Spring3Check.returnRadius() && (double)my <= Spring3Check.returnCentreY() + Spring3Check.returnRadius() && (double)my >= Spring3Check.returnCentreY() - Spring3Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Spring3Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Spring3Check.returnCentreX() + Spring3Check.returnRadioSpaceMargin2() + Spring3Check.returnRadius() && (double)mouseX >= Spring3Check.returnCentreX() + Spring3Check.returnRadioSpaceMargin2() - Spring3Check.returnRadius() && (double)mouseY <= Spring3Check.returnCentreY() + Spring3Check.returnRadius() && (double)mouseY >= Spring3Check.returnCentreY() - Spring3Check.returnRadius())
+		if ((double)mx <= Spring3Check.returnCentreX() + Spring3Check.returnRadioSpaceMargin2() + Spring3Check.returnRadius() && (double)mx >= Spring3Check.returnCentreX() + Spring3Check.returnRadioSpaceMargin2() - Spring3Check.returnRadius() && (double)my <= Spring3Check.returnCentreY() + Spring3Check.returnRadius() && (double)my >= Spring3Check.returnCentreY() - Spring3Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Spring3Check.SetValue(2);
@@ -559,13 +559,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 			Spring3.SetValue(Spring3.returnXValue());
 		}
 
-		if ((double)mouseX <= Dampener1Check.returnCentreX() + Dampener1Check.returnRadius() && (double)mouseX >= Dampener1Check.returnCentreX() - Dampener1Check.returnRadius() && (double)mouseY <= Dampener1Check.returnCentreY() + Dampener1Check.returnRadius() && (double)mouseY >= Dampener1Check.returnCentreY() - Dampener1Check.returnRadius())
+		if ((double)mx <= Dampener1Check.returnCentreX() + Dampener1Check.returnRadius() && (double)mx >= Dampener1Check.returnCentreX() - Dampener1Check.returnRadius() && (double)my <= Dampener1Check.returnCentreY() + Dampener1Check.returnRadius() && (double)my >= Dampener1Check.returnCentreY() - Dampener1Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Dampener1Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Dampener1Check.returnCentreX() + Dampener1Check.returnRadioSpaceMargin2() + Dampener1Check.returnRadius() && (double)mouseX >= Dampener1Check.returnCentreX() + Dampener1Check.returnRadioSpaceMargin2() - Dampener1Check.returnRadius() && (double)mouseY <= Dampener1Check.returnCentreY() + Dampener1Check.returnRadius() && (double)mouseY >= Dampener1Check.returnCentreY() - Dampener1Check.returnRadius())
+		if ((double)mx <= Dampener1Check.returnCentreX() + Dampener1Check.returnRadioSpaceMargin2() + Dampener1Check.returnRadius() && (double)mx >= Dampener1Check.returnCentreX() + Dampener1Check.returnRadioSpaceMargin2() - Dampener1Check.returnRadius() && (double)my <= Dampener1Check.returnCentreY() + Dampener1Check.returnRadius() && (double)my >= Dampener1Check.returnCentreY() - Dampener1Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Dampener1Check.SetValue(2);
@@ -575,13 +575,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Dampener1.SetValue(Dampener1.returnXValue());
 		}
-		if ((double)mouseX <= Dampener2Check.returnCentreX() + Dampener2Check.returnRadius() && (double)mouseX >= Dampener2Check.returnCentreX() - Dampener2Check.returnRadius() && (double)mouseY <= Dampener2Check.returnCentreY() + Dampener2Check.returnRadius() && (double)mouseY >= Dampener2Check.returnCentreY() - Dampener2Check.returnRadius())
+		if ((double)mx <= Dampener2Check.returnCentreX() + Dampener2Check.returnRadius() && (double)mx >= Dampener2Check.returnCentreX() - Dampener2Check.returnRadius() && (double)my <= Dampener2Check.returnCentreY() + Dampener2Check.returnRadius() && (double)my >= Dampener2Check.returnCentreY() - Dampener2Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Dampener2Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Dampener2Check.returnCentreX() + Dampener2Check.returnRadioSpaceMargin2() + Dampener2Check.returnRadius() && (double)mouseX >= Dampener2Check.returnCentreX() + Dampener2Check.returnRadioSpaceMargin2() - Dampener2Check.returnRadius() && (double)mouseY <= Dampener2Check.returnCentreY() + Dampener2Check.returnRadius() && (double)mouseY >= Dampener2Check.returnCentreY() - Dampener2Check.returnRadius())
+		if ((double)mx <= Dampener2Check.returnCentreX() + Dampener2Check.returnRadioSpaceMargin2() + Dampener2Check.returnRadius() && (double)mx >= Dampener2Check.returnCentreX() + Dampener2Check.returnRadioSpaceMargin2() - Dampener2Check.returnRadius() && (double)my <= Dampener2Check.returnCentreY() + Dampener2Check.returnRadius() && (double)my >= Dampener2Check.returnCentreY() - Dampener2Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Dampener2Check.SetValue(2);
@@ -591,13 +591,13 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Dampener2.SetValue(Dampener2.returnXValue());
 		}
-		if ((double)mouseX <= Dampener3Check.returnCentreX() + Dampener3Check.returnRadius() && (double)mouseX >= Dampener3Check.returnCentreX() - Dampener3Check.returnRadius() && (double)mouseY <= Dampener3Check.returnCentreY() + Dampener3Check.returnRadius() && (double)mouseY >= Dampener3Check.returnCentreY() - Dampener3Check.returnRadius())
+		if ((double)mx <= Dampener3Check.returnCentreX() + Dampener3Check.returnRadius() && (double)mx >= Dampener3Check.returnCentreX() - Dampener3Check.returnRadius() && (double)my <= Dampener3Check.returnCentreY() + Dampener3Check.returnRadius() && (double)my >= Dampener3Check.returnCentreY() - Dampener3Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
 			Dampener3Check.SetValue(1);
 		}
 
-		if ((double)mouseX <= Dampener3Check.returnCentreX() + Dampener3Check.returnRadioSpaceMargin2() + Dampener3Check.returnRadius() && (double)mouseX >= Dampener3Check.returnCentreX() + Dampener3Check.returnRadioSpaceMargin2() - Dampener3Check.returnRadius() && (double)mouseY <= Dampener3Check.returnCentreY() + Dampener3Check.returnRadius() && (double)mouseY >= Dampener3Check.returnCentreY() - Dampener3Check.returnRadius())
+		if ((double)mx <= Dampener3Check.returnCentreX() + Dampener3Check.returnRadioSpaceMargin2() + Dampener3Check.returnRadius() && (double)mx >= Dampener3Check.returnCentreX() + Dampener3Check.returnRadioSpaceMargin2() - Dampener3Check.returnRadius() && (double)my <= Dampener3Check.returnCentreY() + Dampener3Check.returnRadius() && (double)my >= Dampener3Check.returnCentreY() - Dampener3Check.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
 			Dampener3Check.SetValue(2);
@@ -607,17 +607,17 @@ const bool UIWindow::checkMouse(int &mouseLeft, int &mouseX, int &mouseY)
 		{
 			Dampener3.SetValue(Dampener3.returnXValue());
 		}
-		if ((double)mouseX <= returnStartX() + returnStartWidth()/2 && (double)mouseX >= returnStartX() - returnStartWidth()/2 && (double)mouseY >= returnStartY() && (double)mouseY <= returnStartY() + returnStartHeight())
+		if ((double)mx <= returnStartX() + returnStartWidth()/2 && (double)mx >= returnStartX() - returnStartWidth()/2 && (double)my >= returnStartY() && (double)my <= returnStartY() + returnStartHeight())
 		{
 			returnOn(1);
 
 		}
-		if ((double)mouseX >= returnStartX() + returnStartWidth()/2 && (double)mouseX <= returnStartX() + returnStartWidth()/2 + returnStartWidth() && (double)mouseY >= returnStartY() && (double)mouseY <= returnStartY() + returnStartHeight())
+		if ((double)mx >= returnStartX() + returnStartWidth()/2 && (double)mx <= returnStartX() + returnStartWidth()/2 + returnStartWidth() && (double)my >= returnStartY() && (double)my <= returnStartY() + returnStartHeight())
 		{
 			returnOn(0);
 
 		}
-		if ((double)mouseX >= returnStartX() - returnStartWidth() / 2  - returnStartWidth() && (double)mouseX <= returnStartX() - returnStartWidth() / 2 + returnStartWidth() && (double)mouseY >= returnStartY() && (double)mouseY <= returnStartY() + returnStartHeight())
+		if ((double)mx >= returnStartX() - returnStartWidth() / 2  - returnStartWidth() && (double)mx <= returnStartX() - returnStartWidth() / 2 + returnStartWidth() && (double)my >= returnStartY() && (double)my <= returnStartY() + returnStartHeight())
 		{
 			returnOn(2);
 

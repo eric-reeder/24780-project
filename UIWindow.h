@@ -54,7 +54,7 @@ public:
 	const double getForce1Value2(void);
 	const double getForce2Value1(void);
 	const double getForce2Value2(void);
-	void DrawUIWindow(void);
+	void draw(void);
 	void DrawStart(double sliderYCoord);
 	const double returnStartX(void);
 	const double returnStartY(void);
@@ -63,7 +63,7 @@ public:
 	
 	void returnOn(const int play);
 	const int onval(void) const;
-	const bool checkMouse(int &mouseLeft, int &mouseX, int &mouseY);
+	const bool checkMouse();
 	const bool checkRunning(void) const;
 	const bool getMass1State(void) const;
 	const bool getMass2State(void) const;

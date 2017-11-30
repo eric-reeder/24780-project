@@ -153,7 +153,7 @@ void DynamicSystemApp::resetSystem(void)
 
 /*  Draws all components of the App (sliders/UI window, animation, and plots)  */
 void DynamicSystemApp::drawApp(void)
-{    
+{
     uiWindow.draw();
     animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
     plotWindow.draw(mass1, mass2, elapsedTime);
@@ -174,7 +174,6 @@ void DynamicSystemApp::run(void)
     while(key != FSKEY_ESC)
     {
         FsPollDevice();
-        FsGetMouseEvent(mouseLeft, mouseMiddle, mouseRight, mouseX, mouseY);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
         // Measure time since last iteration
@@ -193,7 +192,7 @@ void DynamicSystemApp::run(void)
             }
         }
 
-        bool resetPress = uiWindow.checkMouse(mouseLeft, mouseX, mouseY); // Update buttons/sliders from mouse input
+        bool resetPress = uiWindow.checkMouse(); // Update buttons/sliders from mouse input
         initializeSystemComponents(); // Updates objects based on solver output
         initializeSolver(); // Updates solver parameters
         if (resetPress == true)
