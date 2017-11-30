@@ -3,7 +3,7 @@
   
   #include "Slider.h"
   #include "RadioButton.h"
-#include "GraphicsWindow.h"
+  #include "GraphicsWindow.h"
   
   
 class UIWindow: public GraphicsWindow
@@ -23,12 +23,23 @@ protected:
 	Slider Frequency2;
 	RadioButton r1;
 	RadioButton r2;
-	
-	int xPosition, yPosition, width, height, startX,startY,startWidth,startHeight;
-	int On;
+	RadioButton Mass1Check;
+	RadioButton Mass2Check;
+	RadioButton Spring1Check;
+	RadioButton Spring2Check;
+	RadioButton Spring3Check;
+	RadioButton Dampener1Check;
+	RadioButton Dampener2Check;
+	RadioButton Dampener3Check;
+
+
+
+	int startX, startY, startWidth, startHeight;
+	int On = 0;
 
 public:
 	
+	UIWindow();
 	const double getMass1Mass(void);
 	const double getMass2Mass(void);
 	const double getSpring1Stiffness(void);
@@ -49,8 +60,21 @@ public:
 	const double returnStartY(void);
 	const double returnStartHeight(void);
 	const double returnStartWidth(void);
+	
 	void returnOn(const int play);
-	bool checkMouse(int mouseLeft, int &mouseX, int &mouseY);
-	bool checkRunning(void);
+	const int onval(void) const;
+	const bool checkMouse(int &mouseLeft, int &mouseX, int &mouseY);
+	const bool checkRunning(void) const;
+	const bool getMass1State(void) const;
+	const bool getMass2State(void) const;
+	const bool getSpring1State(void) const;
+	const bool getSpring2State(void) const;
+	const bool getSpring3State(void) const;
+	const bool getDampener1State(void) const;
+	const bool getDampener2State(void) const;
+	const bool getDampener3State(void) const;
+
+
 };
+
 #endif

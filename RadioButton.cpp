@@ -24,44 +24,72 @@ void DrawCircle(double cx, double cy, double radius, int fill)
 	glEnd();
 }
 
+
 void RadioButton::Initialize(const double winWidth, const double startY)
 {
 	radius = 6;
-	centreX = winWidth / 20;
+	centreX = winWidth / 40;
 	centreY = startY;
 	state = 0;
 }
 
-void RadioButton::DrawRadio(void) const
+void RadioButton::DrawRadio(int n) const
 {
-	
+
 	int fill = 0;
-	int buttonSpace = (8 * 14);
-	if (state == 0)
+	int buttonSpace1 = (8 * 14);
+	int buttonSpace2 = (3 * 14);
+	if (n == 3)
 	{
-		DrawCircle(centreX, centreY, radius, fill);
-		DrawCircle(centreX + buttonSpace, centreY, radius, fill);
-		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+		if (state == 0)
+		{
+			DrawCircle(centreX, centreY, radius, fill);
+			DrawCircle(centreX + buttonSpace1, centreY, radius, fill);
+			DrawCircle(centreX + (2 * buttonSpace1), centreY, radius, fill);
+		}
+		if (state == 1)
+		{
+			DrawCircle(centreX, centreY, radius, 1);
+			DrawCircle(centreX + buttonSpace1, centreY, radius, fill);
+			DrawCircle(centreX + (2 * buttonSpace1), centreY, radius, fill);
+		}
+		if (state == 2)
+		{
+			DrawCircle(centreX, centreY, radius, fill);
+			DrawCircle(centreX + buttonSpace1, centreY, radius, 1);
+			DrawCircle(centreX + (2 * buttonSpace1), centreY, radius, fill);
+		}
+		if (state == 3)
+		{
+			DrawCircle(centreX, centreY, radius, fill);
+			DrawCircle(centreX + buttonSpace1, centreY, radius, fill);
+			DrawCircle(centreX + (2 * buttonSpace1), centreY, radius, 1);
+		}
+
 	}
-	if (state == 1)
+	if (n == 2)
 	{
-		DrawCircle(centreX, centreY, radius, 1);
-		DrawCircle(centreX + buttonSpace, centreY, radius, fill);
-		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
+		if (state == 0)
+		{
+			DrawCircle(centreX, centreY, radius, fill);
+			DrawCircle(centreX + buttonSpace2, centreY, radius, fill);
+
+		}
+		if (state == 1)
+		{
+			DrawCircle(centreX, centreY, radius, 1);
+			DrawCircle(centreX + buttonSpace2, centreY, radius, fill);
+
+		}
+		if (state == 2)
+		{
+			DrawCircle(centreX, centreY, radius, fill);
+			DrawCircle(centreX + buttonSpace2, centreY, radius, 1);
+			
+		}
+
 	}
-	if (state == 2)
-	{
-		DrawCircle(centreX, centreY, radius, fill);
-		DrawCircle(centreX + buttonSpace, centreY, radius, 1);
-		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, fill);
-	}
-	if (state == 3)
-	{
-		DrawCircle(centreX, centreY, radius, fill);
-		DrawCircle(centreX + buttonSpace, centreY, radius, fill);
-		DrawCircle(centreX + (2 * buttonSpace), centreY, radius, 1);
-	}
-	
+
 }
 
 void RadioButton::SetValue(int set)
@@ -83,7 +111,15 @@ const double RadioButton::returnRadius(void) const
 {
 	return radius;
 }
+const double RadioButton::returnRadioSpaceMargin1(void) const
+{
+	return radioSpaceMargin;
+}
 
+const double RadioButton::returnRadioSpaceMargin2(void) const
+{
+	return radioSpaceMargin2;
+}
 
 const int RadioButton::RadioOutput(void) const
 {

@@ -9,13 +9,15 @@ protected:
 public:
 	void Initialize(const double winWidth, const double winHeight, const double sliderYCoord);
 	void DrawSlider(void) const;
-	const double SliderOutput(void);
+	const double SliderOutput(double size, double lowest);
 	void SetValue(const int mx);
 	double returnXValue(void) const;
 	const double returnYValue(void) const;
 	const double returnWidthValue(void) const;
 	const double returnHeightValue(void) const;
-
+	
 };
+
+
 
 #endif

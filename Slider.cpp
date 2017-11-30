@@ -15,7 +15,7 @@ void Slider::Initialize(const double winWidth, const double winHeight, const dou
 
 void Slider::DrawSlider(void) const
 {
-	
+
 	glBegin(GL_LINES);
 	glVertex2d(dialStartX, dialStartY);
 	glVertex2d(dialStartX + width, dialStartY);
@@ -23,16 +23,16 @@ void Slider::DrawSlider(void) const
 
 	glBegin(GL_QUADS);
 	glVertex2d(sliderX, dialStartY - height);
-	glVertex2d(sliderX + (2*width/70), dialStartY - height);
-	glVertex2d(sliderX + (2*width/70), dialStartY + height);
+	glVertex2d(sliderX + (2 * width / 70), dialStartY - height);
+	glVertex2d(sliderX + (2 * width / 70), dialStartY + height);
 	glVertex2d(sliderX, dialStartY + height);
 	glEnd();
 
 }
 
-const double Slider::SliderOutput(void)
+const double Slider::SliderOutput(double size, double lowest)
 {
-	output = ((sliderX - dialStartX) / (width)) * 100;
+	output = lowest + ((sliderX - dialStartX) / (width)) * size;
 
 	return output;
 }
@@ -60,6 +60,5 @@ const double Slider::returnWidthValue(void) const
 void Slider::SetValue(const int mx)
 {
 	sliderX = mx;
+	
 }
-
-
