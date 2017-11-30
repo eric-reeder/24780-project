@@ -5,7 +5,7 @@
 #include "Spring.h"
 #include "Damper.h"
 #include "Force.h"
-#include "UIWindowTest.h"
+#include "UIWindow.h"
 #include "AnimationWindow.h"
 #include "PlotWindow.h"
 #include "ODESolver.h"
@@ -54,7 +54,7 @@ protected:
     Force force2;
 
     // Graphics components
-    UIWindowTest uiWindow;
+    UIWindow uiWindow;
     AnimationWindow animationWindow;
     PlotWindow plotWindow;
     ODESolver solver;

@@ -81,17 +81,17 @@ void DynamicSystemApp::initializeSystemComponents(void)
     damper1.setDamping(uiWindow.getDamper1Damping());
     damper1.setLength(spring1.getLength());
     damper1.setVelocity(mass1.getVelocity());
-    damper1.setState(uiWindow.getDamper1State());
+    damper1.setState(uiWindow.getDampener1State());
 
     damper2.setDamping(uiWindow.getDamper2Damping());
     damper2.setLength(spring2.getLength());
     damper2.setVelocity(mass2.getVelocity() - mass1.getVelocity());
-    damper2.setState(uiWindow.getDamper2State());
+    damper2.setState(uiWindow.getDampener2State());
 
     damper3.setDamping(uiWindow.getDamper3Damping());
     damper3.setLength(spring3.getLength());
     damper3.setVelocity(-mass2.getVelocity());
-    damper3.setState(uiWindow.getDamper3State());
+    damper3.setState(uiWindow.getDampener3State());
 
     force1.setType(uiWindow.getForce1Type());
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
@@ -105,6 +105,7 @@ void DynamicSystemApp::initializeGraphicsWindows(void)
     // Set position and size of sub-windows
     uiWindow.setPosition(uiWindowXPosition, uiWindowYPosition);
     uiWindow.setSize(uiWindowWidth, uiWindowHeight);
+    uiWindow.Initialize();
     animationWindow.setPosition(animationWindowXPosition, animationWindowYPosition);
     animationWindow.setSize(animationWindowWidth, animationWindowHeight);
     plotWindow.setPosition(plotWindowXPosition, plotWindowYPosition);
