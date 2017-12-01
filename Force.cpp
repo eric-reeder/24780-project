@@ -5,6 +5,7 @@
 Force::Force()
 {
 	type = -1;
+    value.resize(2);
 }
 
 void Force::setType(int force_type)
@@ -23,12 +24,18 @@ void Force::setValue(double val1, double val2 = 0)
 															// Program will stop running and point to this error
 	if (type == 2)
 	{
-		value.push_back(val1);								// Constant function
+		value.resize(1);
+		value[0] = val1;
+		//value.push_back(val1);								// Constant function
 	}
 	else
 	{
-		value.push_back(val1);								// Sine or exponential function
-		value.push_back(val2);
+		value.resize(2);
+		value[0] = val1;
+		value[1] = val2;
+
+		//value.push_back(val1);								// Sine or exponential function
+		//value.push_back(val2);
 	}
 }
 
