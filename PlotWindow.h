@@ -27,7 +27,7 @@ protected:
 	int plot2Green; 
 	int plot2Blue; 
 
-	int magnifier; 
+	//int magnifier; 
 
 	double position1;
 	double position2;
