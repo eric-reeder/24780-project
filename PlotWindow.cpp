@@ -111,6 +111,7 @@ void PlotWindow::GraphPosition(void)
 {
 	glBegin(GL_LINE_LOOP);
 
+	//draws line based on 
 	for (int i = 0; i < storedposition1.size(); i++)
 	{
 		glColor3ub(plot1Red, plot1Green, plot1Blue);
@@ -120,6 +121,7 @@ void PlotWindow::GraphPosition(void)
 
 	for (int j = 0; j < storedposition2.size(); j++)
 	{
+		glColor3ub(plot2Red, plot2Green, plot2Blue);
 		glVertex2d(j, storedposition2[j]);
 	}
 	glEnd();
@@ -128,15 +130,16 @@ void PlotWindow::GraphPosition(void)
 
 void PlotWindow::GraphVelocity(void)
 {
-	glColor3ub(0, 255, 0);
 	glBegin(GL_LINE_LOOP);
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
+		glColor3ub(plot1Red, plot1Green, plot1Blue);
 		glVertex2d(i, storedvelocity1[i]);
 	}
 
 	for (int j = 0; j < storedvelocity2.size(); j++)
 	{
+		glColor3ub(plot2Red, plot2Green, plot2Blue);
 		glVertex2d(j, storedvelocity2[j]);
 	}
 	glEnd();
