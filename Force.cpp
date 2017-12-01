@@ -5,6 +5,7 @@
 Force::Force()
 {
 	type = -1;
+    value.resize(2);
 }
 
 void Force::setType(int force_type)
