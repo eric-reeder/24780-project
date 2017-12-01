@@ -16,8 +16,16 @@ protected:
 	int axisheight;
 
 	int axiscolorRed;
-	int axiscolorBlue;
 	int axiscolorGreen;
+	int axiscolorBlue;
+	
+	int plot1Red; 
+	int plot1Green; 
+	int plot1Blue;
+
+	int plot2Red; 
+	int plot2Green; 
+	int plot2Blue; 
 
 	double position1;
 	double position2;

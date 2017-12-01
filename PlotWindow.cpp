@@ -30,9 +30,17 @@ PlotWindow::PlotWindow()
 	backgroundGreen = 255;
 	backgroundBlue = 255;
 
-//    axiscolorRed = 0;
-//    axiscolorBlue = 0;
-//    axiscolorGreen = 0;
+    axiscolorRed = 0;
+    axiscolorBlue = 0;
+    axiscolorGreen = 0;
+
+	plot1Red = 127; 
+	plot1Green = 0;
+	plot1Blue = 0;
+
+	plot1Red = 255;
+	plot1Green = 0;
+	plot1Blue = 0;
 }
 
 void GetCoordinates(void)
@@ -42,7 +50,7 @@ void GetCoordinates(void)
 
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
-//    glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
+    glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
 
 	//Draws y axis 
@@ -59,7 +67,7 @@ void PlotWindow::DrawPositionAxes(void)
 
 void PlotWindow::DrawVelocityAxes(void)
 {//Draws velocity graph axes
-//    glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
+    glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
 
 	//Draws y axis 
@@ -77,9 +85,6 @@ void PlotWindow::Velocity(Mass mass1, Mass mass2) const
 {//This calls the velocities for mass 1 and 2  from the Mass class 
 	double velocity1 = mass1.getVelocity();
 	double velocity2 = mass2.getVelocity(); 
-	
-	//std::vector <double> storedvelocity1;
-	//std::vector <double> storedvelocity2;
 
 	storedvelocity1.push_back(velocity1);
 	storedvelocity2.push_back(velocity2);
@@ -91,16 +96,14 @@ void PlotWindow::Position(Mass mass1, Mass mass2) const
 	double position1 = mass1.Weee();
 	double position2 = mass2.Weee(); 
 
-	//std::vector <double> storedposition1; 
-	//std::vector <double> storedposition2;
 
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
 	
-	for (auto &x : storedposition1)
+	/*for (auto &x : storedposition1)
 	{
 		x += 5;
-	}
+	}*/
 }
 
 double ReturnPosition(void)
@@ -110,11 +113,11 @@ double ReturnPosition(void)
 
 void PlotWindow::GraphPosition(void)
 {
-	glColor3ub(0, 0, 255);
 	glBegin(GL_LINE_LOOP);
 
 	for (int i = 0; i < storedposition1.size(); i++)
 	{
+		glColor3ub(plot1Red, plot1Green, plot1Blue);
 		glVertex2d(i, storedposition1[i]);
 		
 	}
