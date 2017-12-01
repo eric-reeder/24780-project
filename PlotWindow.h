@@ -11,16 +11,6 @@ class PlotWindow : public GraphicsWindow
 {//Public members from the GraphicsWindow class will be available. 
 
 protected:
-	double time; //Time variable
-
-	//Starting variables for graph
-	double initialtime; 
-	double initialposition; 
-	double initialvelocity; 
-
-	double velocity; 
-	double position;
-
 	
 	//defintes the thickness of the line
 	int plotWeight;
@@ -49,16 +39,18 @@ protected:
 	int VelocityGraphXMargin;
 	int VelocityGraphYMargin;
 
-	//colors for graphs 
-	int graphRed;
-	int graphGreen; 
-	int graphBlue; 
-
+	
 	double position1; 
 	double position2;
 	
 	double velocity1; 
 	double velocity2;
+
+	std::vector <double> storedvelocity1;
+	std::vector <double> storedvelocity2;
+
+	std::vector <double> storedposition1;
+	std::vector <double> storedposition2;
 
 public:
 	PlotWindow(); //Initalizes plot window
@@ -73,14 +65,10 @@ public:
 	
 	
 	//Functions that call real-time positions and velocities from the Mass class
-	//void Velocity(Mass &mass1, Mass &mass2) const;
-	//void Position(Mass &mass1, Mass &mass2) const;
-	
-	//Returns Graphing and Velocity information from Mass class 
-	double ReturnGraphingPosition(void);
-	double ReturnVelocityPosition(void);
+	void Velocity(Mass mass1, Mass mass2) const;
+	void Position(Mass mass1, Mass mass2) const;
 
-	//Draws Winwos
+	//Draws Windows
 	void draw(Mass mass1, Mass mass2, double timeStep);
 	
 	//Resets info 

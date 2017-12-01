@@ -29,24 +29,6 @@ PlotWindow::PlotWindow()
 	backgroundRed = 255;
 	backgroundGreen = 255;
 	backgroundBlue = 255;
-
-	/*plotWeight = 1;
-	
-	graphRed = 0;
-	graphGreen = 0;
-	graphBlue = 0;
-
-	initialtime = 0.0;
-	time = 9.0; 
-
-	PositionGraphXMargin = 2; 
-	PositionGraphYMargin = 2;
-
-	VelocityGraphXMargin = 2;
-	VelocityGraphYMargin = 4; 
-
-	velocity = 8.7; 
-	position = 12.0;*/
 }
 
 void PlotWindow::DrawPositionAxes(void)
@@ -84,52 +66,74 @@ void PlotWindow::DrawVelocityAxes(void)
 	glEnd();
 }
 
-//void PlotWindow::Velocity(Mass &mass1, Mass &mass2) const 
-//{//This calls the velocities for mass 1 and 2  from the Mass class 
-//	double PlotWindow::*velocity1 = &mass1.getVelocity;
-//	double PlotWindow::*velocity2 = &mass2.getVelocity; 
-//	
-//}
-//
-//void PlotWindow::Position(Mass &mass1, Mass &mass2) const
-//{//This calls the positions for mass 1 and 2 from the Mass class 
-//	double PlotWindow::*position1 = &mass1.Weee;
-//	double PlotWindow::*position2 = &mass2.Weee; 
-//}
+void PlotWindow::Velocity(Mass mass1, Mass mass2) const 
+{//This calls the velocities for mass 1 and 2  from the Mass class 
+	double velocity1 = mass1.getVelocity();
+	double velocity2 = mass2.getVelocity(); 
+	
+	std::vector <double> storedvelocity1;
+	std::vector <double> storedvelocity2;
 
-double PlotWindow::ReturnGraphingPosition(void)
-{//This returns the positions for input into the graph function 
-	return position1; 
-	return position2;
-	printf("%lf", "%lf", velocity1, velocity2); //This is for debugging purposes 
+	storedvelocity1.push_back(velocity1);
+	storedvelocity2.push_back(velocity2);
 }
 
-double PlotWindow::ReturnVelocityPosition(void)
-{//This returns the velocities for input into the graph function 
-	return velocity1; 
-	return velocity2; 
+
+void PlotWindow::Position(Mass mass1, Mass mass2) const
+{//This calls the positions for mass 1 and 2 from the Mass class 
+	double position1 = mass1.Weee();
+	double position2 = mass2.Weee(); 
+
+	std::vector <double> storedposition1; 
+	std::vector <double> storedposition2;
+
+	storedposition1.push_back(position1);
+	storedposition2.push_back(position2);
+
 }
+
 
 void PlotWindow::GraphPosition(void)
 {
 	glColor3ub(0, 0, 255);
-	glBegin(GL_LINE_STRIP);
-	glVertex2d(500, 600);
-	glVertex2d(600, 650);
+	glBegin(GL_LINE_LOOP);
+
+	for (int i = 0; i < storedposition1.size(); i++)
+	{
+		glVertex2d(i, storedposition1[i]);
+		
+	}
+
+	for (int j = 0; j < storedposition2.size(); j++)
+	{
+		glVertex2d(j, storedposition2[j]);
+	}
 	glEnd();
+
 }
 
 void PlotWindow::GraphVelocity(void)
 {
 	glColor3ub(0, 255, 0);
-	glBegin(GL_LINE_STRIP);
-	glVertex2d(1000, 600);
-	glVertex2d(1100, 600);
+	glBegin(GL_LINE_LOOP);
+	for (int i = 0; i < storedvelocity1.size(); i++)
+	{
+		glVertex2d(i, storedvelocity1[i]);
+	}
+
+	for (int j = 0; j < storedvelocity2.size(); j++)
+	{
+		glVertex2d(j, storedvelocity2[j]);
+	}
 	glEnd();
 }
 
 void PlotWindow::reset(void)
-{
+{//resets velocity value information
+	storedvelocity1.resize(0);
+	storedvelocity2.resize(0); 
+	storedposition1.resize(0);
+	storedposition2.resize(0);
 
 }
 
