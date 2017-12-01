@@ -69,7 +69,7 @@ void RadioButton::DrawRadio(int n) const
 	}
 	if (n == 2)
 	{
-		if (state == 0)
+		if (state == 3)
 		{
 			DrawCircle(centreX, centreY, radius, fill);
 			DrawCircle(centreX + buttonSpace2, centreY, radius, fill);
