@@ -1,21 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <algorithm>
+#include <iostream>
 #include "PlotWindow.h"
 #include "Mass.h"
 #include "fssimplewindow.h"
-
-/*Creates a graphics window object with black border and white background
-Inputs :
-appWidth: Width of app window
-appHeight : Height of app window
-inputMargin : Margin between this window and other windows
-widthFraction : Fraction of app window width this window will be
-heightFraction : Fraction of app window height this window will be
-inputXPosition : X coordinate of top left corner
-inputYPosition : Y coordinate of top left corner  * /
-// Sets x and y coordinates of top left corner
-Inputs:
-newXPosition: X coordinate of top left corner
-newYPosition: Y coordinate of top left corner  */
 
 
 
@@ -29,6 +19,11 @@ PlotWindow::PlotWindow()
 	backgroundRed = 255;
 	backgroundGreen = 255;
 	backgroundBlue = 255;
+}
+
+void PlotWindow::GetCoordinates(void)
+{
+
 }
 
 void PlotWindow::DrawPositionAxes(void)
@@ -76,6 +71,9 @@ void PlotWindow::Velocity(Mass mass1, Mass mass2) const
 
 	storedvelocity1.push_back(velocity1);
 	storedvelocity2.push_back(velocity2);
+
+	//std::transform(storedvelocity1.begin(), storedvelocity1.end(), storedvelocity1.begin(), bind2nd()
+
 }
 
 
@@ -91,6 +89,7 @@ void PlotWindow::Position(Mass mass1, Mass mass2) const
 	storedposition2.push_back(position2);
 
 }
+
 
 
 void PlotWindow::GraphPosition(void)
