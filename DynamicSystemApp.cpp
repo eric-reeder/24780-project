@@ -65,38 +65,76 @@ void DynamicSystemApp::initializeSystemComponents(void)
     mass1.setMass(uiWindow.getMass1Mass());
     mass2.setMass(uiWindow.getMass2Mass());
     mass1.setState(uiWindow.getMass1State());
+    mass2.setState(uiWindow.getMass2State());
+    
+//    mass1.setMass(2.0);
+//    mass1.setState(true);
+//    mass2.setMass(2.0);
+//    mass2.setState(true);
 
     spring1.setStiffness(uiWindow.getSpring1Stiffness());
     spring1.setLength(mass1.getPosition());
     spring1.setState(uiWindow.getSpring1State());
+    
+//    spring1.setStiffness(10.0);
+//    spring1.setLength(mass1.getPosition());
+//    spring1.setState(true);
 
     spring2.setStiffness(uiWindow.getSpring2Stiffness());
     spring2.setLength(mass2.getPosition() - mass1.getPosition());
     spring2.setState(uiWindow.getSpring2State());
+    
+//    spring2.setStiffness(0.0);
+//    spring2.setLength(mass2.getPosition() - mass1.getPosition());
+//    spring2.setState(false);
 
     spring3.setStiffness(uiWindow.getSpring3Stiffness());
     spring3.setLength(mass2.getPosition());
     spring3.setState(uiWindow.getSpring3State());
+    
+//    spring3.setStiffness(0.0);
+//    spring3.setLength(mass2.getPosition());
+//    spring3.setState(false);
 
     damper1.setDamping(uiWindow.getDamper1Damping());
     damper1.setLength(spring1.getLength());
     damper1.setVelocity(mass1.getVelocity());
     damper1.setState(uiWindow.getDampener1State());
 
+//    damper1.setDamping(0.0);
+//    damper1.setLength(spring1.getLength());
+//    damper1.setVelocity(mass1.getVelocity());
+//    damper1.setState(false);
+    
     damper2.setDamping(uiWindow.getDamper2Damping());
     damper2.setLength(spring2.getLength());
     damper2.setVelocity(mass2.getVelocity() - mass1.getVelocity());
     damper2.setState(uiWindow.getDampener2State());
 
+//    damper2.setDamping(0.0);
+//    damper2.setLength(spring2.getLength());
+//    damper2.setVelocity(mass2.getVelocity() - mass1.getVelocity());
+//    damper2.setState(false);
+    
     damper3.setDamping(uiWindow.getDamper3Damping());
     damper3.setLength(spring3.getLength());
     damper3.setVelocity(-mass2.getVelocity());
     damper3.setState(uiWindow.getDampener3State());
+    
+//    damper3.setDamping(0.0);
+//    damper3.setLength(spring3.getLength());
+//    damper3.setVelocity(-mass2.getVelocity());
+//    damper3.setState(false);
 
     force1.setType(uiWindow.getForce1Type());
     force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
     force2.setType(uiWindow.getForce2Type());
     force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
+    
+//    force1.setType(2);
+//    force1.setValue(100, 0);
+//    force2.setType(2);
+//    force2.setValue(0, 0);
 }
 
 /*  Sets positions and sizes of sub-windows  */
@@ -125,8 +163,8 @@ void DynamicSystemApp::initializeSolver(void)
 /*  Initializes all app components  */
 void DynamicSystemApp::initializeApp(void)
 {
-    initializeSystemComponents();
     initializeGraphicsWindows();
+    initializeSystemComponents();
     initializeSolver();
 }
 
@@ -159,6 +197,13 @@ void DynamicSystemApp::drawApp(void)
     plotWindow.draw(mass1, mass2, elapsedTime);
 }
 
+void DynamicSystemApp::debugPrint(void)
+{
+    std::cout << "mass 1 position: " << mass1.getPosition() << std::endl;
+    std::cout << "mass 2 position: " << mass2.getPosition() << std::endl;
+    std::cout << "spring 2 stiffness: " << spring2.getStiffness() << std::endl;
+}
+
 /*  Runs app until user presses escape key  */
 void DynamicSystemApp::run(void)
 {
@@ -183,6 +228,7 @@ void DynamicSystemApp::run(void)
         // If the animation is running, update positions of masses, or stop 
         // animation if max sim time is exceeded
         if (uiWindow.checkRunning() == true)
+//        if (true)
         {
             if (elapsedTime <= maxSimTime)
             {
@@ -193,6 +239,7 @@ void DynamicSystemApp::run(void)
         }
 
         bool resetPress = uiWindow.checkMouse(); // Update buttons/sliders from mouse input
+//        bool resetPress = false;
         initializeSystemComponents(); // Updates objects based on solver output
         initializeSolver(); // Updates solver parameters
         if (resetPress == true)

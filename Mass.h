@@ -23,6 +23,9 @@ public:
     void setVelocity(const double newVelocity);
     double Weee(void);
     void CheckState(void);
+    
+    int getWidth(void);
+    int getHeight(void);
 
     void draw(const int xOffset, const int yOffset) const;
 };

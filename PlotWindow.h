@@ -3,7 +3,6 @@
 
 #include "GraphicsWindow.h"
 #include "Mass.h"
-#include "AnimationWindow.h"
 #include <vector>
 
 //This class creates the plot window. It inherits information from the Graphics Class. 
@@ -13,9 +12,34 @@ class PlotWindow : public GraphicsWindow
 
 protected:
 	
-	int axislength; 
-	int axisheight; 
+	//defintes the thickness of the line
+	int plotWeight;
 
+	//defines width of plot window
+	int PlotWindowWidth;
+	int PlotWindowHeight;
+
+	//sets origin of sub window
+	int plotWindowXPosition;
+	int plotWindowYPosition;
+
+	//defines location of position graph 
+	int PositionXAxisLength;
+	int PositionYAxisHeight;
+
+	//defines location of velocity graph
+	int VelocityXAxisLength;
+	int VelocityYAxisHeight;
+
+	//Margin between border window and position graphs
+	int PositionGraphXMargin;
+	int PositionGraphYMargin;
+
+	//Margin between border window and velocity graphs 
+	int VelocityGraphXMargin;
+	int VelocityGraphYMargin;
+
+	
 	double position1; 
 	double position2;
 	
@@ -31,9 +55,6 @@ protected:
 public:
 	PlotWindow(); //Initalizes plot window
 
-	//Retrieves coordinates from Animation Class
-	void GetCoordinates(void);
-	
 	//function to draw axes 
 	void DrawPositionAxes(void);
 	void DrawVelocityAxes(void); 

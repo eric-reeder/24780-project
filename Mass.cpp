@@ -102,3 +102,14 @@ void Mass::draw(const int xPos, const int yOffset) const
         
     }
 }
+
+int Mass::getWidth(void)
+{
+    return widthm;
+}
+
+int Mass::getHeight(void)
+{
+    return heightm;
+}
+

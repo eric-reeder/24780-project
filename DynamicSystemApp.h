@@ -80,6 +80,7 @@ protected:
     void initializeApp(void);
     void resetSystem(void);
     void drawApp(void);
+    void debugPrint(void);
 
 public:
     DynamicSystemApp(int windowWidth, int windowHeight);

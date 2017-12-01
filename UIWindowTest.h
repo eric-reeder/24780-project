@@ -6,6 +6,8 @@
 class UIWindowTest : public GraphicsWindow
 {
 public:
+    void Initialize(void);
+    
 	double getMass1Mass(void);
 	double getMass2Mass(void);
     
@@ -24,9 +26,9 @@ public:
 	double getDamper2Damping(void);
 	double getDamper3Damping(void);
     
-    bool getDamper1State(void);
-    bool getDamper2State(void);
-    bool getDamper3State(void);
+    bool getDampener1State(void);
+    bool getDampener2State(void);
+    bool getDampener3State(void);
 
 	int getForce1Type(void);
 	double getForce1Value1(void);
@@ -37,7 +39,7 @@ public:
 	double getForce2Value2(void);
 
 	bool checkRunning(void);
-	bool checkMouse(int mouseLeft, int mouseX, int mouseY);
+	bool checkMouse();
 };
 
 #endif

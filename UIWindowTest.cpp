@@ -1,13 +1,18 @@
 #include "UIWindowTest.h"
 
+void UIWindowTest::Initialize(void)
+{
+    
+}
+
 double UIWindowTest::getMass1Mass(void)
 {
-	return 10.0;
+	return 2.0;
 }
 
 double UIWindowTest::getMass2Mass(void)
 {
-	return 1.0;
+	return 0.0;
 }
 
 bool UIWindowTest::getMass1State(void)
@@ -17,12 +22,12 @@ bool UIWindowTest::getMass1State(void)
 
 bool UIWindowTest::getMass2State(void)
 {
-    return true;
+    return false;
 }
 
 double UIWindowTest::getSpring1Stiffness(void)
 {
-	return 100.0;
+	return 10.0;
 }
 
 double UIWindowTest::getSpring2Stiffness(void)
@@ -65,17 +70,17 @@ double UIWindowTest::getDamper3Damping(void)
 	return 0.0;
 }
 
-bool UIWindowTest::getDamper1State(void)
+bool UIWindowTest::getDampener1State(void)
 {
     return false;
 }
 
-bool UIWindowTest::getDamper2State(void)
+bool UIWindowTest::getDampener2State(void)
 {
     return false;
 }
 
-bool UIWindowTest::getDamper3State(void)
+bool UIWindowTest::getDampener3State(void)
 {
     return false;
 }
@@ -87,7 +92,7 @@ int UIWindowTest::getForce1Type(void)
 
 double UIWindowTest::getForce1Value1(void)
 {
-	return 10.0;
+	return 100.0;
 }
 
 double UIWindowTest::getForce1Value2(void)
@@ -115,7 +120,7 @@ bool UIWindowTest::checkRunning(void)
 	return true;
 }
 
-bool UIWindowTest::checkMouse(int mouseLeft, int mouseX, int mouseY)
+bool UIWindowTest::checkMouse(void)
 {
 	return false;
 }

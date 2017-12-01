@@ -10,8 +10,6 @@
 
 void UIWindow::Initialize(void) 
 {
-	drawBackground();
-	drawBorder();
 	mass1.Initialize(width, height, yPosition + ((1.5*height) / 26));
 	mass2.Initialize(width, height, yPosition + ((3.5*height) / 26));
 	Spring1.Initialize(width, height, yPosition + ((5.5*height) / 26));
