@@ -29,15 +29,16 @@ PlotWindow::PlotWindow()
 	backgroundRed = 255;
 	backgroundGreen = 255;
 	backgroundBlue = 255;
-}
 
-//Hello1 
+	axiscolorRed = 0;
+	axiscolorBlue = 0;
+	axiscolorGreen = 0;
+}
 
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
-	glColor3ub(0, 0, 0);
+	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
-	glLineWidth(0.1);
 
 	//Draws y axis 
 	glVertex2i(450, 650);
@@ -53,9 +54,8 @@ void PlotWindow::DrawPositionAxes(void)
 
 void PlotWindow::DrawVelocityAxes(void)
 {//Draws velocity graph axes
-	glColor3ub(0, 0, 0);
+	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
-	glLineWidth(0.1); 
 
 	//Draws y axis 
 	glVertex2i(850, 650);
@@ -136,7 +136,6 @@ void PlotWindow::reset(void)
 	storedvelocity2.resize(0); 
 	storedposition1.resize(0);
 	storedposition2.resize(0);
-
 }
 
 
