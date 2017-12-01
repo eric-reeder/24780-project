@@ -41,6 +41,8 @@ PlotWindow::PlotWindow()
 	plot1Red = 255;
 	plot1Green = 0;
 	plot1Blue = 0;
+
+	magnifier = 100; 
 }
 
 void GetCoordinates(void)
@@ -100,11 +102,11 @@ void PlotWindow::Position(Mass mass1, Mass mass2)
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
 	
-	for (auto &x : storedposition1)
+	/*for (auto &x : storedposition1)
 	{
-		x += 850;
+		x += storedposition1*magnifier;
 	}
-}
+}*/
 
 
 void PlotWindow::GraphPosition(void)
