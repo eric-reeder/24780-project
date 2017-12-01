@@ -81,7 +81,7 @@ void PlotWindow::DrawVelocityAxes(void)
 	glEnd();
 }
 
-void PlotWindow::Velocity(Mass mass1, Mass mass2) const 
+void PlotWindow::Velocity(Mass mass1, Mass mass2)
 {//This calls the velocities for mass 1 and 2  from the Mass class 
 	double velocity1 = mass1.getVelocity();
 	double velocity2 = mass2.getVelocity(); 
@@ -91,7 +91,7 @@ void PlotWindow::Velocity(Mass mass1, Mass mass2) const
 }
 
 
-void PlotWindow::Position(Mass mass1, Mass mass2) const
+void PlotWindow::Position(Mass mass1, Mass mass2)
 {//This calls the positions for mass 1 and 2 from the Mass class 
 	double position1 = mass1.Weee();
 	double position2 = mass2.Weee(); 
@@ -106,10 +106,6 @@ void PlotWindow::Position(Mass mass1, Mass mass2) const
 	}*/
 }
 
-double ReturnPosition(void)
-{
-	return storedposition1; 
-}
 
 void PlotWindow::GraphPosition(void)
 {

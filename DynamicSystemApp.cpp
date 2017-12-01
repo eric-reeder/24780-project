@@ -3,7 +3,7 @@
 #include "Spring.h"
 #include "Damper.h"
 #include "Force.h"
-#include "UIWindowTest.h"
+#include "UIWindow.h"
 #include "AnimationWindowTest.h"
 #include "PlotWindow.h"
 #include "ODESolver.h"

@@ -58,8 +58,8 @@ public:
 	
 	
 	//Functions that call real-time positions and velocities from the Mass class
-	void Velocity(Mass mass1, Mass mass2) const;
-	void Position(Mass mass1, Mass mass2) const;
+	void Velocity(Mass mass1, Mass mass2);
+	void Position(Mass mass1, Mass mass2);
 
 	//Draws Windows
 	void draw(Mass mass1, Mass mass2, double timeStep);
