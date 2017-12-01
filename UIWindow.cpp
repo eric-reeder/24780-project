@@ -10,7 +10,8 @@
 
 void UIWindow::Initialize(void) 
 {
-	
+	drawBackground();
+	drawBorder();
 	mass1.Initialize(width, height, yPosition + ((1.5*height) / 26));
 	mass2.Initialize(width, height, yPosition + ((3.5*height) / 26));
 	Spring1.Initialize(width, height, yPosition + ((5.5*height) / 26));
@@ -97,24 +98,26 @@ const double UIWindow::getForce2Value2(void)
 
 void UIWindow::draw(void)
 {
-	const double leftMargin = width / 40;
+	const double leftMargin = width / 20;
 	const int fontHeight = 12;
 	const int fontWidth = 8;
 	const double margin = 12;
 	const double radioLabelMargin = 15;
 	const double startPosition = xPosition + leftMargin;
 
+	drawBackground();
+	drawBorder();
 	
 	mass1.DrawSlider();
 	glRasterPos2d(mass1.returnXValue() - margin, mass1.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("0");
 	glRasterPos2d(mass1.returnXValue() + mass1.returnWidthValue() + margin, mass1.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("10");
-	glRasterPos2d(startPosition, ((0.5*height)/26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((1*height)/26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Mass 1:");
 
 	Mass1Check.DrawRadio(2);
-	glRasterPos2d(startPosition + (2*radioLabelMargin/3), Mass1Check.returnCentreY() + (double)fontHeight / 2);
+	glRasterPos2d(startPosition + (1*radioLabelMargin/3), Mass1Check.returnCentreY() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("In");
 	glRasterPos2d(startPosition + (2*radioLabelMargin/3) + Mass1Check.returnRadioSpaceMargin2(), Mass1Check.returnCentreY() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Not In");
@@ -126,7 +129,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("0");
 	glRasterPos2d(mass2.returnXValue() + mass2.returnWidthValue() + margin, mass2.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("10");
-	glRasterPos2d(startPosition, ((2.5*height)/26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((3*height)/26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Mass 2:");
 
 	Mass2Check.DrawRadio(2);
@@ -141,7 +144,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("100");
 	glRasterPos2d(Spring1.returnXValue() + Spring1.returnWidthValue() + margin, Spring1.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("500");
-	glRasterPos2d(startPosition, ((4.5*height)/26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((5*height)/26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Spring1:");
 
 
@@ -157,7 +160,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("100");
 	glRasterPos2d(Spring2.returnXValue() + Spring2.returnWidthValue() + margin, Spring2.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("500");
-	glRasterPos2d(startPosition, ((6.5*height)/26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((7*height)/26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Spring2:");
 
 	Spring2Check.DrawRadio(2);
@@ -172,7 +175,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("100");
 	glRasterPos2d(Spring3.returnXValue() + Spring3.returnWidthValue() + margin, Spring3.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("500");
-	glRasterPos2d(startPosition, ((8.5*height) / 26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((9*height) / 26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Spring3:");
 
 	Spring3Check.DrawRadio(2);
@@ -187,7 +190,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("0");
 	glRasterPos2d(Dampener1.returnXValue() + Dampener1.returnWidthValue() + margin, Dampener1.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("10");
-	glRasterPos2d(startPosition, ((10.5*height)/26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((11*height)/26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Dampener1:");
 
 	Dampener1Check.DrawRadio(2);
@@ -202,7 +205,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("0");
 	glRasterPos2d(Dampener2.returnXValue() + Dampener2.returnWidthValue() + margin, Dampener2.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("10");
-	glRasterPos2d(startPosition, ((12.5*height) / 26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((13*height) / 26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Dampener2:");
 
 	Dampener2Check.DrawRadio(2);
@@ -217,7 +220,7 @@ void UIWindow::draw(void)
 	YsGlDrawFontBitmap8x12("0");
 	glRasterPos2d(Dampener3.returnXValue() + Dampener3.returnWidthValue() + margin, Dampener3.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("10");
-	glRasterPos2d(startPosition, ((14.5*height) / 26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((15*height) / 26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Dampener3:");
 
 	Dampener3Check.DrawRadio(2);
@@ -226,7 +229,7 @@ void UIWindow::draw(void)
 	glRasterPos2d(startPosition + (2*radioLabelMargin/3) + Dampener3Check.returnRadioSpaceMargin2(), Dampener3Check.returnCentreY() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Not In");
 
-	glRasterPos2d(startPosition, ((16.5*height)/26) + (double)fontHeight/2 );
+	glRasterPos2d(startPosition, ((17*height)/26) + (double)fontHeight/2 );
 	YsGlDrawFontBitmap8x12("Force 1:");
 	r1.DrawRadio(3);
 	glRasterPos2d(startPosition + (2*radioLabelMargin/3), r1.returnCentreY() + (double)fontHeight / 2);
@@ -251,7 +254,7 @@ void UIWindow::draw(void)
 	glRasterPos2d(startPosition, Frequency1.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Frequency:");
 
-	glRasterPos2d(startPosition, ((20.5*height) / 26) + (double)fontHeight / 2);
+	glRasterPos2d(startPosition, ((21*height) / 26) + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Force 2:");
 
 	r2.DrawRadio(3);
@@ -279,7 +282,7 @@ void UIWindow::draw(void)
 	glRasterPos2d(startPosition, Frequency2.returnYValue() + (double)fontHeight / 2);
 	YsGlDrawFontBitmap8x12("Frequency:");
 
-	DrawStart(((24*height)/26));
+	DrawStart(((24.5*height)/26));
 
 	
 
@@ -370,6 +373,7 @@ const double UIWindow::returnStartWidth(void)
 void UIWindow::returnOn(const int play)
 {
 	On = play;
+	
 }
 
 
@@ -609,16 +613,19 @@ const bool UIWindow::checkMouse()
 		}
 		if ((double)mx <= returnStartX() + returnStartWidth()/2 && (double)mx >= returnStartX() - returnStartWidth()/2 && (double)my >= returnStartY() && (double)my <= returnStartY() + returnStartHeight())
 		{
+			//pause
 			returnOn(1);
 
 		}
 		if ((double)mx >= returnStartX() + returnStartWidth()/2 && (double)mx <= returnStartX() + returnStartWidth()/2 + returnStartWidth() && (double)my >= returnStartY() && (double)my <= returnStartY() + returnStartHeight())
 		{
+			//stop
 			returnOn(0);
 
 		}
 		if ((double)mx >= returnStartX() - returnStartWidth() / 2  - returnStartWidth() && (double)mx <= returnStartX() - returnStartWidth() / 2 + returnStartWidth() && (double)my >= returnStartY() && (double)my <= returnStartY() + returnStartHeight())
 		{
+			//play
 			returnOn(2);
 
 		}

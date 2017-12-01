@@ -28,7 +28,7 @@ void DrawCircle(double cx, double cy, double radius, int fill)
 void RadioButton::Initialize(const double winWidth, const double startY)
 {
 	radius = 6;
-	centreX = winWidth / 40;
+	centreX = winWidth / 15;
 	centreY = startY;
 	state = 0;
 }

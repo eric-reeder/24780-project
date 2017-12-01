@@ -4,11 +4,11 @@
 void Slider::Initialize(const double winWidth, const double winHeight, const double sliderYCoord)
 {
 	double margin = (8 * 14);
-	dialStartX = winWidth / 20 + margin;
+	dialStartX = winWidth / 20 + 1.5*margin;
 	dialStartY = sliderYCoord;
 
 	sliderX = dialStartX;
-	width = (2 * winWidth) / 3;
+	width = (3 * winWidth) / 7;
 	height = (2 * winHeight) / 200;
 	output = 0;
 }
