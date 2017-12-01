@@ -442,41 +442,41 @@ const bool UIWindow::checkMouse()
 		}
 		if ((double)mx <= r1.returnCentreX() + r1.returnRadius() && (double)mx >= r1.returnCentreX() - r1.returnRadius() && (double)my <= r1.returnCentreY() + r1.returnRadius() && (double)my >= r1.returnCentreY() - r1.returnRadius())
 		{
-			DrawCircle(r1.returnCentreX(), r1.returnCentreY(), 4, 1);
-			r1.SetValue(1);
+			//DrawCircle(r1.returnCentreX(), r1.returnCentreY(), 4, 1);
+			r1.SetValue(2);
 		}
 
 		if ((double)mx <= r1.returnCentreX() + r1.returnRadioSpaceMargin1() + r1.returnRadius() && (double)mx >= r1.returnCentreX() + r1.returnRadioSpaceMargin1() - r1.returnRadius() && (double)my <= r1.returnCentreY() + r1.returnRadius() && (double)my >= r1.returnCentreY() - r1.returnRadius())
 		{
-			DrawCircle(r1.returnCentreX() + r1.returnRadioSpaceMargin1(), r1.returnCentreY(), 4, 1);
-			r1.SetValue(2);
+			//DrawCircle(r1.returnCentreX() + r1.returnRadioSpaceMargin1(), r1.returnCentreY(), 4, 1);
+			r1.SetValue(1);
 		}
 		if ((double)mx <= r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()) + r1.returnRadius() && (double)mx >= r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()) - r1.returnRadius() && (double)my <= r1.returnCentreY() + r1.returnRadius() && (double)my >= r1.returnCentreY() - r1.returnRadius())
 		{
-			DrawCircle(r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()), r1.returnCentreY(), 4, 1);
-			r1.SetValue(3);
+			//DrawCircle(r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()), r1.returnCentreY(), 4, 1);
+			r1.SetValue(0);
 		}
-		if (r1.RadioOutput() != 3)
+		if (r1.RadioOutput() != 0)
 		{
 			Frequency1.SetValue(Frequency1.returnXValue());
 		}
 		if ((double)mx <= r2.returnCentreX() + r2.returnRadius() && (double)mx >= r2.returnCentreX() - r2.returnRadius() && (double)my <= r2.returnCentreY() + r2.returnRadius() && (double)my >= r2.returnCentreY() - r2.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX(), r2.returnCentreY(), 4, 1);
-			r2.SetValue(1);
+			r2.SetValue(2);
 		}
 
 		if ((double)mx <= r2.returnCentreX() + r2.returnRadioSpaceMargin1() + r2.returnRadius() && (double)mx >= r2.returnCentreX() + r2.returnRadioSpaceMargin1() - r2.returnRadius() && (double)my <= r2.returnCentreY() + r2.returnRadius() && (double)my >= r2.returnCentreY() - r2.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + radioSpaceMargin, r2.returnCentreY(), 4, 1);
-			r2.SetValue(2);
+			r2.SetValue(1);
 		}
 		if ((double)mx <= r2.returnCentreX() + (2 * r2.returnRadioSpaceMargin1()) + r2.returnRadius() && (double)mx >= r2.returnCentreX() + (2 * r2.returnRadioSpaceMargin1()) - r2.returnRadius() && (double)my <= r2.returnCentreY() + r2.returnRadius() && (double)my >= r2.returnCentreY() - r2.returnRadius())
 		{
 			//DrawCircle(r2.returnCentreX() + (2 * radioSpaceMargin), r2.returnCentreY(), 4, 1);
-			r2.SetValue(3);
+			r2.SetValue(0);
 		}
-		if (r2.RadioOutput() != 3)
+		if (r2.RadioOutput() != 0)
 		{
 			Frequency2.SetValue(Frequency2.returnXValue());
 		}
