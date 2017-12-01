@@ -42,7 +42,6 @@ PlotWindow::PlotWindow()
 	plot1Green = 0;
 	plot1Blue = 0;
 
-	//magnifier = 100; 
 }
 
 void GetCoordinates(void)
