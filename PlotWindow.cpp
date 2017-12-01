@@ -104,9 +104,9 @@ void PlotWindow::Position(Mass mass1, Mass mass2)
 	
 	/*for (auto &x : storedposition1)
 	{
-		x += storedposition1*magnifier;
-	}
-}*/
+		x += storedposition1*magnifier;*
+	}*/
+}
 
 
 void PlotWindow::GraphPosition(void)
