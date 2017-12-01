@@ -31,7 +31,7 @@ void RungeKutta4ODE::computeForces(Force force1, Force force2)
 	case 0:
 	{
 		Force1 = force1.getValue()[0] * sin(force1.getValue()[1] * time);
-		std::cout << Force1 << std::endl;
+//        std::cout << Force1 << std::endl;
 		break;
 	}
 	case 1:

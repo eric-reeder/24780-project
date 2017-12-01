@@ -126,15 +126,21 @@ void DynamicSystemApp::initializeSystemComponents(void)
 //    damper3.setVelocity(-mass2.getVelocity());
 //    damper3.setState(false);
 
-//    force1.setType(uiWindow.getForce1Type());
-//    force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
-//    force2.setType(uiWindow.getForce2Type());
-//    force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
+    force1.setType(uiWindow.getForce1Type());
+    force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
+//    std::cout << "force 1 slider type: " << uiWindow.getForce1Type() << std::endl;
+//    std::cout << "force 1 type: " << force1.getType() << std::endl;
+//    std::cout << "force 1 slider magnitude: " << uiWindow.getForce1Value1() << std::endl;
+//    std::cout << "force 1 magnitude: " << force1.getValue()[0] << std::endl;
+//    std::cout << "force 1 slider frequency: " << uiWindow.getForce1Value2() << std::endl;
+//    std::cout << "force 1 frequncy: " << force1.getValue()[1] << std::endl;
+    force2.setType(uiWindow.getForce2Type());
+    force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
     
-    force1.setType(2);
-    force1.setValue(100, 0);
-    force2.setType(2);
-    force2.setValue(0, 0);
+//    force1.setType(2);
+//    force1.setValue(100, 0);
+//    force2.setType(2);
+//    force2.setValue(0, 0);
 
 }
 
@@ -235,7 +241,7 @@ void DynamicSystemApp::run(void)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
                 solver.solve(timeStep, mass1, mass2);
-                debugPrint();
+//                debugPrint();
                 elapsedTime += timeStep;
             }
         }
