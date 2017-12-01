@@ -31,6 +31,8 @@ PlotWindow::PlotWindow()
 	backgroundBlue = 255;
 }
 
+//Hello1 
+
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
 	glColor3ub(0, 0, 0);
