@@ -35,6 +35,11 @@ PlotWindow::PlotWindow()
 	axiscolorGreen = 0;
 }
 
+void GetCoordinates(void)
+{
+}
+
+
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
 	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
@@ -73,8 +78,8 @@ void PlotWindow::Velocity(Mass mass1, Mass mass2) const
 	double velocity1 = mass1.getVelocity();
 	double velocity2 = mass2.getVelocity(); 
 	
-	std::vector <double> storedvelocity1;
-	std::vector <double> storedvelocity2;
+	//std::vector <double> storedvelocity1;
+	//std::vector <double> storedvelocity2;
 
 	storedvelocity1.push_back(velocity1);
 	storedvelocity2.push_back(velocity2);
@@ -86,14 +91,22 @@ void PlotWindow::Position(Mass mass1, Mass mass2) const
 	double position1 = mass1.Weee();
 	double position2 = mass2.Weee(); 
 
-	std::vector <double> storedposition1; 
-	std::vector <double> storedposition2;
+	//std::vector <double> storedposition1; 
+	//std::vector <double> storedposition2;
 
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
-
+	
+	for (auto &x : storedposition1)
+	{
+		x += 5;
+	}
 }
 
+double ReturnPosition(void)
+{
+	return storedposition1; 
+}
 
 void PlotWindow::GraphPosition(void)
 {

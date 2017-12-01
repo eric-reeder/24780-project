@@ -25,14 +25,21 @@ protected:
 	double velocity1;
 	double velocity2;
 
+	double xstart; 
+	double ystart; 
+
 	std::vector <double> storedvelocity1;
 	std::vector <double> storedvelocity2;
 
 	std::vector <double> storedposition1;
 	std::vector <double> storedposition2;
+
 public:
 	PlotWindow(); //Initalizes plot window
 
+	//Retrieves coordinates from Animation Class
+	void GetCoordinates(void);
+				  
 	//function to draw axes 
 	void DrawPositionAxes(void);
 	void DrawVelocityAxes(void); 
