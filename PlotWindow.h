@@ -46,7 +46,7 @@ public:
 	PlotWindow(); //Initalizes plot window
 
 	//Retrieves coordinates from Animation Class
-	void GetCoordinates(void);
+	//void GetCoordinates(void);
 				  
 	//function to draw axes 
 	void DrawPositionAxes(void);
