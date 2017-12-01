@@ -12,38 +12,17 @@ class PlotWindow : public GraphicsWindow
 
 protected:
 	
-	//defintes the thickness of the line
-	int plotWeight;
+	int axislength;
+	int axisheight;
 
-	//defines width of plot window
-	int PlotWindowWidth;
-	int PlotWindowHeight;
+	int axiscolorRed;
+	int axiscolorBlue;
+	int axiscolorGreen;
 
-	//sets origin of sub window
-	int plotWindowXPosition;
-	int plotWindowYPosition;
-
-	//defines location of position graph 
-	int PositionXAxisLength;
-	int PositionYAxisHeight;
-
-	//defines location of velocity graph
-	int VelocityXAxisLength;
-	int VelocityYAxisHeight;
-
-	//Margin between border window and position graphs
-	int PositionGraphXMargin;
-	int PositionGraphYMargin;
-
-	//Margin between border window and velocity graphs 
-	int VelocityGraphXMargin;
-	int VelocityGraphYMargin;
-
-	
-	double position1; 
+	double position1;
 	double position2;
-	
-	double velocity1; 
+
+	double velocity1;
 	double velocity2;
 
 	std::vector <double> storedvelocity1;
@@ -51,7 +30,6 @@ protected:
 
 	std::vector <double> storedposition1;
 	std::vector <double> storedposition2;
-
 public:
 	PlotWindow(); //Initalizes plot window
 
