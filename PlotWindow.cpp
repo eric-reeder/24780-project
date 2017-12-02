@@ -42,6 +42,8 @@ PlotWindow::PlotWindow()
 	plot1Green = 0;
 	plot1Blue = 0;
 
+	plotx1 = 450; 
+
 }
 
 void GetCoordinates(void)
@@ -55,7 +57,7 @@ void PlotWindow::DrawPositionAxes(void)
 	glBegin(GL_LINES);
 
 	//Draws y axis 
-	glVertex2i(450, 650);
+	glVertex2i(plotx1, 650);
 	glVertex2i(450, 450);
 
 	//Draws x axis 
