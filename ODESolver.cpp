@@ -5,6 +5,9 @@
 #include "RungeKutta2ODE.h"
 #include "RungeKutta4ODE.h"
 
+
+#include <iostream>
+
 // Constructor
 ODESolver::ODESolver()
 {
@@ -16,6 +19,7 @@ ODESolver::ODESolver()
 	massNo = 0;
 	springNo = 0;
 	damperNo = 0;
+	time = 0;
 	// Initial displacements and velocities
 	disp.push_back(0);
 	disp.push_back(0);
@@ -26,8 +30,10 @@ ODESolver::ODESolver()
 // Function to initialize mass[]; Takes mass objects from the main()
 void ODESolver::massInit(const Mass& m1, const Mass& m2)
 {
+	//std::cout << "MASS_INIT\n";
 	// Initializing the mass array for the solver
 	this->massNo = (int)m1.getState() + (int)m2.getState();			// Determining 1 or 2 masses in the system
+	//std::cout << "MASS_NUMBER: "<<massNo<<"\n";
 	this ->mass = new double[massNo];
 	if(massNo == 2)
 	{
@@ -90,18 +96,23 @@ void ODESolver::forceInit(const Force& force1, const Force& force2)
 // Function to solve the ODE for displacement and velocity
 void ODESolver::solve(double timeStep, Mass& mass1, Mass& mass2)
 {
+	//std::cout << "ODE SOLVER solve()\n";
 	// Updating total time
 	time += timeStep;
 	
 	// Solves the ODE by calling the 2 ODE RK solver or the 4 ODE RK solver according to the number of masses
 	if (massNo == 1)
 	{
+		//std::cout << "2 ODE SOLVER\n";
 		RK = new RungeKutta2ODE(time, disp[0],velocity[0]);
+		std::cout << "Time Step ODE SOLVER: " << timeStep << "\n";
+		std::cout << "Time ODE SOLVER: " << time << "\n";
 		disp = RK->solveDisp(timeStep, mass, springStiffness, dampCoefficient, force1, force2);
 		velocity = RK->solveVelocity();
 		if (mass1.getState())
 		{
 			mass1.setPosition(disp[0]);							// Updating position of mass1
+			//std::cout << "MASS 1 DISP: " << disp[0] << "\n";
 			mass1.setVelocity(velocity[0]);							// Updating the velocity of mass2
 		}
 		else
