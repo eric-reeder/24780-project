@@ -62,23 +62,23 @@ DynamicSystemApp::DynamicSystemApp(int windowWidth, int windowHeight)
 void DynamicSystemApp::initializeSystemComponents(void)
 {
     // Set simulation object values
-//    mass1.setMass(uiWindow.getMass1Mass());
-//    mass2.setMass(uiWindow.getMass2Mass());
-//    mass1.setState(uiWindow.getMass1State());
-//    mass2.setState(uiWindow.getMass2State());
+    mass1.setMass(uiWindow.getMass1Mass());
+    mass2.setMass(uiWindow.getMass2Mass());
+    mass1.setState(uiWindow.getMass1State());
+    mass2.setState(uiWindow.getMass2State());
     
-    mass1.setMass(2.0);
-    mass1.setState(true);
-    mass2.setMass(0.0);
-    mass2.setState(false);
+//    mass1.setMass(2.0);
+//    mass1.setState(true);
+//    mass2.setMass(0.0);
+//    mass2.setState(false);
 
-//    spring1.setStiffness(uiWindow.getSpring1Stiffness());
-//    spring1.setLength(mass1.getPosition());
-//    spring1.setState(uiWindow.getSpring1State());
-    
-    spring1.setStiffness(10.0);
+    spring1.setStiffness(uiWindow.getSpring1Stiffness());
     spring1.setLength(mass1.getPosition());
-    spring1.setState(true);
+    spring1.setState(uiWindow.getSpring1State());
+    
+//    spring1.setStiffness(10.0);
+//    spring1.setLength(mass1.getPosition());
+//    spring1.setState(true);
 
     spring2.setStiffness(uiWindow.getSpring2Stiffness());
     spring2.setLength(mass2.getPosition() - mass1.getPosition());
@@ -126,8 +126,8 @@ void DynamicSystemApp::initializeSystemComponents(void)
 //    damper3.setVelocity(-mass2.getVelocity());
 //    damper3.setState(false);
 
-//    force1.setType(uiWindow.getForce1Type());
-//    force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
+    force1.setType(uiWindow.getForce1Type());
+    force1.setValue(uiWindow.getForce1Value1(), uiWindow.getForce1Value2());
 //    std::cout << "----------------" << std::endl;
 //    std::cout << "force 1 slider type: " << uiWindow.getForce1Type() << std::endl;
 //    std::cout << "force 1 type: " << force1.getType() << std::endl;
@@ -138,11 +138,10 @@ void DynamicSystemApp::initializeSystemComponents(void)
     force2.setType(uiWindow.getForce2Type());
     force2.setValue(uiWindow.getForce2Value1(), uiWindow.getForce2Value2());
     
-    force1.setType(2);
-    force1.setValue(100, 0);
+//    force1.setType(2);
+//    force1.setValue(100, 0);
 //    force2.setType(2);
 //    force2.setValue(0, 0);
-
 }
 
 /*  Sets positions and sizes of sub-windows  */
