@@ -162,7 +162,7 @@ void DynamicSystemApp::initializeGraphicsWindows(void)
 void DynamicSystemApp::initializeSolver(void)
 {
     // Initialize ODE solver parameters
-    solver.massInit(mass1, mass1);
+    solver.massInit(mass1, mass2);
     solver.springInit(spring1, spring2, spring3);
     solver.damperInit(damper1, damper2, damper3);
     solver.forceInit(force1, force2);

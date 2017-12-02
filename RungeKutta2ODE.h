@@ -29,14 +29,14 @@ public:
 	RungeKutta2ODE(double t, double x1_in, double x2_in);
 
 	//computes forces
-	void computeForces(Force force1);
+	double computeForces(Force force1, double);
 	
 	//functions for ODEs
 	double f1(double x2);
-	double f2(double x1, double x2, double mass, double springStiffness, double dampCoefficient, double Force1);
+	double f2(double x1, double x2, double mass, double springStiffness, double dampCoefficient,Force, double);
 
 	//computes RK parameters
-	void computeRKparameters(void);
+	void computeRKparameters(Force);
 
 	//solves for displacement
 	std::vector<double> solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2);

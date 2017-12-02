@@ -24,26 +24,28 @@ RungeKutta4ODE::RungeKutta4ODE(double t, double x1_in, double x2_in, double x3_i
 	}
 }
 
-void RungeKutta4ODE::computeForces(Force force1, Force force2)
+vector<double> RungeKutta4ODE::computeForces(Force force1, Force force2, double t)
 {
+	vector<double> f(2);
 	switch (force1.getType())
 	{
 	case 0:
 	{
-		Force1 = force1.getValue()[0] * sin(force1.getValue()[1] * time);
-//        std::cout << Force1 << std::endl;
+		Force1 = force1.getValue()[0] * sin(force1.getValue()[1] * t);
+      // std::cout << "Force1:"<<Force1 << std::endl;
+		
 		break;
 	}
 	case 1:
 	{
-		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * time);
-//        std::cout << Force1 << std::endl;
+		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * t);
+       // std::cout << "Force1:" << Force1 << std::endl;
 		break;
 	}
 	case 2:
 	{
 		Force1 = force1.getValue()[0];
-//        std::cout << Force1 << std::endl;
+       // std::cout << "Force1:" << Force1 << std::endl;
 		break;
 	}
 	}
@@ -51,23 +53,27 @@ void RungeKutta4ODE::computeForces(Force force1, Force force2)
 	{
 	case 0:
 	{
-		Force2 = force2.getValue()[0] * sin(force2.getValue()[1] * time);
-//        std::cout << Force2 << std::endl;
+		Force2 = force2.getValue()[0] * sin(force2.getValue()[1] * t);
+       // std::cout << "Force2:" << Force2 << std::endl;
 		break;
 	}
 	case 1:
 	{
-		Force2 = force2.getValue()[0] * exp(-force2.getValue()[1] * time);
-//        std::cout << Force2 << std::endl;
+		Force2 = force2.getValue()[0] * exp(-force2.getValue()[1] * t);
+      //  std::cout << "Force2:" << Force2 << std::endl;
 		break;
 	}
 	case 2:
 	{
 		Force2 = force2.getValue()[0];
-//        std::cout << Force2 << std::endl;
+    //    std::cout << "Force2:" << Force2 << std::endl;
 		break;
 	}
 	}
+	f[0] = Force1;
+	f[1] = Force2;
+	return f;
+
 }
 
 
@@ -80,13 +86,13 @@ double RungeKutta4ODE::f2(double x4)
 {
 	return x4;
 }
-double RungeKutta4ODE::f3(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force1)
+double RungeKutta4ODE::f3(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], Force force1, Force force2, double t)
 {
 	double f3;
 	if (mass[0] != 0)
 	{
 		f3 = x1*((-springStiffness[0] - springStiffness[1]) / mass[0]) + x2*(springStiffness[1] / mass[0]) +
-			x3*((-dampCoefficient[0]-dampCoefficient[1])/mass[0]) + x4*(dampCoefficient[1]/mass[0]) + Force1/mass[0];
+			x3*((-dampCoefficient[0]-dampCoefficient[1])/mass[0]) + x4*(dampCoefficient[1]/mass[0]) + computeForces(force1, force2, t)[0] /mass[0];
 	}
 	else
 	{
@@ -94,13 +100,13 @@ double RungeKutta4ODE::f3(double x1, double x2, double x3, double x4, double mas
 	}
 	return f3;
 }
-double RungeKutta4ODE::f4(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force2)
+double RungeKutta4ODE::f4(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], Force force1, Force force2, double t)
 {
 	double f4;
 	if (mass[1] != 0)
 	{
 		f4 = x2*((-springStiffness[1] - springStiffness[2]) / mass[1]) + x1*(springStiffness[1] / mass[1]) +
-			x4*((-dampCoefficient[1] - dampCoefficient[2]) / mass[1]) + x3*(dampCoefficient[1] / mass[1]) + Force2 / mass[1];
+			x4*((-dampCoefficient[1] - dampCoefficient[2]) / mass[1]) + x3*(dampCoefficient[1] / mass[1]) + computeForces(force1, force2, t)[1] / mass[1];
 	}
 	else
 	{
@@ -111,29 +117,30 @@ double RungeKutta4ODE::f4(double x1, double x2, double x3, double x4, double mas
 
 
 
-void RungeKutta4ODE::computeRKparameters(void)
+void RungeKutta4ODE::computeRKparameters(Force force1, Force force2)
 {
 	k1[0] = timeStep*f1(x3);
 	k1[1] = timeStep*f2(x4);
-	k1[2] = timeStep*f3(x1, x2, x3, x4, mass, springStiffness, dampCoefficient, Force1);
-	k1[3] = timeStep*f4(x1, x2, x3, x4, mass, springStiffness, dampCoefficient, Force2);
+	k1[2] = timeStep*f3(x1, x2, x3, x4, mass, springStiffness, dampCoefficient, force1, force2, time);
+	k1[3] = timeStep*f4(x1, x2, x3, x4, mass, springStiffness, dampCoefficient, force1, force2, time);
 	k2[0] = timeStep*f1(x3 + 0.5*k1[2]);
 	k2[1] = timeStep*f2(x4 + 0.5*k1[3]);
-	k2[2] = timeStep*f3(x1 + 0.5*k1[0], x2 + 0.5*k1[1], x3 + 0.5*k1[2], x4 + 0.5*k1[3], mass, springStiffness, dampCoefficient, Force1);
-	k2[3] = timeStep*f4(x1 + 0.5*k1[0], x2 + 0.5*k1[1], x3 + 0.5*k1[2], x4 + 0.5*k1[3], mass, springStiffness, dampCoefficient, Force2);
+	k2[2] = timeStep*f3(x1 + 0.5*k1[0], x2 + 0.5*k1[1], x3 + 0.5*k1[2], x4 + 0.5*k1[3], mass, springStiffness, dampCoefficient, force1, force2, time + timeStep / 2.0);
+	k2[3] = timeStep*f4(x1 + 0.5*k1[0], x2 + 0.5*k1[1], x3 + 0.5*k1[2], x4 + 0.5*k1[3], mass, springStiffness, dampCoefficient, force1, force2, time + timeStep / 2.0);
 	k3[0] = timeStep*f1(x3 + 0.5*k2[2]);
 	k3[1] = timeStep*f2(x4 + 0.5*k2[3]);
-	k3[2] = timeStep*f3(x1 + 0.5*k2[0], x2 + 0.5*k2[1], x3 + 0.5*k2[2], x4 + 0.5*k2[3], mass, springStiffness, dampCoefficient, Force1);
-	k3[3] = timeStep*f4(x1 + 0.5*k2[0], x2 + 0.5*k2[1], x3 + 0.5*k2[2], x4 + 0.5*k2[3], mass, springStiffness, dampCoefficient, Force2);
-	k4[0] = timeStep*f1(x3 + 0.5*k3[2]);
-	k4[1] = timeStep*f2(x4 + 0.5*k3[3]);
-	k4[2] = timeStep*f3(x1 + 0.5*k3[0], x2 + 0.5*k3[1], x3 + 0.5*k3[2], x4 + 0.5*k3[3], mass, springStiffness, dampCoefficient, Force1);
-	k4[3] = timeStep*f4(x1 + 0.5*k3[0], x2 + 0.5*k3[1], x3 + 0.5*k3[2], x4 + 0.5*k3[3], mass, springStiffness, dampCoefficient, Force2);
+	k3[2] = timeStep*f3(x1 + 0.5*k2[0], x2 + 0.5*k2[1], x3 + 0.5*k2[2], x4 + 0.5*k2[3], mass, springStiffness, dampCoefficient, force1, force2, time + timeStep / 2.0);
+	k3[3] = timeStep*f4(x1 + 0.5*k2[0], x2 + 0.5*k2[1], x3 + 0.5*k2[2], x4 + 0.5*k2[3], mass, springStiffness, dampCoefficient, force1, force2, time + timeStep / 2.0);
+	k4[0] = timeStep*f1(x3 + k3[2]);
+	k4[1] = timeStep*f2(x4 + k3[3]);
+	k4[2] = timeStep*f3(x1 + k3[0], x2 + k3[1], x3 + k3[2], x4 + k3[3], mass, springStiffness, dampCoefficient, force1, force2, time + timeStep);
+	k4[3] = timeStep*f4(x1 + k3[0], x2 + k3[1], x3 + k3[2], x4 + k3[3], mass, springStiffness, dampCoefficient, force1, force2, time + timeStep);
 }
 
 std::vector<double> RungeKutta4ODE::solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2)
 { 
 	timeStep = tS;
+	//cout << "************************" << endl;
 	for (int i = 0; i < 2; i++)
 	{
 		mass[i] = m[i];
@@ -142,16 +149,17 @@ std::vector<double> RungeKutta4ODE::solveDisp(double tS, double m[2], double sS[
 	{
 		springStiffness[i] = sS[i];
 		dampCoefficient[i] = dC[i];
+		//cout << "springStiffness" << i << ":" << springStiffness[i] << endl;
 	}
-	computeForces(force1, force2);
-	computeRKparameters();
+	
+	computeRKparameters(force1, force2);
 	x1 = x1 + (k1[0] + 2.*k2[0] + 2.*k3[0] + k4[0]) / 6.;
 	x2 = x2 + (k1[1] + 2.*k2[1] + 2.*k3[1] + k4[1]) / 6.;
 	std::vector<double> disp = { x1, x2 };
-//    for (int i = 0; i < 2; i++)
-//    {
-//        std::cout << disp[i] << std::endl;
-//    }
+   for (int i = 0; i < 2; i++)
+    {
+        //std::cout << disp[i] << std::endl;
+    }
 	return disp;
 }
 
@@ -160,10 +168,10 @@ std::vector<double> RungeKutta4ODE::solveVelocity(void)
 	x3 = x3 + (k1[2] + 2.*k2[2] + 2.*k3[2] + k4[2]) / 6.;
 	x4 = x4 + (k1[3] + 2.*k2[3] + 2.*k3[3] + k4[3]) / 6.;
 	std::vector<double> vel = { x3, x4 };
-//    for (int i = 0; i < 2; i++)
-//    {
-//        std::cout << vel[i] << std::endl;
-//    }
+   for (int i = 0; i < 2; i++)
+    {
+        //std::cout << vel[i] << std::endl;
+    }
 	return vel;
 }
 
