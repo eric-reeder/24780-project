@@ -456,7 +456,7 @@ const bool UIWindow::checkMouse()
 			//DrawCircle(r1.returnCentreX() + (2 * r1.returnRadioSpaceMargin1()), r1.returnCentreY(), 4, 1);
 			r1.SetValue(0);
 		}
-		if (r1.RadioOutput() != 0)
+		if (r1.RadioOutput() == 2)
 		{
 			Frequency1.SetValue(Frequency1.returnXValue());
 		}
@@ -476,7 +476,7 @@ const bool UIWindow::checkMouse()
 			//DrawCircle(r2.returnCentreX() + (2 * radioSpaceMargin), r2.returnCentreY(), 4, 1);
 			r2.SetValue(0);
 		}
-		if (r2.RadioOutput() != 0)
+		if (r2.RadioOutput() == 2)
 		{
 			Frequency2.SetValue(Frequency2.returnXValue());
 		}
