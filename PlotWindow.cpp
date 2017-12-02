@@ -30,7 +30,11 @@ PlotWindow::PlotWindow()
 	backgroundGreen = 255;
 	backgroundBlue = 255;
 
-    axiscolorRed = 0;
+	magnifier = 400.0;
+	velocitytranslation = 900.0;
+	positiontranslation = 450.0; 
+
+	axiscolorRed = 0;
     axiscolorBlue = 0;
     axiscolorGreen = 0;
 
@@ -42,13 +46,10 @@ PlotWindow::PlotWindow()
 	plot1Green = 0;
 	plot1Blue = 0;
 
-	plotx1 = 450; 
+	//plotx1 = 450;
 
 }
 
-void GetCoordinates(void)
-{
-}
 
 
 void PlotWindow::DrawPositionAxes(void)
@@ -57,7 +58,7 @@ void PlotWindow::DrawPositionAxes(void)
 	glBegin(GL_LINES);
 
 	//Draws y axis 
-	glVertex2i(plotx1, 650);
+	glVertex2i(450, 650); //glVertex2i()
 	glVertex2i(450, 450);
 
 	//Draws x axis 
@@ -74,100 +75,113 @@ void PlotWindow::DrawVelocityAxes(void)
 	glBegin(GL_LINES);
 
 	//Draws y axis 
-	glVertex2i(850, 650);
-	glVertex2i(850, 450);
+	glVertex2i(900, 650);
+	glVertex2i(900, 450);
 
 	//Draws x axis 
-	glVertex2i(1200, 650);
-	glVertex2i(850, 650);
+	glVertex2i(1300, 650);
+	glVertex2i(900, 650);
 
 	glEnd();
 }
 
 void PlotWindow::Velocity(Mass mass1, Mass mass2)
 {//This calls the velocities for mass 1 and 2  from the Mass class 
-	double velocity1 = mass1.getVelocity();
-	double velocity2 = mass2.getVelocity(); 
+	double velocity1 = magnifier*mass1.getVelocity() + velocitytranslation; //magnifies data and shifts based on the axes 
+	double velocity2 = magnifier*mass2.getVelocity() + velocitytranslation; 
 
-	storedvelocity1.push_back(velocity1);
+	storedvelocity1.push_back(velocity1); //reads 
 	storedvelocity2.push_back(velocity2);
-}
-
-
-void PlotWindow::Position(Mass mass1, Mass mass2)
-{//This calls the positions for mass 1 and 2 from the Mass class 
-	double position1 = mass1.Weee();
-	double position2 = mass2.Weee(); 
-
-
-	storedposition1.push_back(position1);
-	storedposition2.push_back(position2);
 	
-	for (auto &x : storedposition1)
-	{
-		x += plotx1;
-	}
-
-	for (int i = 0; i < storedposition1.size(); i++)
-	{//debugging to check values are actually printing 
-
-		printf("%lf", storedposition1[i]);
-
-	}
-
-}
-
-
-
-
-void PlotWindow::GraphPosition(void)
-{
-	glBegin(GL_LINE_LOOP);
-	glColor3ub(plot1Red, plot1Green, plot1Blue);
-
-	//draws line based on 
-	for (int i = 0; i < storedposition1.size(); i++)
-	{
-		
-		glVertex2d(i, storedposition1[i]);
-		
-	}
-
-	glColor3ub(plot2Red, plot2Green, plot2Blue);
-	for (int j = 0; j < storedposition2.size(); j++)
-	{
-		
-		glVertex2d(j, storedposition2[j]);
-	}
-	glEnd();
-
-}
-
-void PlotWindow::GraphVelocity(void)
-{
 	
+	std::copy(storedvelocity1.begin(), storedvelocity1.end(), plotvelocity1); //converts to array 
+
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
-		glBegin(GL_LINE_LOOP);
-		glColor3ub(plot1Red, plot1Green, plot1Blue);
-		glVertex2d(i, storedvelocity1[i]);
+		//debugging to check values are actually printing
+
+		printf("%lf", storedvelocity1[i]);
+	}
+	
+}
+//
+//
+//void PlotWindow::Position(Mass mass1, Mass mass2)
+//{//This calls the positions for mass 1 and 2 from the Mass class 
+//	double position1 = magnifier*mass1.Weee();
+//	double position2 = magnifier*mass2.Weee(); 
+//
+//
+//	storedposition1.push_back(position1);
+//	storedposition2.push_back(position2);
+//	
+//	for (auto &x : storedposition1)
+//	{
+//		x += plotx1;
+//	}
+//
+//	for (int i = 0; i < storedposition1.size(); i++)
+//	{//debugging to check values are actually printing 
+//
+//		printf("%lf", storedposition1[i]);
+//
+//	}
+//
+//}
+
+
+
+
+//void PlotWindow::GraphPosition(void)
+//{
+//	glBegin(GL_LINE_LOOP);
+//	glColor3ub(plot1Red, plot1Green, plot1Blue);
+//
+//	//draws line based on 
+//	for (int i = 0; i < storedposition1.size(); i++)
+//	{
+//		
+//		glVertex2d(i, storedposition1[i]);
+//		
+//	}
+//
+//	glColor3ub(plot2Red, plot2Green, plot2Blue);
+//	for (int j = 0; j < storedposition2.size(); j++)
+//	{
+//		
+//		glVertex2d(j, storedposition2[j]);
+//	}
+//	glEnd();
+//
+//}
+//
+void PlotWindow::GraphVelocity(void)
+{
+	glColor3ub(plot1Red, plot1Green, plot1Blue);
+	glVertexPointer(2, GL_FLOAT, 0, plotvelocity1); //sets up pointer for vertices for drawing data
+	glEnableClientState(GL_VERTEX_ARRAY); //enables OpenGL to read array data 
+	
+	for (int i = 0; i < storedvelocity1.size(); i++)
+	{ 
+		glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
+		
 	}
 
-	for (int j = 0; j < storedvelocity2.size(); j++)
+	/*for (int j = 0; j < storedvelocity2.size(); j++)
 	{
-		glBegin(GL_LINE_LOOP);
 		glColor3ub(plot2Red, plot2Green, plot2Blue);
 		glVertex2d(j, storedvelocity2[j]);
-	}
-	glEnd();
+		glEnd();
+	}*/
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void PlotWindow::reset(void)
 {//resets velocity value information
-	storedvelocity1.resize(0);
-	storedvelocity2.resize(0); 
-	storedposition1.resize(0);
-	storedposition2.resize(0);
+	//storedvelocity1.resize(0);
+	//storedvelocity2.resize(0); 
+	//storedposition1.resize(0);
+	//storedposition2.resize(0);
 }
 
 
@@ -177,7 +191,8 @@ void PlotWindow::draw(Mass mass1, Mass mass2, double timeStep)
 	drawBorder();
 	DrawPositionAxes();
 	DrawVelocityAxes();
-	GraphPosition(); 
+	//GraphPosition(); 
 	GraphVelocity();
+	reset();
 
 }
