@@ -103,10 +103,10 @@ void PlotWindow::Position(Mass mass1, Mass mass2)
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
 	
-	/*for (auto &x : storedposition1)
+	for (auto &x : storedposition1)
 	{
-		x += storedposition1*magnifier;*
-	}*/
+		x += plotx1;
+	}
 
 }
 
