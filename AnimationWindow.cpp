@@ -9,6 +9,7 @@
 #include <math.h>
 #include "fssimplewindow.h"
 #include "AnimationWindow.h"
+#include "ysglfontdata.h"
 
 // The x values need to be set by the main function everything else should work for itself
 // Oh and the state values should be set for each of them
@@ -22,7 +23,7 @@ AnimationWindow::AnimationWindow()
     WallMargin=5;
     ThicknessMargin=10;
     //Max displacemnt prevents the object from going off screne
-    maxdisplacment=550;
+    maxdisplacment=575;
     mindisplacment=-1200;
     springHeight=25;
 }
@@ -114,6 +115,67 @@ void AnimationWindow::DrawWalls()
     glVertex2f(RightCenter-WallMargin+ThicknessMargin/2,yPosition+WallMargin);
     glEnd();
     
+    
+}
+void AnimationWindow::DrawScalingFactor()
+{
+    int ca=c/100;
+    int cb=(c-ca*100)/10;
+    int cc=c-ca*100-cb*10;
+    double cd=(c-ca*100-cb*10-cc)*10;
+    int ce=cd;
+    char SF[4];
+    for (int i=0;i<10;i++)
+    {
+        if (ca==i)
+        {
+            SF[0]=48+i;
+            if (SF[0]==48)
+            {
+                SF[0]=32;
+            }
+        }
+    }
+    for (int j=0;j<10;j++)
+    {
+        if (cb==j)
+        {
+            SF[1]=48+j;
+        }
+    }
+    for (int k=0;k<10;k++)
+    {
+        if (cc==k)
+        {
+            SF[2]=48+k;
+            
+            
+        }
+    }
+   SF[3]=0;
+    char* d=&SF[0];
+    char* str3="Pixels = 1 Meter";
+    char* str4="=";
+    glColor3b(0, 0, 0);
+    glRasterPos2d(xPosition+width/2-94,height*5/6);
+    YsGlDrawFontBitmap12x16(d);
+    glRasterPos2d(xPosition+width/2-43,height*5/6);
+    YsGlDrawFontBitmap12x16(str3);
+    glRasterPos2d(xPosition+width/2-106,height*5/6);
+    YsGlDrawFontBitmap12x16(str4);
+    glBegin(GL_LINES);
+    
+    glVertex2f(xPosition+width/2-118-c,height*5/6-5);
+    glVertex2f(xPosition+width/2-118-c,height*5/6+9);
+    
+    glVertex2f(xPosition+width/2-118-c,height*5/6+5);
+    glVertex2f(xPosition+width/2-118,height*5/6+5);
+    
+    glVertex2f(xPosition+width/2-118,height*5/6-5);
+    glVertex2f(xPosition+width/2-118,height*5/6+9);
+
+    
+    glEnd();
     
 }
 double AnimationWindow::SendOutValue()
@@ -239,6 +301,7 @@ double AnimationWindow::SendOutValue()
  */
 void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring2, Spring spring3, Damper damper1, Damper damper2, Damper damper3)
 {
+  
     //printf("%lf %lf",x1,x2);
     drawBackground();
     drawBorder();
@@ -257,6 +320,7 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
     
     SetZeros();
     
+    
     spring1.draw(LeftCenter,YSpring,springHeight);
     spring2.draw(X1Actual,YSpring,springHeight);
     spring3.draw(X2Actual,YSpring,springHeight);
@@ -268,6 +332,7 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
     mass1.draw(X1Actual, YMass);
     mass2.draw(X2Actual, YMass);
     DrawWalls();
+    DrawScalingFactor();
     
     
 }

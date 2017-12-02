@@ -92,7 +92,7 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
         int springc=stiffness-springa*100-springb*10;
         double springd=(stiffness-springa*100-springb*10-springc)*10;
         int springe=springd;
-        printf(" spring %d ",springe);
+        // printf(" spring %d ",springe);
         char YaySpring[10];
         for (int i=0;i<10;i++)
         {
