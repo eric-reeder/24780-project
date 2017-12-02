@@ -15,15 +15,15 @@
 
 AnimationWindow::AnimationWindow()
 {
-    c=1;
+    c=30;
     // c is the variable so if we wanted to up the animations responsiveness to position change or downgrade the animations response to position change we could
     
     // These variables are not being passed from the inital function so are hard coded to values.  May want to improve it later.  The thickness controls the wall thicknesses.  The margin controls the distance from the xstart point to the walls
     WallMargin=5;
     ThicknessMargin=10;
     //Max displacemnt prevents the object from going off screne
-    maxdisplacment=30;
-    mindisplacment=-30;
+    maxdisplacment=550;
+    mindisplacment=-1200;
     springHeight=25;
 }
 double AnimationWindow::getLocations(void) const
@@ -52,8 +52,8 @@ void AnimationWindow::setLocations(Mass mass1, Mass mass2)
     }
     printf(" i %lf ",i);
     */
-    x1=mass1.Weee();
-    x2=mass2.Weee();
+    x1=c*mass1.Weee();
+    x2=c*mass2.Weee();
     if (x1>maxdisplacment)
     {
         x1=maxdisplacment;
@@ -115,6 +115,11 @@ void AnimationWindow::DrawWalls()
     glEnd();
     
     
+}
+double AnimationWindow::SendOutValue()
+{
+    double temp=LeftCenter+WallMargin;
+    return temp;
 }
 /* This function draws a border which I think is a good idea to have so theres a clear divide between the windows however I will leave this at erics discretion
  note if you want this in the function I may have deleted a few perameters but I can add them back in later
@@ -238,9 +243,9 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
     drawBackground();
     drawBorder();
     setLocations(mass1, mass2);
-    spring1len=X1Actual-LeftCenter+ThicknessMargin/2;
+    spring1len=X1Actual-LeftCenter;
     spring2len=X2Actual-X1Actual;
-    spring3len=RightCenter-X2Actual-ThicknessMargin/4;
+    spring3len=RightCenter-X2Actual;
     
 
     spring1.setVisualLength(spring1len);

@@ -61,8 +61,9 @@ void Mass::draw(const int xPos, const int yOffset) const
         glVertex2f(xPos-widthm/2,yOffset-heightm/2);
         glEnd();
         int massa=mass/10;
-        int massb=mass-massa;
-        int massc=mass-massa-massb;
+        int massb=mass-massa*10;
+        double massc=(mass-massa*10-massb)*10;
+        int massd=massc;
         char masses[8];
         for (int i=0;i<10;i++)
         {
@@ -84,7 +85,7 @@ void Mass::draw(const int xPos, const int yOffset) const
         }
         for (int k=0;k<10;k++)
         {
-            if (massc==k)
+            if (massd==k)
             {
                 masses[2]=46;
                 masses[3]=48+k;

@@ -52,7 +52,7 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
 {
     double xl1=startxPoint;
     //printf("v %lf",Visilength);
-    double xspring=Visilength/20;
+    double xspring=Visilength/36.5;
     //printf("x %lf",xspring);
     //printf("l %lf",lspring);
     double yspring=sqrt(pow(lspring,2)-pow(xspring,2));
@@ -67,7 +67,7 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
     if (state==1)
     {
         glBegin(GL_LINES);
-        for (int i=0;i<5;i++)
+        for (int i=0;i<9;i++)
         {
             glVertex2d(x,yc1);
             x=x+xspring;
@@ -87,10 +87,13 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
             glVertex2d(x,yc1);
         }
         glEnd();
-        int springa=stiffness/10;
-        int springb=stiffness-springa;
-        int springc=stiffness-springa-springb;
-        char YaySpring[9];
+        int springa=stiffness/100;
+        int springb=(stiffness-springa*100)/10;
+        int springc=stiffness-springa*100-springb*10;
+        double springd=(stiffness-springa*100-springb*10-springc)*10;
+        int springe=springd;
+        printf(" spring %d ",springe);
+        char YaySpring[10];
         for (int i=0;i<10;i++)
         {
             if (springa==i)
@@ -113,15 +116,22 @@ void Spring:: draw(double startxPoint,double startyPoint,double lspring) const
         {
             if (springc==k)
             {
-                YaySpring[2]=46;
-                YaySpring[3]=48+k;
+                YaySpring[2]=48+k;
             }
         }
-        YaySpring[4]=32;
-        YaySpring[5]=78;
-        YaySpring[6]=47;
-        YaySpring[7]=109;
-        YaySpring[8]=0;
+        for (int l=0;l<10;l++)
+        {
+            if (springe==l)
+            {
+                YaySpring[3]=46;
+                YaySpring[4]=48+l;
+            }
+        }
+        YaySpring[5]=32;
+        YaySpring[6]=78;
+        YaySpring[7]=47;
+        YaySpring[8]=109;
+        YaySpring[9]=0;
         char* d=&YaySpring[0];
         glColor3b(0, 0, 0);
         glRasterPos2d(xl1+Visilength/2-48,yd1+lspring);

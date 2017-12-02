@@ -70,6 +70,7 @@ public:
     // void DrawBorder(void);
     void SetZeros(void);
     void DrawForce(void);
+    double SendOutValue();
     
 };
 

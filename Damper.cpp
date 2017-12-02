@@ -101,8 +101,9 @@ void Damper::draw(double startxPoint,double startyPoint,double lspring,double wi
         glVertex2d(xc1, yc1);
         glEnd();
         int Dampera=damping/10;
-        int Damperb=damping-Dampera;
-        int Damperc=damping-Dampera-Damperb;
+        int Damperb=damping-Dampera*10;
+        double Damperc=(damping-Dampera*10-Damperb)*10;
+        int Damperd=Damperc;
         char YayDamper[11];
         for (int i=0;i<10;i++)
         {
@@ -124,7 +125,7 @@ void Damper::draw(double startxPoint,double startyPoint,double lspring,double wi
         }
         for (int k=0;k<10;k++)
         {
-            if (Damperc==k)
+            if (Damperd==k)
             {
                 YayDamper[2]=46;
                 YayDamper[3]=48+k;
