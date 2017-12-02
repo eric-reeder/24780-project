@@ -71,6 +71,7 @@ public:
     void SetZeros(void);
     void DrawForce(void);
     double SendOutValue();
+    void DrawScalingFactor();
     
 };
 
