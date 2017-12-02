@@ -5,6 +5,9 @@
 
 #include "Runge_Kutta.h"
 #include "Force.h"
+#include<iostream>
+#include <vector>
+using namespace std;
 
 //The 4 ODE solver inhertits from the base RungeKutta class
 class RungeKutta4ODE :public RungeKutta
@@ -30,16 +33,16 @@ public:
 	RungeKutta4ODE(double t, double x1_in, double x2_in, double x3_in, double x4_in);	
 
 	//computes forces
-	void computeForces(Force force1, Force force2);
+	vector<double> computeForces(Force force1, Force force2, double t);
 	
 	//functions for ODEs
 	double f1(double x3);
 	double f2(double x4);
-	double f3(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force1);
-	double f4(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], double Force2);
+	double f3(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], Force force1, Force force2, double t);
+	double f4(double x1, double x2, double x3, double x4, double mass[2], double springStiffness[3], double dampCoefficient[3], Force force1, Force force2, double t);
 
 	//computes RK parameters
-	void computeRKparameters(void);
+	void computeRKparameters(Force force1, Force force2);
 	
 	//solves for displacement
 	std::vector<double> solveDisp(double tS, double m[2], double sS[3], double dC[3], Force force1, Force force2);
