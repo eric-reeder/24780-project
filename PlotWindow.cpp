@@ -108,6 +108,13 @@ void PlotWindow::Position(Mass mass1, Mass mass2)
 		x += plotx1;
 	}
 
+	for (int i = 0; i < storedposition1.size(); i++)
+	{//debugging to check values are actually printing 
+
+		printf("%lf", storedposition1[i]);
+
+	}
+
 }
 
 
