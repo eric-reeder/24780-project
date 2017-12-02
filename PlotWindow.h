@@ -27,6 +27,7 @@ protected:
 	int plot2Green; 
 	int plot2Blue; 
 
+	int plotx1; 
 
 	double position1;
 	double position2;
