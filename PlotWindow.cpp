@@ -107,7 +107,10 @@ void PlotWindow::Position(Mass mass1, Mass mass2)
 	{
 		x += storedposition1*magnifier;*
 	}*/
+
 }
+
+
 
 
 void PlotWindow::GraphPosition(void)
