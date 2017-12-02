@@ -4,7 +4,7 @@
 #include "Damper.h"
 #include "Force.h"
 #include "UIWindow.h"
-#include "AnimationWindowTest.h"
+#include "AnimationWindow.h"
 #include "PlotWindow.h"
 #include "ODESolver.h"
 #include "fssimplewindow.h"
