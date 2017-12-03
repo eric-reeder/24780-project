@@ -159,7 +159,7 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 {
 	Position(pos1, pos2);
 	glLineWidth(1);
-	glBegin(GL_LINE_LOOP);
+	glBegin(GL_LINE_STRIP);
 	glColor3ub(plot1Red, plot1Green, plot1Blue);
 
 	//draws line based on 
@@ -170,7 +170,9 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 		x = 450 + timePeriods[i] * ((800 - 450) / maxTime);
 		glVertex2d(x, storedposition1[i]);
 	}
-
+	glEnd();
+	
+	glBegin(GL_LINE_STRIP);
 	glColor3ub(plot2Red, plot2Green, plot2Blue);
 	for (int i = 0; i < storedposition2.size(); i++)
 	{
@@ -192,7 +194,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	//glVertexPointer(2, GL_FLOAT, 0, plotvelocity1); //sets up pointer for vertices for drawing data
 	//glEnableClientState(GL_VERTEX_ARRAY); //enables OpenGL to read array data 
 	glLineWidth(1);
-	glBegin(GL_LINE_LOOP);
+	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
@@ -203,7 +205,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	glEnd();
 
 	glColor3ub(plot2Red, plot2Green, plot2Blue);
-	glBegin(GL_LINE_LOOP);
+	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < storedvelocity2.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
