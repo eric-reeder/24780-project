@@ -38,7 +38,7 @@ vector<double> RungeKutta4ODE::computeForces(Force force1, Force force2, double 
 	}
 	case 1:
 	{
-		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * t);
+		Force1 = force1.getValue()[0] * exp(-(1.0/force1.getValue()[1]) * t);
        // std::cout << "Force1:" << Force1 << std::endl;
 		break;
 	}
@@ -59,7 +59,7 @@ vector<double> RungeKutta4ODE::computeForces(Force force1, Force force2, double 
 	}
 	case 1:
 	{
-		Force2 = force2.getValue()[0] * exp(-force2.getValue()[1] * t);
+		Force2 = force2.getValue()[0] * exp(-(1.0/force2.getValue()[1]) * t);
       //  std::cout << "Force2:" << Force2 << std::endl;
 		break;
 	}
