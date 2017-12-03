@@ -32,8 +32,8 @@ PlotWindow::PlotWindow()
 	backgroundBlue = 255;
 
 	//magnifier = 400.0;
-	magnifier_vel = 25.0;
-	magnifier_pos = 75;
+	magnifier_vel = 250;
+	magnifier_pos = 250;
 
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
@@ -49,11 +49,6 @@ PlotWindow::PlotWindow()
 	plot1Red = 255;
 	plot1Green = 0;
 	plot1Blue = 0;
-
-	//plotx1 = 450;
-
-	//velocity1 = 0;
-	//velocity2 = 0;
 
 }
 
@@ -137,19 +132,6 @@ void PlotWindow::Position(double pos1, double pos2)
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
 	
-	/*for (auto &x : storedposition1)
-	{
-		x += plotx1;
-	}
-*/
-
-	//for (int i = 0; i < storedposition1.size(); i++)
-	//{//debugging to check values are actually printing 
-
-	//	printf("%lf", storedposition1[i]);
-
-	//}
-
 }
 
 
@@ -158,7 +140,7 @@ void PlotWindow::Position(double pos1, double pos2)
 void PlotWindow::GraphPosition(double pos1, double pos2, double time, double maxTime)
 {
 	Position(pos1, pos2);
-	glLineWidth(1);
+	glLineWidth(2);
 	glBegin(GL_LINE_STRIP);
 	glColor3ub(plot1Red, plot1Green, plot1Blue);
 
@@ -193,7 +175,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	glColor3ub(plot1Red, plot1Green, plot1Blue);
 	//glVertexPointer(2, GL_FLOAT, 0, plotvelocity1); //sets up pointer for vertices for drawing data
 	//glEnableClientState(GL_VERTEX_ARRAY); //enables OpenGL to read array data 
-	glLineWidth(1);
+	glLineWidth(2);
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
