@@ -201,7 +201,10 @@ void DynamicSystemApp::drawApp(void)
 {
     uiWindow.draw();
     animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
-    plotWindow.draw(mass1, mass2, elapsedTime);
+  //  plotWindow.draw(mass1, mass2, elapsedTime, maxSimTime);
+	//std::cout << "MASS 1 VEL (MAIN FN): " << mass1.getVelocity() << "\n";
+	std::cout << "TIME (MAIN FN): " << elapsedTime << "\n";
+	plotWindow.plot(mass1.getVelocity(), mass2.getVelocity(), mass1.getPosition(), mass2.getPosition(), elapsedTime, maxSimTime);
 }
 
 void DynamicSystemApp::debugPrint(void)
@@ -239,11 +242,12 @@ void DynamicSystemApp::run(void)
             if (elapsedTime <= maxSimTime)
             {
                 timeStep = std::chrono::duration_cast<std::chrono::milliseconds>(current - last).count() * MILLISEC_TO_SEC;
-                std::cout << "------------\nBefore:" << std::endl;
-                debugPrint();
+               // std::cout << "------------\nBefore:" << std::endl;
+                //debugPrint();
                 solver.solve(timeStep, mass1, mass2);
-                std::cout << "After:" << std::endl;
-                debugPrint();
+				//std::cout << "MASS 1 VEL (MAIN FN): " << mass1.getVelocity() << "\n";
+                //std::cout << "After:" << std::endl;
+                //debugPrint();
                 elapsedTime += timeStep;
             }
         }
