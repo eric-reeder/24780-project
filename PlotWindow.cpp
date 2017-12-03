@@ -52,9 +52,9 @@ PlotWindow::PlotWindow()
 	plot1Green = 0;
 	plot1Blue = 0;
 
-	//Draws red line for second plot
+	//Draws blue line for second plot
 	plot2Red = 0;
-	plot2Green = 0;
+	plot2Green = 255;
 	plot2Blue = 255;
 
 }
@@ -97,9 +97,17 @@ void PlotWindow::DrawPositionAxes(void)
 void PlotWindow::DrawVelocityAxes(void)
 {//Draws velocity graph axes
 	char* velocitytitle = "Real-Time Relative Velocity";
-	glRasterPos2d(950, 450);
+	char* xpositionlabel = "t";
+	char* ypositionlabel = "v";
 	glColor3ub(fontRed, fontBlue, fontGreen);
-	YsGlDrawFontBitmap12x16(velocitytitle);
+
+	glRasterPos2d(950, 425);
+	YsGlDrawFontBitmap12x16(velocitytitle);	
+	glRasterPos2d(1305, 550);
+	YsGlDrawFontBitmap12x16(xpositionlabel);
+
+	glRasterPos2d(905, 445);
+	YsGlDrawFontBitmap12x16(ypositionlabel);
 	
 	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
@@ -118,25 +126,24 @@ void PlotWindow::DrawVelocityAxes(void)
 void PlotWindow::DrawLegend(void)
 {
 	char* mass1label = "Mass 1";
-	glRasterPos2d(1255, 400);
-	glColor3ub(fontRed, fontBlue, fontGreen);
+	char* mass2label = "Mass 2";
+	glColor3ub(0, 0, 0);
+	glRasterPos2d(1305, 395);
 	YsGlDrawFontBitmap10x14(mass1label);
+	glRasterPos2d(1305, 420);
+	YsGlDrawFontBitmap10x14(mass2label);
 
 	glColor3ub(plot1Red, plot1Green, plot1Blue);
 	glBegin(GL_LINES);
-	glVertex2i(1200, 400);
-	glVertex2i(1250, 400);
-	glEnd();
+	glLineWidth(2);
+	glVertex2i(1300, 400);
+	glVertex2i(1350, 400);
 	
-	char* mass2label = "Mass 2";
-	glRasterPos2d(1255, 410);
-	glColor3ub(fontRed, fontBlue, fontGreen);
-	YsGlDrawFontBitmap10x14(mass2label);
-
 	glColor3ub(plot2Red, plot2Green, plot2Blue);
 	glBegin(GL_LINES);
-	glVertex2i(1200, 410);
-	glVertex2i(1250, 410);
+	glLineWidth(1);
+	glVertex2i(1300, 425);
+	glVertex2i(1350, 425);
 
 	glEnd();
 }
@@ -144,18 +151,9 @@ void PlotWindow::DrawLegend(void)
 
 void PlotWindow::Velocity(double vel1, double vel2, double time)
 {//This calls the velocities for mass 1 and 2  from the Mass class 
- //double velocity1 = magnifier*mass1.getVelocity() +velocitytranslation; //magnifies data and shifts based on the axes 
- //double velocity2 = magnifier*mass2.getVelocity() +velocitytranslation;
 
 	velocity1 = 550 - magnifier_vel*vel1; //magnifies data and shifts based on the axes 
 	velocity2 = 550 - magnifier_vel*vel2;
-
-	//double velo1 = 900.0; //magnifies data and shifts based on the axes 
-	//double velo2 = 900.0;
-
-	//printf("SCALED VEL: %d\n", velo1);
-
-	//printf("MASS 1 VELOCITY: %d\n", vel1);
 
 	storedvelocity1.push_back(velocity1); //reads 
 	storedvelocity2.push_back(velocity2);
@@ -165,15 +163,6 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 	// Adding the time to the timePeriods vectors
 	timePeriods.push_back(time);
 
-	//printf("VELOCITY>PLOT_WINDOW\n");
-	/*std::copy(storedvelocity1.begin(), storedvelocity1.end(), plotvelocity1); //converts to array
-
-	for (int i = 0; i < storedvelocity1.size(); i++)
-	{
-	//debugging to check values are actually printing
-
-	printf("%lf", storedvelocity1[i]);
-	}*/
 
 }
 
@@ -256,28 +245,12 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 
 void PlotWindow::reset(void)
 {//resets velocity value information
- /*storedvelocity1.resize(0);
- storedvelocity2.resize(0); 
- storedposition1.resize(0);
- storedposition2.resize(0);*/
+//storedvelocity1.resize(0);
+//storedvelocity2.resize(0); 
+//storedposition1.resize(0);
+//storedposition2.resize(0);
 }
 
-
-//void PlotWindow::draw(double vel1, double vel2, double time, double maxTime)
-//{
-//	//printf("PLOT_WINDOW_DRAW\n");
-//	//printf("MASS 1 VELOCITY: %d\n", vel1);
-//	//printf("TIME (PLOT_WINDOW): %d\n", time);
-//
-//	drawBackground();
-//	drawBorder();
-//	DrawPositionAxes();
-//	DrawVelocityAxes();
-//	//GraphPosition(); 
-//	GraphVelocity(vel1, vel2, time, maxTime);
-//	//reset();
-//
-//}
 
 void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double time, double maxTime)
 {
@@ -293,7 +266,6 @@ void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double
 	
 	GraphVelocity(vel1, vel2, time, maxTime);
 	GraphPosition(pos1, pos2, time, maxTime);
-	
-	//reset();
+
 
 }
