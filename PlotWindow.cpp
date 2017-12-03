@@ -19,7 +19,7 @@ newYPosition: Y coordinate of top left corner  */
 
 
 
-PlotWindow::PlotWindow()
+PlotWindow::PlotWindow() 
 {
 	//Constructs plot window 
 	borderWeight = 6;
@@ -32,8 +32,10 @@ PlotWindow::PlotWindow()
 	backgroundBlue = 255;
 
 	//magnifier = 400.0;
-	magnifier_vel = 250;
-	magnifier_pos = 250;
+	magnifier_vel = 300;
+	magnifier_pos = 300;
+
+	//magnifier_x = 100;
 
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
@@ -42,13 +44,15 @@ PlotWindow::PlotWindow()
 	axiscolorBlue = 0;
 	axiscolorGreen = 0;
 
-	plot1Red = 127;
-	plot1Green = 0;
+	//Draws orange line for the first plot
+	plot1Red = 255;
+	plot1Green = 69;
 	plot1Blue = 0;
 
-	plot1Red = 255;
-	plot1Green = 0;
-	plot1Blue = 0;
+	//Draws teal line for second plot
+	plot1Red = 92;
+	plot1Green = 233;
+	plot1Blue = 233;
 
 }
 
@@ -149,7 +153,7 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 	{
 		double x;												// Screen coordinate for time (time axis)
 		//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
-		x = 450 + timePeriods[i] * ((800 - 450) / maxTime);
+		x = (450 + timePeriods[i] * ((800 - 450) / maxTime));
 		glVertex2d(x, storedposition1[i]);
 	}
 	glEnd();
@@ -160,7 +164,7 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 	{
 		double x;												// Screen coordinate for time (time axis)
 																//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
-		x = 450 + timePeriods[i] * ((800 - 450) / maxTime);
+		x = (450 + timePeriods[i] * ((800 - 450) / maxTime));
 		glVertex2d(x, storedposition2[i]);
 	}
 	glEnd();
@@ -173,15 +177,13 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	Velocity(vel1, vel2, time);
 
 	glColor3ub(plot1Red, plot1Green, plot1Blue);
-	//glVertexPointer(2, GL_FLOAT, 0, plotvelocity1); //sets up pointer for vertices for drawing data
-	//glEnableClientState(GL_VERTEX_ARRAY); //enables OpenGL to read array data 
 	glLineWidth(2);
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
 																//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
-		x = 900 + timePeriods[i] * ((1300 - 900) / maxTime);
+		x = (900 + timePeriods[i] * ((1300 - 900) / maxTime));
 		glVertex2d(x, storedvelocity1[i]);
 	}
 	glEnd();
@@ -192,20 +194,19 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	{
 		double x;												// Screen coordinate for time (time axis)
 																//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
-		x = 900 + timePeriods[i] * ((1300 - 900) / maxTime);
+		x = (900 + timePeriods[i] * ((1300 - 900) / maxTime));
 		
 		glVertex2d(x, storedvelocity2[i]);
 	}
 	glEnd();
-	//glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void PlotWindow::reset(void)
 {//resets velocity value information
- //storedvelocity1.resize(0);
- //storedvelocity2.resize(0); 
- //storedposition1.resize(0);
- //storedposition2.resize(0);
+ /*storedvelocity1.resize(0);
+ storedvelocity2.resize(0); 
+ storedposition1.resize(0);
+ storedposition2.resize(0);*/
 }
 
 

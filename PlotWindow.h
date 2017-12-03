@@ -27,20 +27,16 @@ protected:
 	int plot2Green;
 	int plot2Blue;
 
-	/*int plotx1;
-
-	double position1;
-	double position2;
-	*/
 	double velocity1;
 	double velocity2;
-
-	//double xstart; 
-	//double ystart;*/ 
 
 	// Magnifiers for position and velocity
 	double magnifier_pos;
 	double magnifier_vel;
+
+	// Magnifier for x coordinates 
+
+	double magnifier_x; 
 
 	double positiontranslation;
 	double velocitytranslation;
