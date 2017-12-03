@@ -27,6 +27,10 @@ protected:
 	int plot2Green;
 	int plot2Blue;
 
+	int fontRed; 
+	int fontGreen; 
+	int fontBlue;
+
 	double velocity1;
 	double velocity2;
 
@@ -60,19 +64,17 @@ public:
 				  //function to draw axes 
 	void DrawPositionAxes(void);
 	void DrawVelocityAxes(void);
+	void DrawLegend(void);
 
 	////function to draw graphs 
 	void GraphPosition(double pos1, double pos2, double time, double maxTime); //function for drawing position graph
 	void GraphVelocity(double vel1, double vel2, double time, double maxTime);
-	//
-	//
+	
 	////Functions that call real-time positions and velocities from the Mass class
 	void Velocity(double vel1, double vel2, double time);
 	void Position(double pos1, double pos2);
 
 	//Draws Windows
-	//void draw(double vel1, double vel2, double time, double maxTime);
-
 	void plot(double vel1, double vel2, double pos1, double pos2, double time, double maxTime);
 
 	//Resets info 

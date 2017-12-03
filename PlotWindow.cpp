@@ -2,6 +2,7 @@
 #include "PlotWindow.h"
 #include "Mass.h"
 #include "fssimplewindow.h"
+#include "ysglfontdata.h"
 
 /*Creates a graphics window object with black border and white background
 Inputs :
@@ -31,28 +32,30 @@ PlotWindow::PlotWindow()
 	backgroundGreen = 255;
 	backgroundBlue = 255;
 
-	//magnifier = 400.0;
-	magnifier_vel = 300;
+	magnifier_vel = 100;
 	magnifier_pos = 300;
-
-	//magnifier_x = 100;
 
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
 
-	axiscolorRed = 0;
-	axiscolorBlue = 0;
-	axiscolorGreen = 0;
+	//gray axes 
+	axiscolorRed = 200;
+	axiscolorBlue = 200;
+	axiscolorGreen = 200;
 
-	//Draws orange line for the first plot
+	fontRed = 0;
+	fontGreen = 0;
+	fontBlue = 0;
+
+	//Draws red line for the first plot
 	plot1Red = 255;
-	plot1Green = 69;
+	plot1Green = 0;
 	plot1Blue = 0;
 
-	//Draws teal line for second plot
-	plot1Red = 92;
-	plot1Green = 233;
-	plot1Blue = 233;
+	//Draws red line for second plot
+	plot2Red = 0;
+	plot2Green = 0;
+	plot2Blue = 255;
 
 }
 
@@ -60,9 +63,25 @@ PlotWindow::PlotWindow()
 
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
+	char* positiontitle = "Real-Time Relative Position";
+	glRasterPos2d(500, 425);
+	glColor3ub(fontRed, fontBlue, fontGreen);
+	YsGlDrawFontBitmap12x16(positiontitle);
+
+	char* xpositionlabel = "t";
+	glRasterPos2d(805, 550);
+	glColor3ub(fontRed, fontBlue, fontGreen);
+	YsGlDrawFontBitmap12x16(xpositionlabel);
+
+	char* ypositionlabel = "x";
+	glRasterPos2d(450, 445);
+	glColor3ub(fontRed, fontBlue, fontGreen);
+	YsGlDrawFontBitmap12x16(ypositionlabel);
+	
 	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
-
+	glLineWidth(0.3);
+	
 	//Draws y axis 
 	glVertex2i(450, 650); //glVertex2i()
 	glVertex2i(450, 450);
@@ -77,6 +96,11 @@ void PlotWindow::DrawPositionAxes(void)
 
 void PlotWindow::DrawVelocityAxes(void)
 {//Draws velocity graph axes
+	char* velocitytitle = "Real-Time Relative Velocity";
+	glRasterPos2d(950, 450);
+	glColor3ub(fontRed, fontBlue, fontGreen);
+	YsGlDrawFontBitmap12x16(velocitytitle);
+	
 	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
 	glBegin(GL_LINES);
 
@@ -90,6 +114,33 @@ void PlotWindow::DrawVelocityAxes(void)
 
 	glEnd();
 }
+
+void PlotWindow::DrawLegend(void)
+{
+	char* mass1label = "Mass 1";
+	glRasterPos2d(1255, 400);
+	glColor3ub(fontRed, fontBlue, fontGreen);
+	YsGlDrawFontBitmap10x14(mass1label);
+
+	glColor3ub(plot1Red, plot1Green, plot1Blue);
+	glBegin(GL_LINES);
+	glVertex2i(1200, 400);
+	glVertex2i(1250, 400);
+	glEnd();
+	
+	char* mass2label = "Mass 2";
+	glRasterPos2d(1255, 410);
+	glColor3ub(fontRed, fontBlue, fontGreen);
+	YsGlDrawFontBitmap10x14(mass2label);
+
+	glColor3ub(plot2Red, plot2Green, plot2Blue);
+	glBegin(GL_LINES);
+	glVertex2i(1200, 410);
+	glVertex2i(1250, 410);
+
+	glEnd();
+}
+
 
 void PlotWindow::Velocity(double vel1, double vel2, double time)
 {//This calls the velocities for mass 1 and 2  from the Mass class 
@@ -159,6 +210,7 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 	glEnd();
 	
 	glBegin(GL_LINE_STRIP);
+	glLineWidth(1);
 	glColor3ub(plot2Red, plot2Green, plot2Blue);
 	for (int i = 0; i < storedposition2.size(); i++)
 	{
@@ -190,6 +242,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 
 	glColor3ub(plot2Red, plot2Green, plot2Blue);
 	glBegin(GL_LINE_STRIP);
+	glLineWidth(1);
 	for (int i = 0; i < storedvelocity2.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
@@ -236,6 +289,7 @@ void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double
 	drawBorder();
 	DrawPositionAxes();
 	DrawVelocityAxes();
+	DrawLegend();
 	
 	GraphVelocity(vel1, vel2, time, maxTime);
 	GraphPosition(pos1, pos2, time, maxTime);
