@@ -36,7 +36,7 @@ double RungeKutta2ODE::computeForces(Force force1, double t)
 	}
 	case 1:
 	{
-		Force1 = force1.getValue()[0] * exp(-force1.getValue()[1] * t);
+		Force1 = force1.getValue()[0] * exp(-(1.0/force1.getValue()[1]) * t);
 		//std::cout << "Force 1: " << Force1 << "\n";
 		//std::cout << "TIME: " << time << "\n";
 		break;
