@@ -297,7 +297,6 @@ void PlotWindow::reset(void)
 
 void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double time, double maxTime)
 {
-
 	drawBackground();
 	drawBorder();
 	DrawPositionAxes();
@@ -306,7 +305,6 @@ void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double
 	
 	GraphVelocity(vel1, vel2, time, maxTime);
 	GraphPosition(pos1, pos2, time, maxTime);
-	reset();
 
 }
 
