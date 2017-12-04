@@ -282,18 +282,16 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 void PlotWindow::GetButtonState(UIWindow On)
 {
 	buttonstate = On.onval();
+
 }
 
 void PlotWindow::reset(void)
 {//resets value information
-	if (buttonstate == 0)
-	{
 		storedvelocity1.resize(0);
 		storedvelocity2.resize(0);
 		storedposition1.resize(0);
 		storedposition2.resize(0);
 		timePeriods.resize(0);
-	}
 }
 
 
@@ -308,10 +306,7 @@ void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double
 	
 	GraphVelocity(vel1, vel2, time, maxTime);
 	GraphPosition(pos1, pos2, time, maxTime);
-
 	reset();
 
-	GraphVelocity(vel1, vel2, time, maxTime);
-	GraphPosition(pos1, pos2, time, maxTime);
 }
 
