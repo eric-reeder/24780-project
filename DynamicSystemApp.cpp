@@ -150,6 +150,7 @@ void DynamicSystemApp::resetSystem(void)
     damper3.setLength(0.0);
     damper3.setVelocity(0.0);
     plotWindow.reset();
+    solver.reset();
 }
 
 /*  Draws all components of the App (sliders/UI window, animation, and plots)  */
