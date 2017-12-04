@@ -4,6 +4,7 @@
 #include "GraphicsWindow.h"
 #include "Mass.h"
 #include <vector>
+#include "UIWindow.h"
 
 //This class creates the plot window. It inherits information from the Graphics Class. 
 
@@ -11,9 +12,6 @@ class PlotWindow : public GraphicsWindow
 {//Public members from the GraphicsWindow class will be available. 
 
 protected:
-
-	/*int axislength;
-	int axisheight;*/
 
 	int axiscolorRed;
 	int axiscolorGreen;

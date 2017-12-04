@@ -16,7 +16,7 @@
 
 AnimationWindow::AnimationWindow()
 {
-    c = 300;
+    c = 30;
     // c is the variable so if we wanted to up the animations responsiveness to position change or downgrade the animations response to position change we could
     
     // These variables are not being passed from the inital function so are hard coded to values.  May want to improve it later.  The thickness controls the wall thicknesses.  The margin controls the distance from the xstart point to the walls

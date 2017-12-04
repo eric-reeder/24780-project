@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "PlotWindow.h"
 #include "Mass.h"
+#include "UIWindow.h"
 #include "fssimplewindow.h"
 #include "ysglfontdata.h"
 
@@ -31,13 +33,15 @@ PlotWindow::PlotWindow()
 	backgroundRed = 255;
 	backgroundGreen = 255;
 	backgroundBlue = 255;
-
-	magnifier_vel = 100;
-	magnifier_pos = 300;
+	
+	//magnifies data
+	magnifier_vel = 60.0;
+	magnifier_pos = 180.0;
 
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
 
+	//maxposition
 	//gray axes 
 	axiscolorRed = 200;
 	axiscolorBlue = 200;
@@ -160,8 +164,27 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 	velocity1 = 550 - magnifier_vel*vel1; //magnifies data and shifts based on the axes 
 	velocity2 = 550 - magnifier_vel*vel2;
 
+	if (velocity1 > maxvelocity || velocity1 < minvelocity)
+	{
+		velocity1 = maxvelocity; 
+	}
+	else
+	{
+		velocity1 = velocity1; 
+	}
+
+	if (velocity2 > maxvelocity || velocity2 < minvelocity)
+	{
+		velocity2 = maxvelocity;
+	}
+	else
+	{
+		velocity2 = velocity2;
+	}
 	storedvelocity1.push_back(velocity1); //reads 
 	storedvelocity2.push_back(velocity2);
+
+
 
 	// Adding the time to the timePeriods vectors
 	timePeriods.push_back(time);
@@ -174,7 +197,6 @@ void PlotWindow::Position(double pos1, double pos2)
 {//This calls the positions for mass 1 and 2 from the Mass class 
 	double position1 = 550 - magnifier_pos*pos1;
 	double position2 = 550 - magnifier_pos*pos2;
-
 
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
@@ -248,11 +270,11 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 
 void PlotWindow::reset(void)
 {//resets velocity value information
-	storedvelocity1.resize(0);  
+	/*storedvelocity1.resize(0);  
 	storedvelocity2.resize(0); 
 	storedposition1.resize(0);
 	storedposition2.resize(0);
-	timePeriods.resize(0);
+	timePeriods.resize(0);*/
 }
 
 
