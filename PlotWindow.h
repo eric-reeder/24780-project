@@ -32,12 +32,6 @@ protected:
 	double velocity1;
 	double velocity2;
 
-	double maxposition; 
-	double maxvelocity; 
-
-	double minposition; 
-	double minvelocity; 
-
 	// Magnifiers for position and velocity
 	double magnifier_pos;
 	double magnifier_vel;
