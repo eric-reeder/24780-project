@@ -27,12 +27,6 @@ PlotWindow::PlotWindow()
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
 
-	maxposition = 550.0;
-	minposition = 700.0; 
-
-	maxposition = 550.0;
-	minposition = 700.0;
-
 	//gray axes 
 	axiscolorRed = 200;
 	axiscolorBlue = 200;
