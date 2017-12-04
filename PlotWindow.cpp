@@ -22,7 +22,7 @@ PlotWindow::PlotWindow()
 	
 	//magnifies data
 	magnifier_vel = 60.0;
-	magnifier_pos = 180.0;
+	magnifier_pos = 40.0;
 
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
@@ -122,7 +122,7 @@ void PlotWindow::DrawLegend(void)
 {//Draws Legend 
 	char* mass1label = "Mass 1";
 	char* mass2label = "Mass 2";
-	char* ratiolabel = "Position:Velocity Ratio = 3:1";
+	char* ratiolabel = "Position:Velocity Ratio = 2:3";
 	
 	
 	glColor3ub(0, 0, 0);
