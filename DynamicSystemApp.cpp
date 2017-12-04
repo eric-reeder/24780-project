@@ -159,7 +159,7 @@ void DynamicSystemApp::drawApp(void)
     animationWindow.draw(mass1, mass2, spring1, spring2, spring3, damper1, damper2, damper3);
   //  plotWindow.draw(mass1, mass2, elapsedTime, maxSimTime);
 	//std::cout << "MASS 1 VEL (MAIN FN): " << mass1.getVelocity() << "\n";
-	std::cout << "TIME (MAIN FN): " << elapsedTime << "\n";
+	//std::cout << "TIME (MAIN FN): " << elapsedTime << "\n";
 	plotWindow.plot(mass1.getVelocity(), mass2.getVelocity(), mass1.getPosition(), mass2.getPosition(), elapsedTime, maxSimTime);
 }
 

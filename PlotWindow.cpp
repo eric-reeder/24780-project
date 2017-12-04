@@ -156,7 +156,7 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 	velocity2 = 550 - magnifier_vel*vel2;
 
 	//keeps plot from going off the graph
-	if (velocity1 > maxvelocity || velocity1 < minvelocity)
+	/*if (velocity1 > maxvelocity || velocity1 < minvelocity)
 	{
 		velocity1 = maxvelocity; 
 	}
@@ -171,8 +171,8 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 	}
 	else
 	{
-		velocity2 = velocity2;
-	}
+		velocity2 = velocity2;*/
+	//
 
 	storedvelocity1.push_back(velocity1);
 	storedvelocity2.push_back(velocity2);
@@ -192,7 +192,7 @@ void PlotWindow::Position(double pos1, double pos2)
 	double position2 = 550 - magnifier_pos*pos2;
 	
 	//keeps plot from going off the graph 
-	if (position1 > maxposition || position1 < minposition)
+	/*if (position1 > maxposition || position1 < minposition)
 	{
 		position1 = maxposition;
 	}
@@ -208,7 +208,7 @@ void PlotWindow::Position(double pos1, double pos2)
 	else
 	{
 		position2 = position2;
-	}
+	}*/
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
 	
@@ -228,7 +228,7 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 	for (int i = 0; i < storedposition1.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
-		//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
+	
 		x = (450 + timePeriods[i] * ((800 - 450) / maxTime));
 		glVertex2d(x, storedposition1[i]);
 	}
@@ -286,14 +286,14 @@ void PlotWindow::GetButtonState(UIWindow On)
 
 void PlotWindow::reset(void)
 {//resets value information
-	if (buttonstate == 2)
+	/*if (buttonstate == 2)
 	{
 		storedvelocity1.resize(0);
 		storedvelocity2.resize(0);
 		storedposition1.resize(0);
 		storedposition2.resize(0);
 		timePeriods.resize(0);
-	}
+	}*/
 }
 
 
