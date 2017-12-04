@@ -41,7 +41,12 @@ PlotWindow::PlotWindow()
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
 
-	//maxposition
+	maxposition = 550.0;
+	minposition = 700.0; 
+
+	maxposition = 550.0;
+	minposition = 700.0;
+
 	//gray axes 
 	axiscolorRed = 200;
 	axiscolorBlue = 200;
@@ -164,6 +169,7 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 	velocity1 = 550 - magnifier_vel*vel1; //magnifies data and shifts based on the axes 
 	velocity2 = 550 - magnifier_vel*vel2;
 
+	//keeps plot from going off the graph
 	if (velocity1 > maxvelocity || velocity1 < minvelocity)
 	{
 		velocity1 = maxvelocity; 
@@ -181,7 +187,8 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 	{
 		velocity2 = velocity2;
 	}
-	storedvelocity1.push_back(velocity1); //reads 
+
+	storedvelocity1.push_back(velocity1);
 	storedvelocity2.push_back(velocity2);
 
 
@@ -197,7 +204,25 @@ void PlotWindow::Position(double pos1, double pos2)
 {//This calls the positions for mass 1 and 2 from the Mass class 
 	double position1 = 550 - magnifier_pos*pos1;
 	double position2 = 550 - magnifier_pos*pos2;
+	
+	//keeps plot from going off the graph 
+	if (position1 > maxposition || position1 < minposition)
+	{
+		position1 = maxposition;
+	}
+	else
+	{
+		position1 = position1;
+	}
 
+	if (position2 > maxposition || position2 < minposition)
+	{
+		position2 = maxposition;
+	}
+	else
+	{
+		position2 = position2;
+	}
 	storedposition1.push_back(position1);
 	storedposition2.push_back(position2);
 	
