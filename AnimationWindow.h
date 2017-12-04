@@ -72,6 +72,7 @@ public:
     void DrawForce(void);
     double SendOutValue();
     void DrawScalingFactor();
+    void setC (Spring spring1, Spring spring2, Spring spring3,Damper damper1, Damper damper2, Damper damper3);
     
 };
 

@@ -16,7 +16,7 @@
 
 AnimationWindow::AnimationWindow()
 {
-    c = 30;
+    c = 150;
     // c is the variable so if we wanted to up the animations responsiveness to position change or downgrade the animations response to position change we could
     
     // These variables are not being passed from the inital function so are hard coded to values.  May want to improve it later.  The thickness controls the wall thicknesses.  The margin controls the distance from the xstart point to the walls
@@ -35,6 +35,33 @@ double AnimationWindow::getLocations(void) const
 // Brings Mass1 and Mass2s position into the animation window
 
 // prevents the object from going offscrene
+void AnimationWindow::setC (Spring spring1, Spring spring2, Spring spring3,Damper damper1, Damper damper2, Damper damper3)
+{
+    int state3spring=spring3.getState();
+    int state3damper=damper3.getState();
+    int state2damper=damper2.getState();
+    int state1damper=damper1.getState();
+    int damp1Val=damper1.getDamping();
+    int damp2Val=damper2.getDamping();
+    int damp3Val=damper3.getDamping();
+    int dampTot=damp3Val+damp2Val+damp1Val;
+    if (state3spring==0 && state3damper==0)
+    {
+        c=50;
+    }
+    else if(state1damper==0 && state2damper==0 && state3damper==0)
+    {
+        c=100;
+    }
+    else if (dampTot<10)
+    {
+        c=100;
+    }
+    else
+    {
+        c=300;
+    }
+}
 void AnimationWindow::setLocations(Mass mass1, Mass mass2)
 {
     
@@ -305,6 +332,7 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
     //printf("%lf %lf",x1,x2);
     drawBackground();
     drawBorder();
+    setC(spring1, spring2, spring3, damper1, damper2, damper3);
     setLocations(mass1, mass2);
     spring1len=X1Actual-LeftCenter;
     spring2len=X2Actual-X1Actual;
@@ -321,13 +349,14 @@ void AnimationWindow::draw(Mass mass1, Mass mass2, Spring spring1, Spring spring
     SetZeros();
     
     
+    
     spring1.draw(LeftCenter,YSpring,springHeight);
     spring2.draw(X1Actual,YSpring,springHeight);
-    spring3.draw(X2Actual,YSpring,springHeight);
+    spring3.draw(RightCenter-spring3len,YSpring,springHeight);
     
     damper1.draw(LeftCenter,YDamper,spring1len,height);
     damper2.draw(X1Actual,YDamper,spring2len,height);
-    damper3.draw(X2Actual,YDamper,spring3len,height);
+    damper3.draw(RightCenter-spring3len,YDamper,spring3len,height);
     
     mass1.draw(X1Actual, YMass);
     mass2.draw(X2Actual, YMass);
