@@ -34,13 +34,15 @@ protected:
 	double velocity1;
 	double velocity2;
 
+	double maxposition; 
+	double maxvelocity; 
+
+	double minposition; 
+	double minvelocity; 
+
 	// Magnifiers for position and velocity
 	double magnifier_pos;
 	double magnifier_vel;
-
-	// Magnifier for x coordinates 
-
-	double magnifier_x; 
 
 	double positiontranslation;
 	double velocitytranslation;
@@ -58,10 +60,7 @@ protected:
 public:
 	PlotWindow(); //Initalizes plot window
 
-				  //Retrieves coordinates from Animation Class
-				  //void GetCoordinates(void);
-
-				  //function to draw axes 
+	//function to draw axes and legend
 	void DrawPositionAxes(void);
 	void DrawVelocityAxes(void);
 	void DrawLegend(void);

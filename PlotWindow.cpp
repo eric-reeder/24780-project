@@ -63,22 +63,22 @@ PlotWindow::PlotWindow()
 
 void PlotWindow::DrawPositionAxes(void)
 {//Draws postion graph axes 
-	char* positiontitle = "Real-Time Relative Position";
+	char* positiontitle = "Real-Time Relative Position"; //Position Graph Label 
 	glRasterPos2d(500, 425);
 	glColor3ub(fontRed, fontBlue, fontGreen);
 	YsGlDrawFontBitmap12x16(positiontitle);
 
-	char* xpositionlabel = "t";
+	char* xpositionlabel = "t"; //label axes
 	glRasterPos2d(805, 550);
 	glColor3ub(fontRed, fontBlue, fontGreen);
 	YsGlDrawFontBitmap12x16(xpositionlabel);
 
-	char* ypositionlabel = "x";
+	char* ypositionlabel = "x"; //label axes
 	glRasterPos2d(450, 445);
 	glColor3ub(fontRed, fontBlue, fontGreen);
 	YsGlDrawFontBitmap12x16(ypositionlabel);
 	
-	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue);
+	glColor3ub(axiscolorRed, axiscolorGreen, axiscolorBlue); //draw axes 
 	glBegin(GL_LINES);
 	glLineWidth(0.3);
 	
@@ -124,22 +124,27 @@ void PlotWindow::DrawVelocityAxes(void)
 }
 
 void PlotWindow::DrawLegend(void)
-{
+{//Draws Legend 
 	char* mass1label = "Mass 1";
 	char* mass2label = "Mass 2";
+	char* ratiolabel = "Position:Velocity Ratio = 3:1";
+	
+	
 	glColor3ub(0, 0, 0);
 	glRasterPos2d(1305, 395);
-	YsGlDrawFontBitmap10x14(mass1label);
+	YsGlDrawFontBitmap10x14(mass1label); //Mass 1 Text
 	glRasterPos2d(1305, 420);
-	YsGlDrawFontBitmap10x14(mass2label);
+	YsGlDrawFontBitmap10x14(mass2label); //Mass 2 Text 
+	glRasterPos2d(775, 685);
+	YsGlDrawFontBitmap10x14(ratiolabel); //Ratio Text 
 
-	glColor3ub(plot1Red, plot1Green, plot1Blue);
+	glColor3ub(plot1Red, plot1Green, plot1Blue); //Draws Mass 1 Line
 	glBegin(GL_LINES);
 	glLineWidth(2);
 	glVertex2i(1300, 400);
 	glVertex2i(1350, 400);
 	
-	glColor3ub(plot2Red, plot2Green, plot2Blue);
+	glColor3ub(plot2Red, plot2Green, plot2Blue); //Draws Mass 2 Line 
 	glBegin(GL_LINES);
 	glLineWidth(1);
 	glVertex2i(1300, 425);
@@ -157,8 +162,6 @@ void PlotWindow::Velocity(double vel1, double vel2, double time)
 
 	storedvelocity1.push_back(velocity1); //reads 
 	storedvelocity2.push_back(velocity2);
-
-	//printf("TIME (PLOT_WINDOW): %d\n", time);
 
 	// Adding the time to the timePeriods vectors
 	timePeriods.push_back(time);
@@ -245,18 +248,16 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 
 void PlotWindow::reset(void)
 {//resets velocity value information
-//storedvelocity1.resize(0);
-//storedvelocity2.resize(0); 
-//storedposition1.resize(0);
-//storedposition2.resize(0);
+	storedvelocity1.resize(0);  
+	storedvelocity2.resize(0); 
+	storedposition1.resize(0);
+	storedposition2.resize(0);
+	timePeriods.resize(0);
 }
 
 
 void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double time, double maxTime)
 {
-	//printf("PLOT_WINDOW_DRAW\n");
-	//printf("MASS 1 VELOCITY: %d\n", vel1);
-	//printf("TIME (PLOT_WINDOW): %d\n", time);
 
 	drawBackground();
 	drawBorder();
@@ -267,5 +268,5 @@ void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double
 	GraphVelocity(vel1, vel2, time, maxTime);
 	GraphPosition(pos1, pos2, time, maxTime);
 
-
+	reset();
 }
