@@ -188,6 +188,12 @@ void ODESolver::reset()
 	massNo = 0;
 	springNo = 0;
 	damperNo = 0;
+	time = 0;
+	// Initial displacements and velocities
+	disp.push_back(0);
+	disp.push_back(0);
+	velocity.push_back(0);
+	velocity.push_back(0);
 }
 
 ODESolver::~ODESolver()
