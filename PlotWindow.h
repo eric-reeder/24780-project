@@ -45,12 +45,12 @@ protected:
 	double positiontranslation;
 	double velocitytranslation;
 
+	int buttonstate; 
+
 	std::vector <double> storedvelocity1;
 	std::vector <double> storedvelocity2;
 
 	std::vector<double> timePeriods;				// Stores all the different time values at which calculations are done
-
-	double plotvelocity1[100];
 
 	std::vector <double> storedposition1;
 	std::vector <double> storedposition2;
@@ -73,6 +73,9 @@ public:
 
 	//Draws Windows
 	void plot(double vel1, double vel2, double pos1, double pos2, double time, double maxTime);
+
+	//Gets button state from UIWindow 
+	void GetButtonState(UIWindow On);
 
 	//Resets info 
 	void reset(void);

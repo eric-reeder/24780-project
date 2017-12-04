@@ -6,20 +6,6 @@
 #include "fssimplewindow.h"
 #include "ysglfontdata.h"
 
-/*Creates a graphics window object with black border and white background
-Inputs :
-appWidth: Width of app window
-appHeight : Height of app window
-inputMargin : Margin between this window and other windows
-widthFraction : Fraction of app window width this window will be
-heightFraction : Fraction of app window height this window will be
-inputXPosition : X coordinate of top left corner
-inputYPosition : Y coordinate of top left corner  * /
-// Sets x and y coordinates of top left corner
-Inputs:
-newXPosition: X coordinate of top left corner
-newYPosition: Y coordinate of top left corner  */
-
 
 
 PlotWindow::PlotWindow() 
@@ -254,7 +240,7 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 	for (int i = 0; i < storedposition2.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
-																//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
+																
 		x = (450 + timePeriods[i] * ((800 - 450) / maxTime));
 		glVertex2d(x, storedposition2[i]);
 	}
@@ -273,7 +259,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
-																//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
+															
 		x = (900 + timePeriods[i] * ((1300 - 900) / maxTime));
 		glVertex2d(x, storedvelocity1[i]);
 	}
@@ -285,7 +271,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	for (int i = 0; i < storedvelocity2.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
-																//glDrawArrays(GL_LINE_LOOP, 0, plotvelocity1[i]);
+																
 		x = (900 + timePeriods[i] * ((1300 - 900) / maxTime));
 		
 		glVertex2d(x, storedvelocity2[i]);
@@ -293,13 +279,21 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	glEnd();
 }
 
+void PlotWindow::GetButtonState(UIWindow On)
+{
+	buttonstate = On.onval();
+}
+
 void PlotWindow::reset(void)
-{//resets velocity value information
-	/*storedvelocity1.resize(0);  
-	storedvelocity2.resize(0); 
-	storedposition1.resize(0);
-	storedposition2.resize(0);
-	timePeriods.resize(0);*/
+{//resets value information
+	if (buttonstate == 2)
+	{
+		storedvelocity1.resize(0);
+		storedvelocity2.resize(0);
+		storedposition1.resize(0);
+		storedposition2.resize(0);
+		timePeriods.resize(0);
+	}
 }
 
 
@@ -317,3 +311,4 @@ void PlotWindow::plot(double vel1, double vel2, double pos1, double pos2, double
 
 	reset();
 }
+
