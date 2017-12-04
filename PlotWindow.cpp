@@ -21,8 +21,8 @@ PlotWindow::PlotWindow()
 	backgroundBlue = 255;
 	
 	//magnifies data
-	magnifier_vel = 60.0;
-	magnifier_pos = 40.0;
+	magnifier_vel = 30.0;
+	magnifier_pos = 20.0;
 
 	velocitytranslation = 900.0;
 	positiontranslation = 450.0;
@@ -207,14 +207,13 @@ void PlotWindow::GraphPosition(double pos1, double pos2, double time, double max
 void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double maxTime)
 {
 	Velocity(vel1, vel2, time);
-
 	glColor3ub(plot1Red, plot1Green, plot1Blue);
 	glLineWidth(2);
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < storedvelocity1.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
-															
+	
 		x = (900 + timePeriods[i] * ((1300 - 900) / maxTime));
 		glVertex2d(x, storedvelocity1[i]);
 	}
@@ -226,9 +225,7 @@ void PlotWindow::GraphVelocity(double vel1, double vel2, double time, double max
 	for (int i = 0; i < storedvelocity2.size(); i++)
 	{
 		double x;												// Screen coordinate for time (time axis)
-																
 		x = (900 + timePeriods[i] * ((1300 - 900) / maxTime));
-		
 		glVertex2d(x, storedvelocity2[i]);
 	}
 	glEnd();
